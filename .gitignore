@@ -21,3 +21,5 @@ __pycache__
 *.coverage.*
 *.coverage.*
 *.coverage.*
+fake_data.py
+QRCODE

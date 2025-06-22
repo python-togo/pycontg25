@@ -1,5 +1,6 @@
 from pydantic import BaseModel, Field
 from typing import List
+from uuid import UUID
 
 
 
@@ -151,6 +152,9 @@ class VolunteerInquiry(BaseModel):
 
 
 class RegistrationInquiry(BaseModel):
+    id: str = Field(
+        default_factory=UUID, title="ID", description="Unique identifier for the registration"
+    )
     fullName: str = Field(
         ..., title="First Name", description="First name of the person registering"
     )

@@ -28,6 +28,7 @@ from datas import (
 from validator import (
     is_valid_email,
 )
+from uuid import uuid4, UUID
 
 
     
@@ -94,8 +95,19 @@ def register():
             registration_open=False,
         )
     else:
+        if regigstration_date >  datetime.now():
+            return render_template(
+                "registration.html",
+                year=year,
+                event_date=event_date_str,
+                registration_open=True,
+                opening_in_days=opening_in_days,
+            )
+
+        _id = str(uuid4())
         form_data = request.form
         data = RegistrationInquiry(
+            id=_id,
             fullName=form_data.get("fullName"),
             email=form_data.get("email"),
             phone=form_data.get("phone"),
@@ -122,7 +134,7 @@ def register():
             )
 
         existing_entry = get_something_email("registrations", data.email)
-        print(existing_entry)
+        
         if existing_entry:
             return render_template(
                 "success.html",
@@ -164,6 +176,7 @@ def register():
             status="success",
         )
 
+
 @app.route("/coming-soon")
 def coming_soon():
     return render_template(
@@ -196,7 +209,13 @@ def volunteer():
             year=year,
         )
     else:
-
+        if datetime.now() > datetime(2025, 5, 31, 16, 0, 0):
+            return render_template(
+                "call_to_action_close.html",
+                year=year,
+                call_to_action="volunteers",
+            )
+         
         form_data = request.form
         data = VolunteerInquiry(
             first_name=form_data.get("first_name"),
