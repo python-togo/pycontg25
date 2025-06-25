@@ -55,12 +55,6 @@ Basically it'll loks like this:
 ```bash
 SUPABASE_URL=http://xxxxxxxx.ip.project.com
 SUPABASE_KEY="eyJ0eXxxxxxxxxxxxxxx"
-JWT_SECRET="a715cb0c22xxxxxxxxx"
-JWT_ALGORITHM=xxxxxx
-JWT_EXPIRE_MINUTES=20xxxx
-ACCEPTED_AVERAGE_RATING = x
-REJECTED_AVERAGE_RATING = x
-WAITING_AVERAGE_RATING = x
 ```
 
 #### Create your virtual environment (Python 3.11 or above), install requirements and run
