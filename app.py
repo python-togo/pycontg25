@@ -203,6 +203,8 @@ def volunteer():
                 "call_to_action_close.html",
                 year=year,
                 call_to_action="volunteers",
+                intro_message="Thank you for your interest in volunteering for PyCon Togo 2025. We appreciate your enthusiasm and\
+                      support!"
             )  
         return render_template(
             "volunteer.html",
@@ -214,6 +216,8 @@ def volunteer():
                 "call_to_action_close.html",
                 year=year,
                 call_to_action="volunteers",
+                intro_message="Thank you for your interest in volunteering for PyCon Togo 2025. We appreciate your enthusiasm and\
+                      support!"
             )
          
         form_data = request.form
@@ -386,6 +390,7 @@ def proposal():
                 "call_to_action_close.html",
                 year=year,
                 call_to_action="Proposals",
+                intro_message="Thank you for your interest in speaking at PyCon Togo 2025. The Call for Proposals is now closed.",
             )  
         
         return render_template(
