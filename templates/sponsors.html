@@ -18,17 +18,26 @@ Sponsors - PyCon Togo 2025
             organizations are helping us build the Python community in Togo and West Africa.</p>
     </div>
 
+    
+
     <div class="category">
-        <h2 class="sponsor-tier-title">Headline Sponsor</h2>
+        <h2 class="sponsor-tier-title">Headline Sponsor </h2>
 
         <div class="sponsor-logo-container">
-            <div class="sponsor-card">
-                <a href="https://python.org/psf"><img src="../static/images/parteners/psf-logo.png" alt="Your Company Logo" class="sponsor-logo"></a>
 
+            {% for sponsor in headline_sponsors %}
+            <div class="">
+                <a href="{{ sponsor['website'] }}" target="_blank">
+                    <img src="{{ sponsor['logo_url'] }}" alt="{{ sponsor['company'] }} Logo" class="sponsor-logo">
+                </a>
+                
             </div>
+            {% endfor %}
+           
             <a href="{{ url_for('sponsor')}}#sponsorship-packages" class="sponsor-btn">Become Sponsor</a>
 
         </div>
+        
     </div>
 
     <!-- Gold Sponsors -->
@@ -37,10 +46,14 @@ Sponsors - PyCon Togo 2025
 
 
         <div class="sponsor-logo-container">
-            <!-- Add empty slots if needed -->
-            <!-- <div class="sponsor-card">
-                <img src="../static/images/parteners/amz_girls.png" alt="Your Company Logo" class="sponsor-logo">
-            </div> -->
+            {% for sponsor in gold_sponsors %}
+            <div class="">
+                <a href="{{ sponsor['website'] }}" target="_blank">
+                    <img src="{{ sponsor['logo_url'] }}" alt="{{ sponsor['company'] }} Logo" class="sponsor-logo">
+                </a>
+                
+            </div>
+            {% endfor %}
             <a href="{{ url_for('sponsor')}}#sponsorship-packages" class="sponsor-btn">Become Sponsor</a>
 
         </div>
@@ -54,7 +67,14 @@ Sponsors - PyCon Togo 2025
         <h2 class="sponsor-tier-title">Silver Sponsors</h2>
 
         <div class="sponsor-logo-container">
-            
+            {% for sponsor in silver_sponsors %}
+            <div class="sponsor-card">
+                <a href="{{ sponsor['website'] }}" target="_blank">
+                    <img src="{{ sponsor['logo_url'] }}" alt="{{ sponsor['company'] }} Logo" class="sponsor-logo">
+                </a>
+                
+            </div>
+            {% endfor %}
             <a href="{{ url_for('sponsor')}}#sponsorship-packages" class="sponsor-btn">Become Sponsor</a>
         </div>
     </div>
@@ -64,6 +84,14 @@ Sponsors - PyCon Togo 2025
         <h2 class="sponsor-tier-title">Bronze Sponsors</h2>
 
         <div class="sponsor-logo-container">
+            {% for sponsor in bronze_sponsors %}
+            <div class="sponsor-card">
+                <a href="{{ sponsor['website'] }}" target="_blank">
+                    <img src="{{ sponsor['logo_url'] }}" alt="{{ sponsor['company'] }} Logo" class="sponsor-logo">
+                </a>
+                
+            </div>
+            {% endfor %}
 
             <a href="{{ url_for('sponsor')}}#sponsorship-packages" class="sponsor-btn">Become Sponsor</a>
 
@@ -76,6 +104,14 @@ Sponsors - PyCon Togo 2025
         <h2 class="sponsor-tier-title">Community Supporters</h2>
 
         <div class="sponsor-logo-container">
+            {% for sponsor in community_sponsors %}
+            <div class="sponsor-card">
+                <a href="{{ sponsor['website'] }}" target="_blank">
+                    <img src="{{ sponsor['logo_url'] }}" alt="{{ sponsor['company'] }} Logo" class="sponsor-logo">
+                </a>
+                
+            </div>
+            {% endfor %}
 
             <a href="{{ url_for('sponsor')}}#sponsorship-packages" class="sponsor-btn">Become Sponsor</a>
 

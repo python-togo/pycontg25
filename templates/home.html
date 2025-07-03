@@ -70,13 +70,39 @@ Home - PyCon Togo 2025
 
 <section class="partners">
     <div class="container">
-        <h2 class="section-title">Our Partners / Sponsors</h2>
+        <h2 class="section-title">Powered By</h2>
         <div class="partners-logos">
             <div class="partner-logo">
 
                 <img src="../static/images/parteners/psf-logo.png" alt="PSF Logo">
             </div>
         </div>
+</section>
+<section class="sponsors">
+    <div class="container">
+        <h2 class="section-title">Our Sponsors</h2>
+        <p class="sponsors-intro" style="text-align: center;">We are grateful to our sponsors for their support in making PyCon Togo 2025 a
+            reality.</p>
+
+        <!-- Headline Sponsors -->
+        <div class="">
+            <div class="sponsor-logo-container">
+                {% for sponsor in paidsponsors %}
+                <div class="">
+                    <a href="{{ sponsor['website'] }}" target="_blank">
+                        <img src="{{ sponsor['logo_url'] }}" alt="{{ sponsor['company'] }} Logo"
+                            class="sponsor-logo">
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+
+
+    
+
+       
 </section>
 
 <section class="sponsorship" id="sponsors">

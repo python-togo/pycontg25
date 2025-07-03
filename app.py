@@ -13,7 +13,6 @@ from models import (
     WaitlistInquiry,
     RegistrationInquiry,
 
-    
 
 )
 from datas import (
@@ -29,6 +28,7 @@ from validator import (
     is_valid_email,
 )
 from uuid import uuid4, UUID
+import requests
 
 
     
@@ -48,6 +48,23 @@ sponsor_tiers = get_sponsorteirs()
 proposal_opining_date = datetime(2025, 6, 3, 16).strftime("%d %B %Y at %H:%M UTC")
 proposal_closing_date = datetime(2025, 6, 30, 16).strftime("%d %B %Y at %H:%M UTC")
 
+paidsponsors = requests.get("https://api.pycontg.pytogo.org/api/sponsors")
+if paidsponsors.status_code == 200:
+    paidsponsors = paidsponsors.json()
+else:
+    paidsponsors = []
+
+# filter sponsors by level
+gold_sponsors = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "gold"]
+silver_sponsors = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "silver"]
+bronze_sponsors = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "bronze"]
+headline_sponsors = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "headline"]
+inkind_sponsors = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "inKind"]
+community_sponsors = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "community"]
+media_sponsors = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "media"]
+
+
+
 
 @app.route("/favicon.ico")
 def favicon():
@@ -63,6 +80,7 @@ def home():
         sponsor_tiers=sponsor_tiers,
         proposal_opining_date=proposal_opining_date,
         proposal_closing_date=proposal_closing_date,
+        paidsponsors=paidsponsors,
     )
 
 
@@ -543,12 +561,18 @@ def sponsor():
             status="success",
         )
 
-
 @app.route("/sponsors")
 def sponsors():
     return render_template(
         "sponsors.html",
         year=year,
+        gold_sponsors=gold_sponsors,
+        silver_sponsors=silver_sponsors,
+        bronze_sponsors=bronze_sponsors,
+        headline_sponsors=headline_sponsors,
+        inkind_sponsors=inkind_sponsors,
+        community_sponsors=community_sponsors,
+        media_sponsors=media_sponsors,
     )
 
 
