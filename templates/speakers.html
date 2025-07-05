@@ -1,0 +1,219 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="picas-section">
+  <style>
+    .picas-section {
+      font-family: 'Inter', sans-serif;
+      background-color: #f9f9f9;
+      padding: 60px 0;
+    }
+
+    .picas-h1-title {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #004225;
+      margin-bottom: 40px;
+    }
+
+    .picas-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .picas-card {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      padding: 24px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .picas-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .picas-card-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 16px;
+    }
+
+    .picas-card-name {
+      font-size: 1.2rem;
+      color: #006400;
+      margin: 0;
+    }
+
+    .picas-card-bio {
+      color: #555;
+      font-size: 0.95rem;
+      margin-top: 10px;
+    }
+
+    .picas-card-btn {
+      margin-top: 15px;
+      background: none;
+      border: none;
+      color: #006400;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .picas-no-speakers {
+      text-align: center;
+      color: #666;
+      font-size: 1.2rem;
+      margin-top: 50px;
+      margin-bottom: 100px;
+    }
+    /* Modal */
+    .picas-modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.6);
+      overflow: auto;
+      padding: 40px 20px;
+      box-sizing: border-box;
+    }
+
+   .picas-modal-content {
+  background-color: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  margin: 5vh auto;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  animation: slideIn 0.3s ease-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+ .picas-modal-img-large {
+  width: 100%;
+  max-height: 700px;
+  object-fit: cover;
+  display: block;
+}
+
+    .picas-close {
+      position: absolute;
+      top: 12px;
+      right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #aaa;
+      z-index: 100;
+    }
+
+    .picas-close:hover {
+      color: #000;
+    }
+
+    .picas-modal-body {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .picas-modal-body h3 {
+      color: #004225;
+      margin-top: 0;
+    }
+
+    .picas-modal-body p {
+      color: #444;
+      font-size: 0.95rem;
+    }
+
+    .picas-social-link {
+      display: inline-block;
+      margin-top: 12px;
+      color: #004225;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    @media screen and (max-width: 600px) {
+      .picas-modal-img-large {
+        height: 400px;
+      }
+
+      .picas-modal-content {
+        margin-top: 30px;
+      }
+    }
+  </style>
+
+  <h1 class="picas-h1-title">Meet Our Speakers</h1>
+  <div class="picas-container">
+    <!-- check if speakers is empty or not -->
+    {% if not speakers %}
+   
+
+      <p class="picas-no-speakers">No speakers available at the moment. Please check back later!</p>
+   
+    
+    {% else %}
+      {% for speaker in speakers %}
+    <div class="picas-card">
+      <img src="{{ speaker.photo_url }}" alt="{{ speaker.first_name }}" class="picas-card-img">
+      <h3 class="picas-card-name">{{ speaker.first_name }} {{ speaker.last_name }}</h3>
+      <p class="picas-card-bio">{{ speaker.short_bio }}</p>
+      <button class="picas-card-btn" onclick="openPicasModal('picas-modal{{ loop.index }}')">Read more</button>
+    </div>
+    {% endfor %}
+    {% endif %}
+   
+  </div>
+
+  {% for speaker in speakers %}
+  <div id="picas-modal{{ loop.index }}" class="picas-modal">
+    <div class="picas-modal-content">
+      <span class="picas-close" onclick="closePicasModal('picas-modal{{ loop.index }}')">&times;</span>
+      <img src="{{ speaker.banner_url or speaker.photo_url }}" alt="{{ speaker.first_name }} {{ speaker.last_name }}" class="picas-modal-img-large">
+      <div class="picas-modal-body">
+        <h3>{{ speaker.first_name }} {{ speaker.last_name }}</h3>
+        <p>{{ speaker.bio }}</p>
+        <p><strong>Talk Theme:</strong> {{ speaker.title }}</p>
+        {% if speaker.social_link %}
+          <a href="{{ speaker.social_link }}" target="_blank" class="picas-social-link">🔗 {{ speaker.social_platform }}</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+  <script>
+    function openPicasModal(id) {
+      document.getElementById(id).style.display = "block";
+    }
+    function closePicasModal(id) {
+      document.getElementById(id).style.display = "none";
+    }
+
+    // Close modal on click outside content
+    window.onclick = function(event) {
+      if (event.target.classList.contains('picas-modal')) {
+        event.target.style.display = "none";
+      }
+    }
+  </script>
+</section>
+
+{% endblock %}

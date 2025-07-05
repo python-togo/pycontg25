@@ -48,6 +48,68 @@ sponsor_tiers = get_sponsorteirs()
 proposal_opining_date = datetime(2025, 6, 3, 16).strftime("%d %B %Y at %H:%M UTC")
 proposal_closing_date = datetime(2025, 6, 30, 16).strftime("%d %B %Y at %H:%M UTC")
 
+# fake_speakers = [
+#     {
+#     "first_name": "Afi",
+#     "last_name": "Lawson",
+#     "photo_url": "static/images/speakers/speakfemale.jpg",
+#     "banner_url": "static/images/speakers/speakfemale.jpg",  # grande image (optionnelle)
+#     "short_bio": "Data Scientist passionate about AI in education.",
+#     "bio": "Afi is a data scientist with 5 years of experience building AI models for education. She leads workshops and mentors women in STEM.",
+#     "title": "Using AI to Personalize Learning in African Classrooms",
+#     "social_link": "https://linkedin.com/in/afilawson",
+#     "social_platform": "LinkedIn"
+#     },
+#     {
+#     "name": "Kossi Adom",
+#     "photo_url": "static/images/speakers/speaker_mal.jpg",
+#     "banner_url": "static/images/speakers/speaker_mal.jpg",  # grande image (optionnelle)
+#     "short_bio": "Software Engineer specializing in web development.",
+#     "full_bio": "Kossi is a software engineer with over 7 years of experience in web development. He has worked on various projects across Africa and is passionate about open source.",
+#     "talk_theme": "Building Scalable Web Applications with Python",
+#     "social_link": "https://linkedin.com/in/afilawson",
+#     "social_platform": "LinkedIn"
+#     },
+#     {
+#     "name": "Dada Koffi",
+#     "photo_url": "static/images/speakers/speaker_mal.jpg",
+#     "banner_url": "static/images/speakers/speaker_mal.jpg",  # grande image (optionnelle)
+#     "short_bio": "AI Engineer focused on natural language processing.",
+#     "full_bio": "Dada is an AI engineer with a focus on natural language processing. He has developed several applications that help bridge language barriers in Africa.",
+#     "talk_theme": "Natural Language Processing for African Languages",
+#     "social_link": "https://linkedin.com/in/afilawson",
+#     "social_platform": "LinkedIn"
+#     },
+#     {
+#     "name": "Afi Lawson",
+#     "photo_url": "static/images/speakers/speakfemale.jpg",
+#     "banner_url": "static/images/speakers/speakfemale.jpg",  # grande image (optionnelle)
+#     "short_bio": "Data Scientist passionate about AI in education.",
+#     "full_bio": "Afi is a data scientist with 5 years of experience building AI models for education. She leads workshops and mentors",
+#     "talk_theme": "Using AI to Personalize Learning in African Classrooms",
+#     "social_link": "https://linkedin.com/in/afilawson",
+#     "social_platform": "LinkedIn"
+#     },
+#     {
+#     "name": "Kossi Adom",
+#     "photo_url": "static/images/speakers/speaker2.jpg",
+#     "banner_url": "static/images/speakers/speaker_mal.jpg",  # grande image (optionnelle)
+#     "short_bio": "Software Engineer specializing in web development.",
+#     "full_bio": "Kossi is a software engineer with over 7 years of experience in web development. He has worked on various projects across Africa and is passionate about open source.",
+#     "talk_theme": "Building Scalable Web Applications with Python",
+#     "social_link": "https://linkedin.com/in/afilawson",
+#     "social_platform": "LinkedIn"
+#     },
+   
+# ]
+
+speakers_list = requests.get("https://api.pycontg.pytogo.org/api/speakers")
+if speakers_list.status_code == 200:
+    speakers_list = speakers_list.json()
+else:
+    speakers_list = []
+
+
 paidsponsors = requests.get("https://api.pycontg.pytogo.org/api/sponsors")
 if paidsponsors.status_code == 200:
     paidsponsors = paidsponsors.json()
@@ -388,6 +450,25 @@ def waitlist():
             message=success_message,
             status="success",
         )
+    
+
+@app.route("/speakers", methods=["GET"])
+def speakers():
+    speaker_release_date = datetime(2025, 7, 10, 16, 0, 0)
+    if speaker_release_date > datetime.now():
+        return render_template(
+            "coming-soon.html",
+            year=year,
+            message="Speakers will be announced soon!",
+            event_date=event_date_str,
+        )
+    
+    return render_template(
+        "speakers.html",
+        year=year,
+        event_date=event_date_str,
+        speakers=speakers_list
+    )
 
 
 @app.route("/proposal", methods=["GET", "POST"])
