@@ -455,19 +455,28 @@ def waitlist():
 @app.route("/speakers", methods=["GET"])
 def speakers():
     speaker_release_date = datetime(2025, 7, 10, 16, 0, 0)
+    release_speaker_theme_date = datetime(2025, 7, 20, 16, 0, 0)
+    release_speaker_theme = False
+
     if speaker_release_date > datetime.now():
+        
         return render_template(
             "coming-soon.html",
             year=year,
             message="Speakers will be announced soon!",
             event_date=event_date_str,
+            
         )
     
+    if  datetime.now() > release_speaker_theme_date:
+        release_speaker_theme = True
+        print(release_speaker_theme)
     return render_template(
         "speakers.html",
         year=year,
         event_date=event_date_str,
-        speakers=speakers_list
+        speakers=speakers_list,
+        is_themes_released=release_speaker_theme
     )
 
 

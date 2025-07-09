@@ -190,7 +190,10 @@
       <div class="picas-modal-body">
         <h3>{{ speaker.first_name }} {{ speaker.last_name }}</h3>
         <p>{{ speaker.bio }}</p>
+        {% if is_themes_released  %}
         <p><strong>Talk Theme:</strong> {{ speaker.title }}</p>
+        {% endif %}
+        
         {% if speaker.social_link %}
           <a href="{{ speaker.social_link }}" target="_blank" class="picas-social-link">🔗 {{ speaker.social_platform }}</a>
         {% endif %}
