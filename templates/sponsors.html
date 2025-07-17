@@ -11,7 +11,7 @@ Sponsors - PyCon Togo 2025
 {% block content %}
 
 <section class="container">
-    <h1>Our Sponsors</h1>
+    <h1>Our Sponsors / Partners</h1>
 
     <div class="sponsors-intro">
         <p>PyCon Togo 2025 wouldn't be possible without the generous support of our sponsors. These companies and
@@ -116,6 +116,50 @@ Sponsors - PyCon Togo 2025
             <a href="{{ url_for('sponsor')}}#sponsorship-packages" class="sponsor-btn">Become Sponsor</a>
 
 
+        </div>
+    </div>
+    <!-- In-Kind Sponsors -->
+    <!-- <div class="category">
+        <h2 class="sponsor-tier-title">In-Kind Sponsors</h2>
+        <div class="sponsor-logo-container">
+            {% for sponsor in inkind_sponsors %}
+            <div class="sponsor-card">
+                <a href="{{ sponsor['website'] }}" target="_blank">
+                    <img src="{{ sponsor['logo_url'] }}" alt="{{ sponsor['company'] }} Logo" class="sponsor-logo">
+                </a>
+                
+            </div>
+            {% endfor %}
+
+            <a href="{{ url_for('sponsor')}}#sponsorship-packages" class="sponsor-btn">Become Sponsor</a>
+        </div>
+    </div> -->
+  
+    <!-- educational supporter -->
+    <div class="category">
+        <h2 class="sponsor-tier-title">Educational Supporters</h2>
+        <div class="sponsor-logo-container">
+            {% for partner in educational_supporters %}
+            <div class="">
+                <a href="{{ partner['website'] }}" target="_blank">
+                    <img src="{{ partner['logo_url'] }}" alt="{{ partner['company'] }} Logo" class="sponsor-logo">
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+      <!-- media partners -->
+    <div class="category">
+        <h2 class="sponsor-tier-title">Media Partners</h2>
+        <div class="sponsor-logo-container">
+            {% for partner in media_partners %}
+            <div class="sponsor-card">
+                <a href="{{ partner['website'] }}" target="_blank">
+                    <img src="{{ partner['logo_url'] }}" alt="{{ partner['company'] }} Logo" class="sponsor-logo">
+                </a>
+            </div>
+            {% endfor %}
         </div>
     </div>
 

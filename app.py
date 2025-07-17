@@ -4,6 +4,8 @@ import typing
 if not hasattr(typing, "_ClassVar") and hasattr(typing, "ClassVar"):
     typing._ClassVar = typing.ClassVar
 
+import os
+from dotenv import load_dotenv
 from flask import Flask, render_template, request, redirect, url_for
 from datetime import datetime, timedelta
 from models import (
@@ -30,6 +32,7 @@ from validator import (
 from uuid import uuid4, UUID
 import requests
 
+load_dotenv()
 
     
 app = Flask(__name__)
@@ -103,14 +106,15 @@ proposal_closing_date = datetime(2025, 6, 30, 16).strftime("%d %B %Y at %H:%M UT
    
 # ]
 
-speakers_list = requests.get("https://api.pycontg.pytogo.org/api/speakers")
+API_ROOT = os.getenv("API_ROOT", "https://api.pycontg.pytogo.org/api")
+speakers_list = requests.get(f"{API_ROOT}/speakers")
 if speakers_list.status_code == 200:
     speakers_list = speakers_list.json()
 else:
     speakers_list = []
 
 
-paidsponsors = requests.get("https://api.pycontg.pytogo.org/api/sponsors")
+paidsponsors = requests.get(f"{API_ROOT}/sponsors")
 if paidsponsors.status_code == 200:
     paidsponsors = paidsponsors.json()
 else:
@@ -124,6 +128,7 @@ headline_sponsors = [sponsor for sponsor in paidsponsors if sponsor.get("level")
 inkind_sponsors = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "inKind"]
 community_sponsors = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "community"]
 media_sponsors = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "media"]
+educational_supporters = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "educational"]
 
 
 
@@ -663,6 +668,7 @@ def sponsors():
         inkind_sponsors=inkind_sponsors,
         community_sponsors=community_sponsors,
         media_sponsors=media_sponsors,
+        educational_supporters=educational_supporters,
     )
 
 
