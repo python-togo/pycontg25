@@ -78,7 +78,7 @@ def send_ticket_email(participant_name, participant_email):
         msg.add_attachment(file_data, maintype='application', subtype='pdf', filename="PyconTicket2025.pdf")
 
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-        smtp.login('goldendragonslayer20@gmail.com', 'pggc yadf stus lnwh')
+        smtp.login('le_mail_expéditeur', 'code_appli_mail')
         smtp.send_message(msg)
 
 participant_email = "luckyflesher1262@gmail.com"
