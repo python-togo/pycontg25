@@ -1,6 +1,5 @@
 import typing
 
-
 if not hasattr(typing, "_ClassVar") and hasattr(typing, "ClassVar"):
     typing._ClassVar = typing.ClassVar
 
@@ -78,15 +77,15 @@ def shop_swag():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "GET":
-        
-        if regigstration_date >  datetime.now():
+       
+        '''if regigstration_date >  datetime.now():
             return render_template(
                 "registration.html",
                 year=year,
                 event_date=event_date_str,
                 registration_open=True,
                 opening_in_days=opening_in_days,
-            )
+            )'''
         
         return render_template(
             "register.html",
