@@ -1,8 +1,11 @@
 import typing
 
+
 if not hasattr(typing, "_ClassVar") and hasattr(typing, "ClassVar"):
     typing._ClassVar = typing.ClassVar
 
+import os
+from dotenv import load_dotenv
 from flask import Flask, render_template, request, redirect, url_for
 from datetime import datetime, timedelta
 from models import (
@@ -12,7 +15,6 @@ from models import (
     WaitlistInquiry,
     RegistrationInquiry,
 
-    
 
 )
 from datas import (
@@ -28,7 +30,9 @@ from validator import (
     is_valid_email,
 )
 from uuid import uuid4, UUID
+import requests
 
+load_dotenv()
 
     
 app = Flask(__name__)
@@ -47,6 +51,87 @@ sponsor_tiers = get_sponsorteirs()
 proposal_opining_date = datetime(2025, 6, 3, 16).strftime("%d %B %Y at %H:%M UTC")
 proposal_closing_date = datetime(2025, 6, 30, 16).strftime("%d %B %Y at %H:%M UTC")
 
+# fake_speakers = [
+#     {
+#     "first_name": "Afi",
+#     "last_name": "Lawson",
+#     "photo_url": "static/images/speakers/speakfemale.jpg",
+#     "banner_url": "static/images/speakers/speakfemale.jpg",  # grande image (optionnelle)
+#     "short_bio": "Data Scientist passionate about AI in education.",
+#     "bio": "Afi is a data scientist with 5 years of experience building AI models for education. She leads workshops and mentors women in STEM.",
+#     "title": "Using AI to Personalize Learning in African Classrooms",
+#     "social_link": "https://linkedin.com/in/afilawson",
+#     "social_platform": "LinkedIn"
+#     },
+#     {
+#     "name": "Kossi Adom",
+#     "photo_url": "static/images/speakers/speaker_mal.jpg",
+#     "banner_url": "static/images/speakers/speaker_mal.jpg",  # grande image (optionnelle)
+#     "short_bio": "Software Engineer specializing in web development.",
+#     "full_bio": "Kossi is a software engineer with over 7 years of experience in web development. He has worked on various projects across Africa and is passionate about open source.",
+#     "talk_theme": "Building Scalable Web Applications with Python",
+#     "social_link": "https://linkedin.com/in/afilawson",
+#     "social_platform": "LinkedIn"
+#     },
+#     {
+#     "name": "Dada Koffi",
+#     "photo_url": "static/images/speakers/speaker_mal.jpg",
+#     "banner_url": "static/images/speakers/speaker_mal.jpg",  # grande image (optionnelle)
+#     "short_bio": "AI Engineer focused on natural language processing.",
+#     "full_bio": "Dada is an AI engineer with a focus on natural language processing. He has developed several applications that help bridge language barriers in Africa.",
+#     "talk_theme": "Natural Language Processing for African Languages",
+#     "social_link": "https://linkedin.com/in/afilawson",
+#     "social_platform": "LinkedIn"
+#     },
+#     {
+#     "name": "Afi Lawson",
+#     "photo_url": "static/images/speakers/speakfemale.jpg",
+#     "banner_url": "static/images/speakers/speakfemale.jpg",  # grande image (optionnelle)
+#     "short_bio": "Data Scientist passionate about AI in education.",
+#     "full_bio": "Afi is a data scientist with 5 years of experience building AI models for education. She leads workshops and mentors",
+#     "talk_theme": "Using AI to Personalize Learning in African Classrooms",
+#     "social_link": "https://linkedin.com/in/afilawson",
+#     "social_platform": "LinkedIn"
+#     },
+#     {
+#     "name": "Kossi Adom",
+#     "photo_url": "static/images/speakers/speaker2.jpg",
+#     "banner_url": "static/images/speakers/speaker_mal.jpg",  # grande image (optionnelle)
+#     "short_bio": "Software Engineer specializing in web development.",
+#     "full_bio": "Kossi is a software engineer with over 7 years of experience in web development. He has worked on various projects across Africa and is passionate about open source.",
+#     "talk_theme": "Building Scalable Web Applications with Python",
+#     "social_link": "https://linkedin.com/in/afilawson",
+#     "social_platform": "LinkedIn"
+#     },
+   
+# ]
+
+API_ROOT = os.getenv("API_ROOT", "https://api.pycontg.pytogo.org/api")
+speakers_list = requests.get(f"{API_ROOT}/speakers")
+if speakers_list.status_code == 200:
+    speakers_list = speakers_list.json()
+else:
+    speakers_list = []
+
+
+paidsponsors = requests.get(f"{API_ROOT}/sponsors")
+if paidsponsors.status_code == 200:
+    paidsponsors = paidsponsors.json()
+else:
+    paidsponsors = []
+
+# filter sponsors by level
+gold_sponsors = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "gold"]
+silver_sponsors = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "silver"]
+bronze_sponsors = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "bronze"]
+headline_sponsors = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "headline"]
+inkind_sponsors = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "inKind"]
+community_sponsors = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "community"]
+media_sponsors = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "media"]
+educational_supporters = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "educational"]
+
+
+
 
 @app.route("/favicon.ico")
 def favicon():
@@ -62,6 +147,7 @@ def home():
         sponsor_tiers=sponsor_tiers,
         proposal_opining_date=proposal_opining_date,
         proposal_closing_date=proposal_closing_date,
+        paidsponsors=paidsponsors,
     )
 
 
@@ -77,15 +163,15 @@ def shop_swag():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "GET":
-       
-        '''if regigstration_date >  datetime.now():
+        
+        if regigstration_date >  datetime.now():
             return render_template(
                 "registration.html",
                 year=year,
                 event_date=event_date_str,
                 registration_open=True,
                 opening_in_days=opening_in_days,
-            )'''
+            )
         
         return render_template(
             "register.html",
@@ -202,6 +288,8 @@ def volunteer():
                 "call_to_action_close.html",
                 year=year,
                 call_to_action="volunteers",
+                intro_message="Thank you for your interest in volunteering for PyCon Togo 2025. We appreciate your enthusiasm and\
+                      support!"
             )  
         return render_template(
             "volunteer.html",
@@ -213,6 +301,8 @@ def volunteer():
                 "call_to_action_close.html",
                 year=year,
                 call_to_action="volunteers",
+                intro_message="Thank you for your interest in volunteering for PyCon Togo 2025. We appreciate your enthusiasm and\
+                      support!"
             )
          
         form_data = request.form
@@ -365,12 +455,40 @@ def waitlist():
             message=success_message,
             status="success",
         )
+    
+
+@app.route("/speakers", methods=["GET"])
+def speakers():
+    speaker_release_date = datetime(2025, 7, 10, 16, 0, 0)
+    release_speaker_theme_date = datetime(2025, 7, 20, 16, 0, 0)
+    release_speaker_theme = False
+
+    if speaker_release_date > datetime.now():
+        
+        return render_template(
+            "coming-soon.html",
+            year=year,
+            message="Speakers will be announced soon!",
+            event_date=event_date_str,
+            
+        )
+    
+    if  datetime.now() > release_speaker_theme_date:
+        release_speaker_theme = True
+        print(release_speaker_theme)
+    return render_template(
+        "speakers.html",
+        year=year,
+        event_date=event_date_str,
+        speakers=speakers_list,
+        is_themes_released=release_speaker_theme
+    )
 
 
 @app.route("/proposal", methods=["GET", "POST"])
 def proposal():
     cfp_opening_in_days = datetime(2025, 6, 2, 16, 0, 0)
-    cfp_closing_in_days = datetime(2025, 6, 30, 16, 0, 0)
+    cfp_closing_in_days = datetime(2025, 7, 1, 16, 0, 0)
     if request.method == "GET":
         if cfp_opening_in_days > datetime.now():
             return render_template(
@@ -385,6 +503,7 @@ def proposal():
                 "call_to_action_close.html",
                 year=year,
                 call_to_action="Proposals",
+                intro_message="Thank you for your interest in speaking at PyCon Togo 2025. The Call for Proposals is now closed.",
             )  
         
         return render_template(
@@ -537,12 +656,19 @@ def sponsor():
             status="success",
         )
 
-
 @app.route("/sponsors")
 def sponsors():
     return render_template(
         "sponsors.html",
         year=year,
+        gold_sponsors=gold_sponsors,
+        silver_sponsors=silver_sponsors,
+        bronze_sponsors=bronze_sponsors,
+        headline_sponsors=headline_sponsors,
+        inkind_sponsors=inkind_sponsors,
+        community_sponsors=community_sponsors,
+        media_sponsors=media_sponsors,
+        educational_supporters=educational_supporters,
     )
 
 

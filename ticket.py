@@ -2,6 +2,17 @@ import qrcode
 import os
 from reportlab.pdfgen import canvas
 from PIL import Image
+import smtplib
+from email.message import EmailMessage
+from email.utils import formataddr
+from email.mime.image import MIMEImage
+from dotenv import load_dotenv
+
+load_dotenv()
+SENDER_EMAIL = os.environ.get("SENDER_EMAIL")
+SENDER_EMAIL_PASSWORD = os.environ.get("SENDER_EMAIL_PASSWORD")
+SMTP_SERVER = os.environ.get("SMTP_SERVER")
+SMTP_SERVER_PORT = os.environ.get("SMTP_SERVER_PORT")
 
 def generate_qr_code_pdf(data, participant_name, ticket_ref, tshirt_size, group):
     # création du QR code
@@ -45,13 +56,6 @@ def generate_qr_code_pdf(data, participant_name, ticket_ref, tshirt_size, group)
     c.drawImage("logo3.png", 10.5, 2.5, width=3.5, height=2.25)
     c.save()
 
-
-
-import smtplib
-from email.message import EmailMessage
-from email.utils import formataddr
-from email.mime.image import MIMEImage
-
 def send_ticket_email(participant_name, participant_email):
     msg = EmailMessage()
     msg['Subject'] = f"🎫 Votre ticket pour le PyCon Togo 2025"
@@ -77,8 +81,8 @@ def send_ticket_email(participant_name, participant_email):
         file_data = f.read()
         msg.add_attachment(file_data, maintype='application', subtype='pdf', filename="PyconTicket2025.pdf")
 
-    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-        smtp.login('le_mail_expéditeur', 'code_appli_mail')
+    with smtplib.SMTP_SSL(SMTP_SERVER, SMTP_SERVER_PORT) as smtp:
+        smtp.login(SENDER_EMAIL, SENDER_EMAIL_PASSWORD)
         smtp.send_message(msg)
 
 participant_email = "luckyflesher1262@gmail.com"
