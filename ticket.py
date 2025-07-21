@@ -28,32 +28,35 @@ def generate_qr_code_pdf(data, participant_name, ticket_ref, tshirt_size, group)
     img.save("img.png")
         
     # Redimensionnement et fusion du logo de Python Togo et du QR code
-    logo = Image.open("Py.png").convert('RGBA') 
-    img_width, img_height = img.size
-    logo_size = int(img_width * 0.3)
-    logo = logo.resize((logo_size, logo_size), Image.LANCZOS)
-    pos = ((img_width - logo_size) // 2, (img_height - logo_size) // 2)
-    img.paste(logo, pos, mask=logo)
-    img.resize((150, 150))
-    img.save("img.png")
+    base_dir = os.path.dirname(__file__)  # répertoire actuel
+    logo = os.path.join(base_dir, "static", "images", "logo.png")
+    logo2 = os.path.join(base_dir, "static", "images", "logo2.png")
+    logo3 = os.path.join(base_dir, "static", "images", "logo3.png")    
+    
     
    # création du PDF
-    width, height = 14.8, 10
+    width, height = 14.8, 8
     c = canvas.Canvas("ticket.pdf", pagesize=(width, height))
     c.setFont("Helvetica-Bold", 0.5)
-    c.drawCentredString(7.2, 9, f"Ticket - PyCon Togo 2025")
+    c.drawCentredString(7.2, 7, f"Ticket - PyCon Togo 2025")
     c.setFont("Helvetica", 0.3)
-    c.drawString(1.2, 8, f"Name : {participant_name}")
-    c.drawString(1.2, 7.3, f"Reference : {ticket_ref}")
-    c.drawString(1.2, 6.6, f"Tshirt size : {tshirt_size}")
-    c.drawString(1.2, 5.9, f"Group : {group}")
+    if(tshirt_size == ""):
+        c.drawString(1.2, 6, f"Name : {participant_name}")
+        c.drawString(1.2, 4.95, f"Reference : {ticket_ref}")
+        c.drawString(1.2, 3.9, f"Company/Community : {group}")
+    else:
+        c.drawString(1.2, 6, f"Name : {participant_name}")
+        c.drawString(1.2, 5.3, f"Reference : {ticket_ref}")
+        c.drawString(1.2, 4.6, f"Tshirt size : {tshirt_size}")
+        c.drawString(1.2, 3.9, f"Company/Community : {group}")
     c.setLineWidth(0.05)
-    c.line(7.4, 8.4, 7.4, 5.6)
-    c.drawImage("img.png", 10, 5, width=4, height=4)
+    c.line(7.4, 6.4, 7.4, 3.5)
+    c.drawImage("img.png", 10, 3, width=4, height=4)
     c.setLineWidth(0.05)
-    c.line(1.2, 5, 13.5, 5)
-    c.drawImage("logo2.png", 7.5, 2.8, width=2.7, height=1.7)
-    c.drawImage("logo3.png", 10.5, 2.5, width=3.5, height=2.25)
+    c.line(1.2, 3, 13.5, 3)
+    c.drawImage(logo, 1.2, 0.8, width=2.5, height=1.5)
+    c.drawImage(logo2, 6.05, 0.8, width=2.7, height=1.5)
+    c.drawImage(logo3, 10.5, 0.6, width=3, height=1.7)
     c.save()
 
 def send_ticket_email(participant_name, participant_email):
@@ -84,10 +87,10 @@ def send_ticket_email(participant_name, participant_email):
     with smtplib.SMTP_SSL(SMTP_SERVER, SMTP_SERVER_PORT) as smtp:
         smtp.login(SENDER_EMAIL, SENDER_EMAIL_PASSWORD)
         smtp.send_message(msg)
-
+        
 participant_email = "luckyflesher1262@gmail.com"
 participant_name = "tester 1"
-participant_Tshirt_size = "L"
+participant_Tshirt_size = ""
 participant_group = "PyTogo"
 ticket_ref = "TCK-2025-00042"
 
