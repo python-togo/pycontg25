@@ -27,7 +27,7 @@ def generate_qr_code_pdf(data, participant_name, ticket_ref, tshirt_size, group)
     img = qr.make_image(fill_color="black", back_color="white").convert('RGBA')
     img.save("img.png")
         
-    # Redimensionnement et fusion du logo de Python Togo et du QR code
+    # sélection des logos
     base_dir = os.path.dirname(__file__)  # répertoire actuel
     logo = os.path.join(base_dir, "static", "images", "logo.png")
     logo2 = os.path.join(base_dir, "static", "images", "logo2.png")
@@ -87,12 +87,3 @@ def send_ticket_email(participant_name, participant_email):
     with smtplib.SMTP_SSL(SMTP_SERVER, SMTP_SERVER_PORT) as smtp:
         smtp.login(SENDER_EMAIL, SENDER_EMAIL_PASSWORD)
         smtp.send_message(msg)
-        
-participant_email = "luckyflesher1262@gmail.com"
-participant_name = "tester 1"
-participant_Tshirt_size = ""
-participant_group = "PyTogo"
-ticket_ref = "TCK-2025-00042"
-
-generate_qr_code_pdf(ticket_ref, participant_name, ticket_ref, participant_Tshirt_size, participant_group)
-send_ticket_email(participant_name, participant_email)
