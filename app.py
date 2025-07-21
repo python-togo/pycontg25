@@ -1,5 +1,5 @@
 import typing
-
+from ticket import generate_qr_code_pdf, send_ticket_email
 
 if not hasattr(typing, "_ClassVar") and hasattr(typing, "ClassVar"):
     typing._ClassVar = typing.ClassVar
@@ -252,6 +252,8 @@ def register():
             "Thank you for your registration!",
             "We have received your registration and will review it shortly.",
         ]
+        generate_qr_code_pdf(data.id, data.fullName, "ticket_reference", data.tshirtsize, data.organization)
+        send_ticket_email(data.fullName, data.email)
         return render_template(
             "success.html",
             year=year,
