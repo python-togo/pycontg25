@@ -122,17 +122,15 @@ if paidsponsors.status_code == 200:
 else:
     paidsponsors = []
 
-# filter sponsors by level
+
 gold_sponsors = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "gold"]
 silver_sponsors = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "silver"]
 bronze_sponsors = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "bronze"]
 headline_sponsors = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "headline"]
-inkind_sponsors = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "inKind"]
+inkind_sponsors = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "inkind"]
 community_sponsors = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "community"]
 media_sponsors = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "media"]
 educational_supporters = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "educational"]
-
-
 
 
 @app.route("/favicon.ico")
@@ -465,6 +463,8 @@ def waitlist():
 def speakers():
     speaker_release_date = datetime(2025, 7, 10, 16, 0, 0)
     release_speaker_theme_date = datetime(2025, 7, 20, 16, 0, 0)
+    speaker_release_date = speaker_release_date.replace(tzinfo=timezone.utc)
+    release_speaker_theme_date  = release_speaker_theme_date.replace(tzinfo=timezone.utc)
     release_speaker_theme = False
 
     if speaker_release_date > datetime.now(timezone.utc):
@@ -493,6 +493,8 @@ def speakers():
 def proposal():
     cfp_opening_in_days = datetime(2025, 6, 2, 16, 0, 0)
     cfp_closing_in_days = datetime(2025, 7, 1, 16, 0, 0)
+    cfp_opening_in_days = cfp_opening_in_days.replace(tzinfo=timezone.utc)
+    cfp_closing_in_days = cfp_closing_in_days.replace(tzinfo=timezone.utc)
     if request.method == "GET":
         if cfp_opening_in_days > datetime.now(timezone.utc):
             return render_template(
