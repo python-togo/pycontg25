@@ -7,7 +7,7 @@ if not hasattr(typing, "_ClassVar") and hasattr(typing, "ClassVar"):
 import os
 from dotenv import load_dotenv
 from flask import Flask, render_template, request, redirect, url_for
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from models import (
     Proposal,
     SponsorInquiry,
@@ -41,11 +41,13 @@ app.static_folder = "static"
 app.template_folder = "templates"
 
 application = app
-year = datetime.now().year
+year = datetime.now(timezone.utc).year
 event_date = datetime(2025, 8, 23, 7, 0, 0)
 event_date_str = event_date.strftime("%d %B %Y at %H:%M")
-regigstration_date = datetime(2025, 7, 23, 0, 0, 0)
-opening_in = regigstration_date - datetime.now()
+registration_date = datetime(2025, 7, 23, 16, 30, 0)
+
+registration_date = registration_date.replace(tzinfo=timezone.utc)
+opening_in = registration_date - datetime.now(timezone.utc)
 opening_in_days = opening_in.days
 sponsor_tiers = get_sponsorteirs()
 proposal_opining_date = datetime(2025, 6, 3, 16).strftime("%d %B %Y at %H:%M UTC")
@@ -164,14 +166,14 @@ def shop_swag():
 def register():
     if request.method == "GET":
         
-        #if regigstration_date >  datetime.now():
-        #    return render_template(
-        #        "registration.html",
-        #        year=year,
-        #        event_date=event_date_str,
-        #        registration_open=True,
-        #        opening_in_days=opening_in_days,
-        #    )
+        if registration_date >  datetime.now(timezone.utc):
+            return render_template(
+                "registration.html",
+                year=year,
+                event_date=event_date_str,
+                registration_open=True,
+                opening_in_days=opening_in_days,
+            )
         
         return render_template(
             "register.html",
@@ -180,14 +182,14 @@ def register():
             registration_open=False,
         )
     else:
-        #if regigstration_date >  datetime.now():
-        #    return render_template(
-        #        "registration.html",
-        #        year=year,
-        #        event_date=event_date_str,
-        #        registration_open=True,
-        #        opening_in_days=opening_in_days,
-        #    )
+        if registration_date >  datetime.now(timezone.utc):
+            return render_template(
+                "registration.html",
+                year=year,
+                event_date=event_date_str,
+                registration_open=True,
+                opening_in_days=opening_in_days,
+            )
 
         _id = str(uuid4())
         form_data = request.form
@@ -285,7 +287,7 @@ def schedule():
 @app.route("/volunteer", methods=["GET", "POST"])
 def volunteer():
     if request.method == "GET":
-        if datetime.now() > datetime(2025, 5, 31, 16, 0, 0):
+        if datetime.now(timezone.utc) > datetime(2025, 5, 31, 16, 0, 0):
             return render_template(
                 "call_to_action_close.html",
                 year=year,
@@ -298,7 +300,7 @@ def volunteer():
             year=year,
         )
     else:
-        if datetime.now() > datetime(2025, 5, 31, 16, 0, 0):
+        if datetime.now(timezone.utc) > datetime(2025, 5, 31, 16, 0, 0):
             return render_template(
                 "call_to_action_close.html",
                 year=year,
@@ -465,8 +467,8 @@ def speakers():
     release_speaker_theme_date = datetime(2025, 7, 20, 16, 0, 0)
     release_speaker_theme = False
 
-    if speaker_release_date > datetime.now():
-        
+    if speaker_release_date > datetime.now(timezone.utc):
+
         return render_template(
             "coming-soon.html",
             year=year,
@@ -474,8 +476,8 @@ def speakers():
             event_date=event_date_str,
             
         )
-    
-    if  datetime.now() > release_speaker_theme_date:
+
+    if  datetime.now(timezone.utc) > release_speaker_theme_date:
         release_speaker_theme = True
         print(release_speaker_theme)
     return render_template(
@@ -492,7 +494,7 @@ def proposal():
     cfp_opening_in_days = datetime(2025, 6, 2, 16, 0, 0)
     cfp_closing_in_days = datetime(2025, 7, 1, 16, 0, 0)
     if request.method == "GET":
-        if cfp_opening_in_days > datetime.now():
+        if cfp_opening_in_days > datetime.now(timezone.utc):
             return render_template(
                 "cfp.html",
                 year=year,
@@ -500,7 +502,7 @@ def proposal():
                 registration_open=True,
                 opening_in_days=cfp_opening_in_days,
             )
-        elif cfp_closing_in_days < datetime.now():
+        elif cfp_closing_in_days < datetime.now(timezone.utc):
             return render_template(
                 "call_to_action_close.html",
                 year=year,
