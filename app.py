@@ -1,5 +1,5 @@
 import typing
-
+from ticket import send_ticket_email
 
 if not hasattr(typing, "_ClassVar") and hasattr(typing, "ClassVar"):
     typing._ClassVar = typing.ClassVar
@@ -252,6 +252,8 @@ def register():
             "Thank you for your registration!",
             "We have received your registration and will review it shortly.",
         ]
+        
+        send_ticket_email(data.fullName, data.email, data.id, data.organization, data.country)
         return render_template(
             "success.html",
             year=year,
@@ -710,4 +712,4 @@ def internal_server_error(e):
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="127.0.0.1", port=8000)
+    app.run(debug=True, host="127.0.0.1", port=8800)
