@@ -164,14 +164,14 @@ def shop_swag():
 def register():
     if request.method == "GET":
         
-        if regigstration_date >  datetime.now():
-            return render_template(
-                "registration.html",
-                year=year,
-                event_date=event_date_str,
-                registration_open=True,
-                opening_in_days=opening_in_days,
-            )
+        #if regigstration_date >  datetime.now():
+        #    return render_template(
+        #        "registration.html",
+        #        year=year,
+        #        event_date=event_date_str,
+        #        registration_open=True,
+        #        opening_in_days=opening_in_days,
+        #    )
         
         return render_template(
             "register.html",
@@ -180,14 +180,14 @@ def register():
             registration_open=False,
         )
     else:
-        if regigstration_date >  datetime.now():
-            return render_template(
-                "registration.html",
-                year=year,
-                event_date=event_date_str,
-                registration_open=True,
-                opening_in_days=opening_in_days,
-            )
+        #if regigstration_date >  datetime.now():
+        #    return render_template(
+        #        "registration.html",
+        #        year=year,
+        #        event_date=event_date_str,
+        #        registration_open=True,
+        #        opening_in_days=opening_in_days,
+        #    )
 
         _id = str(uuid4())
         form_data = request.form
