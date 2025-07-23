@@ -36,16 +36,20 @@ Registratin - PyCon Togo 2025
                 <label for="organization" class="form-label">Organization / Company</label>
                 <input type="text" id="organization" name="organization" class="form-control">
             </div>
+            <div class="form-group">
+                <label for="username" class="form-label"> Discord Username / Pseudo Discord</label>
+                <input type="text" id="username" name="username" class="form-control">
+            </div>
 
             <div class="form-group">
                 <label for="country" class="form-label required-field">Country / Pays </label>
                 <select id="country" name="country" class="form-control" required>
                     <option value="" disabled selected>Select your country</option>
-                    <option value="togo">Togo</option>
-                    <option value="ghana">Ghana</option>
-                    <option value="benin">Benin</option>
-                    <option value="nigeria">Nigeria</option>
-                    <option value="other">Other</option>
+                    <option value="Togo">Togo</option>
+                    <option value="Ghana">Ghana</option>
+                    <option value="Benin">Benin</option>
+                    <option value="Nigeria">Nigeria</option>
+                    <option value="Other">Other</option>
                 </select>
             </div>
             <div class="form-group">
@@ -68,9 +72,22 @@ Registratin - PyCon Togo 2025
                 </select>
             </div>
             <div class="form-group">
-                <label for="dietaryRestrictions" class="form-label">Dietary Restrictions</label>
+                <label for="dietaryRestrictions" class="form-label">Dietary Restrictions / allergies </label>
                 <textarea id="dietaryRestrictions" name="dietaryrestrictions" class="form-control" rows="3"
                     placeholder="Please let us know if you have any dietary restrictions or food allergies"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="favoriteFood" class="form-label required-field">Dish wishes / Plat souhaité </label>
+                <select id="favoriteFood" name="favoritefood" class="form-control" required>
+                    <option value="" disabled selected>Select your dish / Sélectionnez votre plat</option>
+                    <option value="ayimolou">Ayimolou</option>
+                    <option value="jollof">Jollof rice / Riz au gras</option>
+                    <option value="riz">Riz Blanc</option>
+                    <option value="akpan">Boule d'akassa (Akpan) + Poisson</option>
+                    <option value="piron">Piron</option>
+                    <option value="attieke">Attieké</option>
+                    <option value="other">Other</option>
+                </select>
             </div>
 
             <div class="form-group">

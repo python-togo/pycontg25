@@ -178,6 +178,12 @@ class RegistrationInquiry(BaseModel):
     dietaryrestrictions: str = Field(
         ..., title="Message", description="Message from the registrant"
     )
+    favoritefood: str = Field(
+        ..., title="Favorite Food", description="Favorite food of the person registering"
+    )
+    username: str = Field(
+        None, title="Discord Username", description="Discord username of the person registering"
+    )
     newsletter: bool = Field(
         False, title="Newsletter", description="Subscribe to the newsletter"
     )

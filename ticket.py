@@ -28,10 +28,15 @@ SENDER_EMAIL = os.environ.get("SENDER_EMAIL")
 SENDER_EMAIL_PASSWORD = os.environ.get("SENDER_EMAIL_PASSWORD")
 SMTP_SERVER = os.environ.get("SMTP_SERVER")
 SMTP_SERVER_PORT = os.environ.get("SMTP_SERVER_PORT")
+API_ROOT = os.environ.get("API_ROOT", "http://127.0.0.1:8080/api")
 
 FONT_PATH = "static/font/Roboto-VariableFont_wdth,wght.ttf" 
 font_title = ImageFont.truetype(FONT_PATH, 50)
 font_text = ImageFont.truetype(FONT_PATH, 30)
+
+from PIL import Image, ImageDraw, ImageFont
+import qrcode
+
 
 def generate_ticket_image(data, name, ref, organization, country_city="Togo/Lomé"):
     width, height = 1200, 600
@@ -40,33 +45,56 @@ def generate_ticket_image(data, name, ref, organization, country_city="Togo/Lom�
     draw = ImageDraw.Draw(img)
 
     draw.text((width//2 - 250, 30), "Ticket - PyCon Togo 2025", fill="black", font=font_title)
-
     draw.text((50, 120), f"Name : {name}", fill="black", font=font_text)
     draw.text((50, 180), f"Reference : {ref}", fill="black", font=font_text)
     draw.text((50, 240), f"Company/Community : {organization}", fill="black", font=font_text)
     draw.text((50, 300), f"Country/City : {country_city}", fill="black", font=font_text)
+  
 
-    qr = qrcode.make(data)
-    qr = qr.resize((230, 230))
+
+    # QR code
+    checkin_url = f"{API_ROOT}/{data}/checkin"
+    qr = qrcode.make(checkin_url).resize((230, 230))
     img.paste(qr, (900, 150))
 
     draw.line((50, 400, 1150, 400), fill="black", width=2)
 
-    psf_logo = Image.open("static/images/psf.png").convert('RGBA').resize((210, 52))
-    pycon_logo = Image.open("static/images/pycontogo.png").convert('RGBA').resize((144, 75))
-    pytogo_logo = Image.open("static/images/pythontogo.png").convert('RGBA').resize((180, 180))
+    logo_paths = [
+        ("static/images/pythontogo.png", "Python Togo"),
+        ("static/images/psf.png", "PSF"),
+        ("static/images/afpy.png", "AFPy"),
+        ("static/images/bpd_stacked_us5ika.png", "BPD"),
+        ("static/images/django-logo-positive.png", "Django"),
+        ("static/images/github-logo.png", "GitHub"),
+    ]
 
-    logo_band_y = 440
-    logo_band_height = 100  
+    custom_sizes = {
+        "PSF": (300, 70),
+        "Python Togo": (180, 180)
+    }
 
-    def center_y(y_band_top, band_height, logo_height):
-        return y_band_top + (band_height - logo_height) // 2
+    default_size = (110, 60)
+    resized_logos = []
 
-    img.paste(psf_logo, (100, center_y(logo_band_y, logo_band_height, psf_logo.height)), psf_logo)
-    img.paste(pycon_logo, (500, center_y(logo_band_y, logo_band_height, pycon_logo.height)), pycon_logo)
-    img.paste(pytogo_logo, (900, center_y(logo_band_y, logo_band_height, pytogo_logo.height)), pytogo_logo)
+    for path, name in logo_paths:
+        logo = Image.open(path).convert("RGBA")
+        target_width, target_height = custom_sizes.get(name, default_size)
+        ratio = min(target_width / logo.width, target_height / logo.height)
+        new_size = (int(logo.width * ratio), int(logo.height * ratio))
+        resized_logos.append(logo.resize(new_size, Image.LANCZOS))
+
+    total_width = sum(logo.width for logo in resized_logos) + (len(resized_logos) - 1) * 40
+    start_x = (width - total_width) // 2
+    y_position = 460
+
+    x = start_x
+    for logo in resized_logos:
+        y = y_position + (70 - logo.height) // 2
+        img.paste(logo, (x, y), logo)
+        x += logo.width + 40
 
     return img
+
 
 def upload_ticket_to_cloudinary(pil_img, filename):
     buffer = BytesIO()
@@ -129,6 +157,6 @@ if __name__ == "__main__":
     name = "tester 1"
     ref = "TCK-2025-00042"
     organization = "PyTogo"
-    participant_email = "goldendragonslayer20@gmail.com"
+    participant_email = "ibrahim@pytogo.org"
 
     send_ticket_email(name, participant_email, data, organization, "Togo/Lomé")

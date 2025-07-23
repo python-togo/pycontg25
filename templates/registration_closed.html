@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}
+Call for {{ call_to_action }} is closed
+{% endblock %}
+
+{% block style %}
+<script src="../static/js/main.js" defer></script>
+<link rel="stylesheet" href="../static/css/coming-soon.css">
+
+{% endblock %}
+
+{% block content %}
+
+<main class="coming-soon">
+    <div class="countdown-container">
+
+        <h2 class="countdown-title">Call for {{ call_to_action }} is closed</h2>
+        <div id="countdown">
+            <p>{{ intro_message }} </p>
+
+            <div class="notification">
+                <h3>Want to support the event?</h3>
+                <p>We are still looking for amazing sponsors to help make PyCon Togo 2025 a success. Join our mission to grow the
+                    Python community in Togo and across Africa.</p>
+                <a href="https://pycontg.pytogo.org/sponsor" class="highlight-btn" target="_blank">Become a Sponsor</a>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="{{ url_for('home')}}" class="btn">Back to home page</a>
+                <a href="https://pytogo.org/discord" class="secondary-btn" target="_blank">Join our community</a>
+            </div>
+        </div>
+
+</main>
+<section class="page-content" id="program"></section>
+
+{% endblock %}
