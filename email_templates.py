@@ -1,4 +1,4 @@
-def render_email_template(first_name="Pythonista", first_paragraph="We’re happy to inform you that your talk titled <span class='highlight'>Brett Cannon on Python, humans... and packaging</span> has been accepted for PyCon Togo 2025. Congratulations, and thank you for your support!", message=""):
+def render_email_template( message=""):
     """
     Renders the email template with the provided body and subject.
     
@@ -109,3 +109,61 @@ def render_email_template(first_name="Pythonista", first_paragraph="We’re happ
         </html>
     """
     return html
+
+
+
+def render_sponsor_email(first_name="Pythonista"):
+    html = f"""\
+    <div style="font-family: Arial, sans-serif; color: #333333; line-height: 1.6; padding: 20px;">
+
+  <!-- English Section -->
+  <h2 style="color: #1a73e8;">🤝 Thank You for Your Interest in Sponsoring PyCon Togo 2025</h2>
+    
+  <p>Dear <strong>{first_name}</strong>,</p>
+
+  <p>We sincerely appreciate your interest in sponsoring <strong>PyCon Togo 2025</strong>. Your support helps us strengthen the Python and tech ecosystem in Togo.</p>
+
+  <p>Our team has received your submission. One of our members will reach out to you shortly to discuss possible collaboration opportunities and finalize sponsorship arrangements.</p>
+
+  <p>In the meantime, feel free to send us:</p>
+  <ul style="padding-left: 20px;">
+    <li>Your preferred sponsorship level or package</li>
+    <li>Your brand/logo guidelines (if available)</li>
+    <li>Any questions or expectations you may have</li>
+  </ul>
+
+  <p>We’re looking forward to partnering with you!</p>
+
+  <p>Best regards,<br>
+  The PyCon Togo 2025 Team<br>
+
+
+  <hr style="margin: 40px 0; border: none; border-top: 1px solid #cccccc;">
+
+  <!-- French Section -->
+  <h2 style="color: #1a73e8;">🤝 Merci pour votre intérêt à sponsoriser PyCon Togo 2025</h2>
+
+  <p>Cher·e <strong>{first_name}</strong>,</p>
+
+  <p>Nous vous remercions sincèrement pour votre intérêt à sponsoriser <strong>PyCon Togo 2025</strong>. Votre soutien contribue au développement de l'écosystème Python et technologique au Togo.</p>
+
+  <p>Nous avons bien reçu votre soumission. Un membre de notre équipe vous contactera sous peu pour discuter des opportunités de collaboration et finaliser les modalités de sponsoring.</p>
+
+  <p>En attendant, vous pouvez déjà nous envoyer :</p>
+  <ul style="padding-left: 20px;">
+    <li>Le niveau ou le type de sponsoring souhaité</li>
+    <li>Votre charte graphique ou logo (si disponible)</li>
+    <li>Toute question ou attente spécifique que vous pourriez avoir</li>
+  </ul>
+
+  <p>Nous sommes impatients de collaborer avec vous !</p>
+
+  <p>Cordialement,<br>
+  L’équipe PyCon Togo 2025<br>
+
+
+</div>
+    """
+    body = render_email_template(message=html)
+    subject = "🤝 Thank You for Your Interest in Sponsoring PyCon Togo 2025"
+    return body, subject

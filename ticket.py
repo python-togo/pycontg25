@@ -47,14 +47,12 @@ def generate_ticket_image(data, name, ref, organization, country_city="Togo/Lom�
     draw.text((width//2 - 250, 30), "Ticket - PyCon Togo 2025", fill="black", font=font_title)
     draw.text((50, 120), f"Name : {name}", fill="black", font=font_text)
     draw.text((50, 180), f"Reference : {ref}", fill="black", font=font_text)
-    draw.text((50, 240), f"Company/Community : {organization}", fill="black", font=font_text)
-    draw.text((50, 300), f"Country/City : {country_city}", fill="black", font=font_text)
-  
+    draw.text((50, 240), f"Country/City : {country_city}", fill="black", font=font_text)
+    if organization:
+        draw.text((50, 300), f"Company/Community : {organization}", fill="black", font=font_text)
 
 
-    # QR code
-    checkin_url = f"{API_ROOT}/{data}/checkin"
-    qr = qrcode.make(checkin_url).resize((230, 230))
+    qr = qrcode.make(data).resize((230, 230))
     img.paste(qr, (900, 150))
 
     draw.line((50, 400, 1150, 400), fill="black", width=2)
@@ -104,7 +102,7 @@ def upload_ticket_to_cloudinary(pil_img, filename):
     return result["secure_url"]
 
 
-def send_ticket_email(participant_name, participant_email, participant_id, organization, country_city="Togo/Lomé"):
+def send_ticket_email(participant_name, participant_email, participant_id, organization="", country_city="Togo/Lomé"):
     msg = EmailMessage()
     ticket_url = ticket_system(data=participant_id, name=participant_name, organization=organization, country_city=country_city)
     msg['Subject'] = "🎫 Your Ticket | Votre ticket pour le PyCon Togo 2025"
@@ -134,13 +132,10 @@ def send_ticket_email(participant_name, participant_email, participant_id, organ
     full_message = render_email_template(message=message)
     msg.add_alternative(full_message, subtype='html')
 
-    try:
-        with smtplib.SMTP_SSL(SMTP_SERVER, SMTP_SERVER_PORT) as server:
-            server.login(SENDER_EMAIL, SENDER_EMAIL_PASSWORD)
-            server.send_message(msg)
-        print(f"Ticket email sent to {participant_email} the ticket is available at {ticket_url}")
-    except Exception as e:
-        print(f"Failed to send ticket email to {participant_email}: {e}")
+    with smtplib.SMTP_SSL(SMTP_SERVER, SMTP_SERVER_PORT) as server:
+        server.login(SENDER_EMAIL, SENDER_EMAIL_PASSWORD)
+        server.send_message(msg)
+  
 
 def ticket_system(data=None, name=None, organization=None, country_city="Togo/Lomé"):
     ref = generate_ticket_reference(data)
@@ -156,7 +151,7 @@ if __name__ == "__main__":
     data = "5c663cb9-5b6c-4ff6-a2cf-0c87f2f5127c"  # Example participant ID
     name = "tester 1"
     ref = "TCK-2025-00042"
-    organization = "PyTogo"
-    participant_email = "ibrahim@pytogo.org"
+    organization = ""
+    participant_email = "wass@pytogo.org"
 
     send_ticket_email(name, participant_email, data, organization, "Togo/Lomé")

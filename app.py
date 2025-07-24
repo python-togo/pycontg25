@@ -250,8 +250,37 @@ def register():
                     "You are already registed, please check your email.",
                 ],
             )
-
-        successed = insert_something("registrations", data.dict())
+        try:
+            successed = insert_something("registrations", data.dict())
+            send_ticket_email(data.fullName, data.email, data.id, data.organization, data.country)
+        except Exception as e:
+            if e.args and "duplicate key" in str(e.args[0]).lower():
+                return render_template(
+                    "success.html",
+                    year=year,
+                    event_date=event_date_str,
+                    retry=False,
+                    status="error",
+                    message=[
+                        "Oops! Something went wrong.",
+                        "You are already registered, please check your email.",
+                    ],
+                )
+            else:
+                successed = False
+                return render_template(
+                    "success.html",
+                    year=year,
+                    event_date=event_date_str,
+                    retry=True,
+                    root="/register",
+                    status="error",
+                    message=[
+                        "Oops! registration failed.",
+                        "There was an error submitting your registration. Please try again with a different valid and working email address.",
+                    ],
+                )
+            
         if not successed:
             return render_template(
                 "success.html",
@@ -271,7 +300,7 @@ def register():
             "We have received your registration and will review it shortly.",
         ]
         
-        send_ticket_email(data.fullName, data.email, data.id, data.organization, data.country)
+        
         return render_template(
             "success.html",
             year=year,
