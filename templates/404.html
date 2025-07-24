@@ -19,13 +19,12 @@
     </div>
 
     <h1 class="error-title">Page Not Found</h1>
-    <p class="error-message">Oops! The page you're looking for seems to have disappeared or doesn't exist. Perhaps
-    has gone off to discover the wild python in Africa!</p>
+    <p class="error-message"> {{ message }} </p>
 
 
     <div class="cta-buttons">
         <a href="{{ url_for('home')}}" class="btn">Back to home page</a>
-        <a href="mailto:pycontogo@gmail.com" class="secondary-btn">Contact us</a>
+        <a href="mailto:contact@pytogo.org" class="secondary-btn">Contact us</a>
     </div>
 </main>
 <section class="page-content" id="program"></section>

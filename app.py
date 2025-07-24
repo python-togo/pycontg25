@@ -1,4 +1,5 @@
 import typing
+from send_email import send_sponsor_email
 from ticket import send_ticket_email
 
 if not hasattr(typing, "_ClassVar") and hasattr(typing, "ClassVar"):
@@ -6,7 +7,7 @@ if not hasattr(typing, "_ClassVar") and hasattr(typing, "ClassVar"):
 
 import os
 from dotenv import load_dotenv
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, abort
 from datetime import datetime, timedelta, timezone
 from models import (
     Proposal,
@@ -224,76 +225,30 @@ def register():
         )
 
         if not is_valid_email(data.email):
-            return render_template(
-                "success.html",
-                year=year,
-                event_date=event_date_str,
-                retry=True,
-                root="/register",
-                status="error",
-                message=[
-                    "Oops! Something went wrong.",
-                    "Please enter a valid email address.",
-                ],
-            )
+            abort(400, description="There was an error submitting your registration. Please try again.")
+            return
 
         existing_entry = get_something_email("registrations", data.email)
         if existing_entry:
-            return render_template(
-                "success.html",
-                year=year,
-                event_date=event_date_str,
-                retry=False,
-                status="error",
-                message=[
-                    "Oops! Something went wrong.",
-                    "You are already registed, please check your email.",
-                ],
-            )
+            abort(403, description="You are already registered.")
+            return
         try:
-            successed = insert_something("registrations", data.dict())
             send_ticket_email(data.fullName, data.email, data.id, data.organization, data.country)
+            successed = insert_something("registrations", data.dict())
         except Exception as e:
             if e.args and "duplicate key" in str(e.args[0]).lower():
-                return render_template(
-                    "success.html",
-                    year=year,
-                    event_date=event_date_str,
-                    retry=False,
-                    status="error",
-                    message=[
-                        "Oops! Something went wrong.",
-                        "You are already registered, please check your email.",
-                    ],
-                )
+                successed = False
+                abort(403, description="You are already registered.")
+                return
             else:
                 successed = False
-                return render_template(
-                    "success.html",
-                    year=year,
-                    event_date=event_date_str,
-                    retry=True,
-                    root="/register",
-                    status="error",
-                    message=[
-                        "Oops! registration failed.",
-                        "There was an error submitting your registration. Please try again with a different valid and working email address.",
-                    ],
-                )
+                abort(422, description="Unprocessable Entity")
+                return
             
+
         if not successed:
-            return render_template(
-                "success.html",
-                year=year,
-                event_date=event_date_str,
-                retry=True,
-                root="/register",
-                status="error",
-                message=[
-                    "Oops! Something went wrong.",
-                    "There was an error submitting your registration. Please try again.",
-                ],
-            )
+            abort(500, description="There was an error submitting your registration. Please try again.")
+            return
 
         success_message = [
             "Thank you for your registration!",
@@ -331,8 +286,10 @@ def schedule():
 
 @app.route("/volunteer", methods=["GET", "POST"])
 def volunteer():
+    close_volunteer_date = datetime(2025, 5, 31, 16, 0, 0)
+    close_volunteer_date = close_volunteer_date.replace(tzinfo=timezone.utc)
     if request.method == "GET":
-        if datetime.now(timezone.utc) > datetime(2025, 5, 31, 16, 0, 0):
+        if datetime.now(timezone.utc) > close_volunteer_date:
             return render_template(
                 "call_to_action_close.html",
                 year=year,
@@ -345,7 +302,7 @@ def volunteer():
             year=year,
         )
     else:
-        if datetime.now(timezone.utc) > datetime(2025, 5, 31, 16, 0, 0):
+        if datetime.now(timezone.utc) > close_volunteer_date:
             return render_template(
                 "call_to_action_close.html",
                 year=year,
@@ -584,48 +541,19 @@ def proposal():
         )
 
         if not is_valid_email(data.email):
-            return render_template(
-                "success.html",
-                year=year,
-                event_date=event_date_str,
-                retry=True,
-                root="/proposal",
-                status="error",
-                message=[
-                    "Oops! Something went wrong.",
-                    "Please enter a valid email address.",
-                ],
-            )
+            abort(400, description="Please enter a valid email address.")
+            return
 
         existing_entry = get_something_email("proposals", data.email)
         print(existing_entry)
         if existing_entry:
-            return render_template(
-                "success.html",
-                year=year,
-                event_date=event_date_str,
-                retry=False,
-                status="error",
-                message=[
-                    "Oops! Something went wrong.",
-                    "We have already received a proposal from you. please feel free to reach out to us at contact@pytogo.org.",
-                ],
-            )
+            abort(403, description="You are already registered.")
+            return 
 
         successed = insert_something("proposals", data.dict())
         if not successed:
-            return render_template(
-                "success.html",
-                year=year,
-                event_date=event_date_str,
-                retry=True,
-                root="/proposal",
-                status="error",
-                message=[
-                    "Oops! Something went wrong.",
-                    "There was an error submitting your proposal. Please try again.",
-                ],
-            )
+            abort(500, description="There was an error submitting your proposal. Please try again.")
+            return
 
         success_message = [
             "Thank you for your proposal!",
@@ -669,33 +597,23 @@ def sponsor():
         )
 
         if not is_valid_email(data.email):
-            return render_template(
-                "success.html",
-                year=year,
-                event_date=event_date_str,
-                retry=True,
-                root="/sponsor",
-                status="error",
-                message=[
-                    "Oops! Something went wrong.",
-                    "Please enter a valid email address.",
-                ],
-            )
+            abort(400)
+            return
 
-        successed = insert_something("sponsorinquiry", data.dict())
-        if not successed:
-            return render_template(
-                "success.html",
-                year=year,
-                event_date=event_date_str,
-                retry=True,
-                root="/sponsor",
-                status="error",
-                message=[
-                    "Oops! Something went wrong.",
-                    "There was an error submitting. Please try again.",
-                ],
+        try:
+            send_sponsor_email(
+                first_name=data.company,
+                email_to=data.email,
             )
+            successed = insert_something("sponsorinquiry", data.dict())
+        except Exception as e:
+            successed = False
+            abort(422, description="Unprocessable Entity")
+            return
+
+        if not successed:
+            abort(500, description="Internal Server Error")
+            return
 
         return render_template(
             "success.html",
@@ -749,17 +667,26 @@ def code_of_conduct():
         sponsor_tiers=sponsor_tiers,
     )
 
-# api 
-
-
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template("404.html", year=year), 404
+    return render_template("404.html", year=year, message="Oops! The page you're looking for seems to have disappeared or doesn't exist. Perhaps it has gone off to discover the wild python in Africa!"), 404
+
+@app.errorhandler(403)
+def forbidden(e):
+    return render_template("403.html", year=year, message=e.description), 403
+
+@app.errorhandler(400)
+def bad_request(e):
+    return render_template("400.html", year=year, message="Bad Request: The server could not understand the request due to invalid syntax."), 400
+
+@app.errorhandler(422)
+def unprocessable_entity(e):
+    return render_template("422.html", year=year, message="Unprocessable Entity: The server understands the content type of the request entity, but was unable to process the contained instructions."), 422
 
 @app.errorhandler(500)
 def internal_server_error(e):
-    return render_template("500.html", year=year), 500  
+    return render_template("500.html", year=year, message="Oops! Something went wrong on our end."), 500
 
 
 if __name__ == "__main__":

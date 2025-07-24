@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 {% block title %}
-502 - Bad Gateway
-
-
+422 - Unprocessable Entity
 {% endblock %}
+
 
 {% block style %}
 <link rel="stylesheet" href="../static/css/404.css">
@@ -15,13 +14,14 @@
 
 <main class="error-container">
     <div class="error-code">
-        <div class="error-digit">5</div>
-        <img src="../static/images/logo.png" alt="PyCon Togo Logo" class="error-logo">
+        <div class="error-digit">4</div>
+        <div class="error-digit">2</div>
         <div class="error-digit">2</div>
     </div>
 
-    <h1 class="error-title">Server Error </h1>
-    <p class="error-message">502 Bad Gateway</p>
+    <h1 class="error-title">422 - Unprocessable Entity</h1>
+    <p class="error-message">{{ message }}</p>
+
 
 
     <div class="cta-buttons">

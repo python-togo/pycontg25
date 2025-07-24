@@ -28,7 +28,7 @@ SENDER_EMAIL = os.environ.get("SENDER_EMAIL")
 SENDER_EMAIL_PASSWORD = os.environ.get("SENDER_EMAIL_PASSWORD")
 SMTP_SERVER = os.environ.get("SMTP_SERVER")
 SMTP_SERVER_PORT = os.environ.get("SMTP_SERVER_PORT")
-API_ROOT = os.environ.get("API_ROOT", "http://127.0.0.1:8080/api")
+
 
 FONT_PATH = "static/font/Roboto-VariableFont_wdth,wght.ttf" 
 font_title = ImageFont.truetype(FONT_PATH, 50)
@@ -153,5 +153,3 @@ if __name__ == "__main__":
     ref = "TCK-2025-00042"
     organization = ""
     participant_email = "wass@pytogo.org"
-
-    send_ticket_email(name, participant_email, data, organization, "Togo/Lomé")
