@@ -5,50 +5,72 @@
   padding: 40px 20px;
 }
 
-/* Header */
+/* ✨ ENHANCED Header with gradient and spotlight effect */
 .schedule-header {
   text-align: center;
   margin-bottom: 40px;
-  background: rgba(255, 255, 255, 0.95);
-  padding: 30px 20px;
+  /* Enhanced gradient background */
+  background: linear-gradient(135deg, rgba(171, 229, 179, 0.98)0%, rgba(48, 105, 152, 0.05) 50%, rgba(255, 212, 59, 0.08) 100%);
+  padding: 25px 20px; /* Slightly reduced padding */
   border-radius: 20px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ✨ Subtle spotlight effect overlay */
+.schedule-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 212, 59, 0.1) 0%, transparent 70%);
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: -1;
 }
 
 .schedule-header h1 {
   color: var(--text-dark);
   font-size: 2.2rem;
-  margin-bottom: 10px;
+  margin-bottom: 8px; /* Reduced margin */
   font-weight: 700;
+  position: relative;
+  z-index: 1;
 }
 
 .schedule-header p {
   color: #646464;
   font-size: 1rem;
   font-weight: 400;
+  position: relative;
+  z-index: 1;
 }
 
 /* Schedule Grid */
 .schedule-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 25px;
+  gap: 20px; /* Slightly reduced gap */
   margin-bottom: 40px;
 }
 
-/* Session Card */
+/* ✨ ENHANCED Session Card - More compact and modern */
 .session-card {
   background: rgba(255, 255, 255, 0.95);
   border-radius: 16px;
-  padding: 25px;
+  padding: 20px; /* Reduced from 25px */
   backdrop-filter: blur(10px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08); /* Softer shadow */
   border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother easing */
   position: relative;
   overflow: hidden;
+  cursor: pointer; /* ✨ Pointer cursor for interactivity */
 }
 
 .session-card::before {
@@ -59,11 +81,18 @@
   width: 5px;
   height: 100%;
   background: linear-gradient(180deg, #306998, #ffd43b);
+  transition: width 0.3s ease; /* ✨ Animated border expansion */
 }
 
+/* ✨ ENHANCED Hover effects - Modern and subtle */
 .session-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 40px rgba(48, 105, 152, 0.2);
+  transform: translateY(-6px) scale(1.01); /* Slight scale + lift */
+  box-shadow: 0 16px 48px rgba(48, 105, 152, 0.15); /* Enhanced shadow */
+  border: 1px solid rgba(48, 105, 152, 0.2); /* ✨ Subtle border highlight */
+}
+
+.session-card:hover::before {
+  width: 8px; /* ✨ Border expands on hover */
 }
 
 /* Break Card Special Styling */
@@ -76,47 +105,54 @@
   background: #ffd43b;
 }
 
-/* Time Display */
+.session-card.break:hover {
+  border: 2px dashed rgba(255, 212, 59, 0.8); /* ✨ Enhanced break card hover */
+}
+
+/* Time Display - More compact */
 .session-time {
-  font-size: 1.1rem;
+  font-size: 1rem; /* Slightly reduced */
   font-weight: 600;
   color: #306998;
-  margin-bottom: 15px;
+  margin-bottom: 12px; /* Reduced margin */
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
 .time-icon {
-  width: 20px;
-  height: 20px;
+  width: 18px; /* Slightly smaller */
+  height: 18px;
   background: #ffd43b;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: 11px;
 }
 
-/* Session Content */
+/* Session Content - More compact spacing */
 .session-content h3 {
   color: #306998;
-  font-size: 1.4rem;
-  margin-bottom: 8px;
+  font-size: 1.3rem; /* Slightly reduced */
+  margin-bottom: 6px; /* Reduced margin */
   font-weight: 600;
+  line-height: 1.3; /* Tighter line height */
 }
 
 .session-subtitle {
   color: #646464;
   font-style: italic;
-  margin-bottom: 12px;
-  font-size: 1rem;
+  margin-bottom: 10px; /* Reduced margin */
+  font-size: 0.95rem; /* Slightly smaller */
+  line-height: 1.4;
 }
 
 .session-description {
   color: #555;
-  margin-bottom: 20px;
-  line-height: 1.6;
+  margin-bottom: 16px; /* Reduced margin */
+  line-height: 1.5; /* Tighter line height */
+  font-size: 0.95rem; /* Slightly smaller for compactness */
 }
 
 /* Avatars Container */
@@ -132,12 +168,12 @@
 }
 
 .avatar {
-  width: 36px;
-  height: 36px;
+  width: 32px; /* Slightly smaller */
+  height: 32px;
   border-radius: 50%;
-  border: 3px solid white;
-  margin-left: -8px;
-  transition: transform 0.2s ease;
+  border: 2px solid white; /* Reduced border */
+  margin-left: -6px; /* Adjusted for smaller size */
+  transition: transform 0.25s ease;
 }
 
 .avatar:first-child {
@@ -145,7 +181,7 @@
 }
 
 .avatar:hover {
-  transform: scale(1.1);
+  transform: scale(1.15); /* Slightly more pronounced hover */
   z-index: 10;
   position: relative;
 }
@@ -169,7 +205,7 @@
 
 .participant-count {
   color: #646464;
-  font-size: 0.9rem;
+  font-size: 0.85rem; /* Slightly smaller */
   font-weight: 500;
 }
 
@@ -177,7 +213,7 @@
 .schedule-footer {
   text-align: center;
   background: rgba(255, 255, 255, 0.9);
-  padding: 20px;
+  padding: 18px; /* Slightly reduced */
   border-radius: 16px;
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
@@ -187,6 +223,7 @@
 .schedule-footer p {
   color: #306998;
   font-weight: 500;
+  font-size: 0.95rem; /* Slightly smaller */
 }
 
 /* CTA Buttons - Updated styling to match schedule theme */
@@ -204,9 +241,10 @@
   border-radius: 25px;
   text-decoration: none;
   font-weight: 600;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* ✨ Enhanced easing */
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
 }
 
 .cta-buttons .btn {
@@ -216,8 +254,8 @@
 
 .cta-buttons .btn:hover {
   background: #254a7a;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(48, 105, 152, 0.3);
+  transform: translateY(-3px) scale(1.02); /* ✨ Enhanced button hover */
+  box-shadow: 0 8px 20px rgba(48, 105, 152, 0.3);
 }
 
 .cta-buttons .secondary-btn {
@@ -227,11 +265,11 @@
 
 .cta-buttons .secondary-btn:hover {
   background: #ffd43b;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(255, 212, 59, 0.3);
+  transform: translateY(-3px) scale(1.02); /* ✨ Enhanced button hover */
+  box-shadow: 0 8px 20px rgba(255, 212, 59, 0.3);
 }
 
-/* Responsive Design */
+/* ✨ ENHANCED Responsive Design */
 
 /* Tablet - 768px and up */
 @media (min-width: 768px) {
@@ -239,45 +277,54 @@
     padding: 40px 40px;
   }
 
+  .schedule-header {
+    padding: 28px 25px; /* Adjusted for tablet */
+  }
+
   .schedule-header h1 {
-    font-size: 3rem;
+    font-size: 2.8rem;
   }
 
 
   .session-card {
-    padding: 30px;
+    padding: 24px; /* Adjusted padding */
   }
 
   .session-content h3 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+  }
+
+  .avatar {
+    width: 34px;
+    height: 34px;
   }
 }
 
 /* Desktop - 1024px and up */
 @media (min-width: 1024px) {
   .schedule-header {
-    padding: 40px 30px;
+    padding: 35px 30px;
   }
 
   .schedule-header h1 {
-    font-size: 2.2rem;
+    font-size: 2.4rem; /* Balanced size */
   }
 
-
   .session-card {
-    padding: 35px;
+    padding: 28px; /* Adjusted padding */
   }
 
   .session-time {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
   .session-content h3 {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
   }
 
   .avatar {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
   }
 }
+
