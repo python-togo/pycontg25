@@ -1,55 +1,172 @@
 {% extends "base.html" %}
 
 {% block title %}
-Coming soon - PyCon Togo 2025
-
+Day Schedule - PyCon Togo 2025
 {% endblock %}
 
 {% block style %}
 <script src="../static/js/main.js" defer></script>
 <script src="../static/js/home.js" defer></script>
 <link rel="stylesheet" href="../static/css/coming-soon.css">
-
+<link rel="stylesheet" href="../static/css/schedule.css">
 {% endblock %}
 
 {% block content %}
 
-<main class="coming-soon">
-    <h2>This page is under development</h2>
-    <p>We are currently working on this feature to provide you with the best possible experience at
-        of PyCon Togo 2025.</p>
+<section class="page-content" id="program">
+    <div class="schedule-container">
+        <!-- Header -->
+        <div class="schedule-header">
+            <h1>Talks and Workshops Schedule</h1>
+            <p>Let's Build the Future with Python 🐍</p>
+        </div>
 
-    <div class="countdown-container">
-        <h2 class="countdown-title">Event Countdown</h2>
-        <div class="countdown-timer" id="countdown">
-            <div class="countdown-item">
-                <span class="countdown-number" id="days">215</span>
-                <span class="countdown-label">Days</span>
+        <!-- Schedule Grid -->
+        <div class="schedule-grid">
+            <!-- Opening Keynote -->
+            <div class="session-card">
+                <div class="session-time">
+                    <div class="time-icon">🕘</div>
+                    09:00 – 10:00
+                </div>
+                <div class="session-content">
+                    <h3>Opening Keynote</h3>
+                    <div class="session-subtitle">"The State of Python"</div>
+                    <div class="session-description">
+                        Explore the latest trends and future roadmap of Python.
+                    </div>
+                    <div class="avatars-container">
+                        <div class="avatars">
+                            <div class="avatar avatar-1"></div>
+                            <div class="avatar avatar-2"></div>
+                            <div class="avatar avatar-3"></div>
+                        </div>
+                        <span class="participant-count">3 speakers</span>
+                    </div>
+                </div>
             </div>
-            <div class="countdown-item">
-                <span class="countdown-number" id="hours">08</span>
-                <span class="countdown-label">Hours</span>
+
+            <!-- Data Science Workshop -->
+            <div class="session-card">
+                <div class="session-time">
+                    <div class="time-icon">🕥</div>
+                    10:15 – 12:00
+                </div>
+                <div class="session-content">
+                    <h3>Data Science Workshop</h3>
+                    <div class="session-subtitle">"Python for Data Science"</div>
+                    <div class="session-description">
+                        Hands-on session with pandas, NumPy, and visualization tools.
+                    </div>
+                    <div class="avatars-container">
+                        <div class="avatars">
+                            <div class="avatar avatar-1"></div>
+                            <div class="avatar avatar-2"></div>
+                            <div class="avatar avatar-4"></div>
+                            <div class="avatar avatar-5"></div>
+                        </div>
+                        <span class="participant-count">4 instructors</span>
+                    </div>
+                </div>
             </div>
-            <div class="countdown-item">
-                <span class="countdown-number" id="minutes">45</span>
-                <span class="countdown-label">Minutes</span>
+
+            <!-- Lightning Talks -->
+            <div class="session-card">
+                <div class="session-time">
+                    <div class="time-icon">🕐</div>
+                    13:00 – 14:00
+                </div>
+                <div class="session-content">
+                    <h3>Lightning Talks</h3>
+                    <div class="session-description">
+                        Rapid-fire community presentations (5 min each).
+                    </div>
+                    <div class="avatars-container">
+                        <div class="avatars">
+                            <div class="avatar avatar-1"></div>
+                            <div class="avatar avatar-2"></div>
+                            <div class="avatar avatar-3"></div>
+                            <div class="avatar avatar-4"></div>
+                            <div class="avatar avatar-5"></div>
+                        </div>
+                        <span class="participant-count">5 speakers</span>
+                    </div>
+                </div>
             </div>
-            <div class="countdown-item">
-                <span class="countdown-number" id="seconds">30</span>
-                <span class="countdown-label">Seconds</span>
+
+            <!-- Lunch Break -->
+            <div class="session-card break">
+                <div class="session-time">
+                    <div class="time-icon">🕑</div>
+                    14:00 – 15:00
+                </div>
+                <div class="session-content">
+                    <h3>Lunch Break</h3>
+                    <div class="session-description">
+                        Time to recharge and network with fellow Pythonistas!
+                    </div>
+                </div>
+            </div>
+
+            <!-- Async Workshop -->
+            <div class="session-card">
+                <div class="session-time">
+                    <div class="time-icon">🕒</div>
+                    15:00 – 16:30
+                </div>
+                <div class="session-content">
+                    <h3>Async Workshop</h3>
+                    <div class="session-subtitle">"Async Python in Practice"</div>
+                    <div class="session-description">
+                        Master asyncio, trio, and concurrency patterns.
+                    </div>
+                    <div class="avatars-container">
+                        <div class="avatars">
+                            <div class="avatar avatar-1"></div>
+                            <div class="avatar avatar-4"></div>
+                            <div class="avatar avatar-5"></div>
+                        </div>
+                        <span class="participant-count">3 experts</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Closing Panel -->
+            <div class="session-card">
+                <div class="session-time">
+                    <div class="time-icon">🕔</div>
+                    17:00 – 18:00
+                </div>
+                <div class="session-content">
+                    <h3>Closing Panel</h3>
+                    <div class="session-subtitle">"Python in Industry"</div>
+                    <div class="session-description">
+                        Discussion with professionals on real-world Python use cases.
+                    </div>
+                    <div class="avatars-container">
+                        <div class="avatars">
+                            <div class="avatar avatar-2"></div>
+                            <div class="avatar avatar-3"></div>
+                            <div class="avatar avatar-4"></div>
+                            <div class="avatar avatar-5"></div>
+                        </div>
+                        <span class="participant-count">4 panelists</span>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="notification">
-            This page will be available soon. Come back in a few days!
+        <!-- Footer -->
+        <div class="schedule-footer">
+            <p>Join us in celebrating Python and building the tech community in Togo! 🐍🇹🇬</p>
         </div>
 
-    <div class="cta-buttons">
-        <a href="{{ url_for('home')}}" class="btn">Back to home page</a>
-        <a href="mailto:contact@pytogo.org" class="secondary-btn">Contact us</a>
+        <!-- CTA Buttons -->
+        <div class="cta-buttons">
+            <a href="{{ url_for('home') }}" class="btn">Back to home page</a>
+            <a href="mailto:contact@pytogo.org" class="secondary-btn">Contact us</a>
+        </div>
     </div>
-</main>
-<section class="page-content" id="program"></section>
-
+</section>
 
 {% endblock %}

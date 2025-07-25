@@ -1,0 +1,283 @@
+/* Day Schedule Styles */
+.schedule-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* Header */
+.schedule-header {
+  text-align: center;
+  margin-bottom: 40px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 30px 20px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.schedule-header h1 {
+  color: var(--text-dark);
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.schedule-header p {
+  color: #646464;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+/* Schedule Grid */
+.schedule-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+/* Session Card */
+.session-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 25px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.session-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(180deg, #306998, #ffd43b);
+}
+
+.session-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(48, 105, 152, 0.2);
+}
+
+/* Break Card Special Styling */
+.session-card.break {
+  background: rgba(255, 212, 59, 0.15);
+  border: 2px dashed #ffd43b;
+}
+
+.session-card.break::before {
+  background: #ffd43b;
+}
+
+/* Time Display */
+.session-time {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #306998;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.time-icon {
+  width: 20px;
+  height: 20px;
+  background: #ffd43b;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+/* Session Content */
+.session-content h3 {
+  color: #306998;
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.session-subtitle {
+  color: #646464;
+  font-style: italic;
+  margin-bottom: 12px;
+  font-size: 1rem;
+}
+
+.session-description {
+  color: #555;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+/* Avatars Container */
+.avatars-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatars {
+  display: flex;
+  gap: -8px;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 3px solid white;
+  margin-left: -8px;
+  transition: transform 0.2s ease;
+}
+
+.avatar:first-child {
+  margin-left: 0;
+}
+
+.avatar:hover {
+  transform: scale(1.1);
+  z-index: 10;
+  position: relative;
+}
+
+/* Avatar Colors */
+.avatar-1 {
+  background: #306998;
+}
+.avatar-2 {
+  background: #ffd43b;
+}
+.avatar-3 {
+  background: #646464;
+}
+.avatar-4 {
+  background: #4caf50;
+}
+.avatar-5 {
+  background: #ff6b6b;
+}
+
+.participant-count {
+  color: #646464;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Schedule Footer */
+.schedule-footer {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.schedule-footer p {
+  color: #306998;
+  font-weight: 500;
+}
+
+/* CTA Buttons - Updated styling to match schedule theme */
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.cta-buttons .btn,
+.cta-buttons .secondary-btn {
+  padding: 12px 30px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cta-buttons .btn {
+  background: #306998;
+  color: white;
+}
+
+.cta-buttons .btn:hover {
+  background: #254a7a;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(48, 105, 152, 0.3);
+}
+
+.cta-buttons .secondary-btn {
+  background: rgba(255, 212, 59, 0.9);
+  color: #306998;
+}
+
+.cta-buttons .secondary-btn:hover {
+  background: #ffd43b;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 212, 59, 0.3);
+}
+
+/* Responsive Design */
+
+/* Tablet - 768px and up */
+@media (min-width: 768px) {
+  .schedule-container {
+    padding: 40px 40px;
+  }
+
+  .schedule-header h1 {
+    font-size: 3rem;
+  }
+
+
+  .session-card {
+    padding: 30px;
+  }
+
+  .session-content h3 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Desktop - 1024px and up */
+@media (min-width: 1024px) {
+  .schedule-header {
+    padding: 40px 30px;
+  }
+
+  .schedule-header h1 {
+    font-size: 2.2rem;
+  }
+
+
+  .session-card {
+    padding: 35px;
+  }
+
+  .session-time {
+    font-size: 1.2rem;
+  }
+
+  .session-content h3 {
+    font-size: 1.6rem;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+  }
+}
