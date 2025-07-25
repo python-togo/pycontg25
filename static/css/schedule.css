@@ -10,7 +10,12 @@
   text-align: center;
   margin-bottom: 40px;
   /* Enhanced gradient background */
-  background: linear-gradient(135deg, rgba(171, 229, 179, 0.98)0%, rgba(48, 105, 152, 0.05) 50%, rgba(255, 212, 59, 0.08) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(171, 229, 179, 0.98) 0%,
+    rgba(48, 105, 152, 0.05) 50%,
+    rgba(255, 212, 59, 0.08) 100%
+  );
   padding: 25px 20px; /* Slightly reduced padding */
   border-radius: 20px;
   backdrop-filter: blur(12px);
@@ -22,13 +27,17 @@
 
 /* ✨ Subtle spotlight effect overlay */
 .schedule-header::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   left: 50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(255, 212, 59, 0.1) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 212, 59, 0.1) 0%,
+    transparent 70%
+  );
   transform: translateX(-50%);
   pointer-events: none;
   z-index: -1;
@@ -103,7 +112,7 @@
 
 /* ✨ NEW: Special ribbon for break sessions */
 .time-ribbon.break-ribbon {
-  background: linear-gradient(180deg, #FFD43B 0%, #ffde59 100%);
+  background: linear-gradient(180deg, #ffd43b 0%, #ffde59 100%);
 }
 
 .time-ribbon.break-ribbon .time-text {
@@ -125,7 +134,7 @@
 }
 
 .session-card.break:hover .time-ribbon.break-ribbon {
-  background: linear-gradient(180deg, #ffde59 0%, #FFD43B 100%);
+  background: linear-gradient(180deg, #ffde59 0%, #ffd43b 100%);
   transform: translateX(-2px);
   box-shadow: 2px 0 8px rgba(255, 212, 59, 0.2);
 }
@@ -230,7 +239,7 @@
   bottom: 5px;
   right: 0;
   font-size: 0.7rem;
-  color: #999;
+  color: var(--text-dark);
   font-weight: 500;
   background: rgba(255, 255, 255, 0.8);
   padding: 2px 6px;
@@ -374,4 +383,3 @@
     height: 36px;
   }
 }
-
