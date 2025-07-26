@@ -1,11 +1,13 @@
-{% extends "base.html" %} {% block title %} Day Schedule - PyCon Togo 2025 {%
-endblock %} {% block style %}
+{% extends "base.html" %} 
+{% block title %} Day Schedule - PyCon Togo 2025 {% endblock %} 
+{% block style %}
 <script src="../static/js/main.js" defer></script>
 <script src="../static/js/home.js" defer></script>
 <link rel="stylesheet" href="../static/css/coming-soon.css" />
 <link rel="stylesheet" href="../static/css/schedule.css" />
-{% endblock %} {% block content %}
+{% endblock %} 
 
+{% block content %}
 <section class="page-content" id="program">
   <div class="schedule-container">
     <!-- Header -->
@@ -16,320 +18,43 @@ endblock %} {% block style %}
 
     <!-- Schedule Grid -->
     <div class="schedule-grid">
-      <!-- Registration -->
-      <div class="session-card break">
-        <div class="time-ribbon break-ribbon">
-          <span class="time-text">08:00<br />–<br />08:30</span>
-        </div>
-        <div class="session-content">
-          <h3>Registration</h3>
-          <div class="session-description">
-            Time to check in, grab your badge, and get ready for an exciting
-            day!
+      {% for session in schedule %}
+        <div class="session-card {{ session.type }}">
+          <div class="time-ribbon {% if session.type == 'break' %}break-ribbon{% endif %}">
+            <span class="time-text">{{ session.start_time }}<br />–<br />{{ session.end_time }}</span>
           </div>
-          <div class="session-duration">30 min</div>
-        </div>
-      </div>
-      <!-- Welcome Speech -->
-      <div class="session-card">
-        <div class="time-ribbon">
-          <span class="time-text">08:30<br />–<br />09:00</span>
-        </div>
-        <div class="session-content">
-          <h3>Welcome Speech</h3>
-          <div class="session-description">
-            Kick off the conference with our organizers and special guests.
+          <div class="session-content">
+            <h3>{{ session.title }}</h3>
+            {% if session.subtitle %}
+              <div class="session-subtitle">{{ session.subtitle }}</div>
+            {% endif %}
+            {% if session.description_short %}
+              <div class="session-description" title="{{ session.description_full }}">
+                {{ session.description_short }}
+              </div>
+            {% endif %}
+            {% if session.speakers %}
+              <div class="avatars-container">
+                <div class="avatars">
+                  {% for speaker in session.speakers %}
+                    <div class="avatar avatar-{{ loop.index }}">
+                      {% if speaker in speaker_images %}
+                        <img
+                          class="avatar avatar-{{ loop.index }}"
+                          src="{{ speaker_images[speaker] }}"
+                          alt="Speaker {{ loop.index }}"
+                        />
+                      {% endif %}
+                    </div>
+                  {% endfor %}
+                </div>
+                <span class="participant-count">{{ session.participant_count }} {{ session.participant_label }}</span>
+              </div>
+            {% endif %}
+            <div class="session-duration">{{ session.duration }} min</div>
           </div>
-          <div class="session-duration">30 min</div>
         </div>
-      </div>
-      <!-- Opening Keynote -->
-      <div class="session-card">
-        <!-- ✨ NEW: Left vertical time ribbon -->
-        <div class="time-ribbon">
-          <span class="time-text">09:00<br />–<br />10:00</span>
-        </div>
-        <div class="session-content">
-          <h3>Opening Keynote</h3>
-          <div class="session-subtitle">
-            "Python's Evolution: From Scripting to AI Powerhouse"
-          </div>
-          <div
-            class="session-description"
-            title="Join us for an inspiring journey through Python's remarkable transformation from a simple scripting language to the backbone of modern AI and machine learning. Our keynote speakers will explore how Python's simplicity and versatility have made it the language of choice for data scientists, web developers, and AI researchers worldwide. Discover the latest developments in Python 3.12+, upcoming features, and how the Python community continues to drive innovation in technology across Africa and beyond."
-          >
-            Join us for an inspiring journey through Python's remarkable
-            transformation from a simple scripting language to the backbone of
-            modern AI and machine learning. Our keynote speakers will explore
-            how Python's simplicity and versatility have made it the language of
-            choice for data scientists...
-          </div>
-          <div class="avatars-container">
-            <div class="avatars">
-              <div class="avatar avatar-1">
-                <img
-                  class="avatar avatar-1"
-                  src="../static/images/speakers/speaker2.jpg"
-                  alt="Avatar 1"
-                />
-              </div>
-              <div class="avatar avatar-2">
-                <img
-                  class="avatar avatar-2"
-                  src="../static/images/speakers/speaker_mal.jpg"
-                  alt="Avatar 2"
-                />
-              </div>
-              <div class="avatar avatar-3">
-                <img
-                  class="avatar avatar-3"
-                  src="../static/images/speakers/speakfemale.jpg"
-                  alt="Avatar 3"
-                />
-              </div>
-            </div>
-            <span class="participant-count">3 speakers</span>
-          </div>
-          <!-- ✨ NEW: Duration at bottom -->
-          <div class="session-duration">60 min</div>
-        </div>
-      </div>
-
-      <!-- Data Science Workshop -->
-      <div class="session-card">
-        <div class="time-ribbon">
-          <span class="time-text">10:15<br />–<br />12:00</span>
-        </div>
-        <div class="session-content">
-          <h3>Machine Learning Workshop</h3>
-          <div class="session-subtitle">
-            "Building Intelligent Applications with scikit-learn and TensorFlow"
-          </div>
-          <div
-            class="session-description"
-            title="Dive deep into the world of machine learning with Python in this comprehensive hands-on workshop. Learn to build, train, and deploy machine learning models using industry-standard libraries like scikit-learn, pandas, and TensorFlow. We'll start with data preprocessing and exploration using pandas and NumPy, then move on to implementing classification and regression models. The workshop includes real-world datasets, feature engineering techniques, model evaluation strategies, and an introduction to neural networks with TensorFlow. Perfect for developers looking to add ML capabilities to their applications or transition into data science roles."
-          >
-            Dive deep into the world of machine learning with Python in this
-            comprehensive hands-on workshop. Learn to build, train, and deploy
-            machine learning models using industry-standard libraries like
-            scikit-learn, pandas, and TensorFlow. We'll start with data
-            preprocessing and exploration using pandas and NumPy, then move on
-            to implementing classification and regression models...
-          </div>
-          <div class="avatars-container">
-            <div class="avatars">
-              <div class="avatar avatar-1">
-                <img
-                  class="avatar avatar-1"
-                  src="../static/images/speakers/speaker2.jpg"
-                  alt="Avatar 1"
-                />
-              </div>
-              <div class="avatar avatar-2">
-                <img
-                  class="avatar avatar-2"
-                  src="../static/images/speakers/speaker_mal.jpg"
-                  alt="Avatar 2"
-                />
-              </div>
-              <div class="avatar avatar-4">
-                <img
-                  class="avatar avatar-4"
-                  src="../static/images/speakers/speakfemale.jpg"
-                  alt="Avatar 3"
-                />
-              </div>
-              <div class="avatar avatar-5">
-                <img
-                  class="avatar avatar-5"
-                  src="../static/images/speakers/speaker2.jpg"
-                  alt="Avatar 4"
-                />
-              </div>
-            </div>
-            <span class="participant-count">4 instructors</span>
-          </div>
-          <div class="session-duration">105 min</div>
-        </div>
-      </div>
-
-      <!-- Lightning Talks -->
-      <div class="session-card">
-        <div class="time-ribbon">
-          <span class="time-text">13:00<br />–<br />14:00</span>
-        </div>
-        <div class="session-content">
-          <h3>Lightning Talks</h3>
-          <div
-            class="session-description"
-            title="Rapid-fire community presentations (5 min each). Experience the energy of our Python community as developers, students, and professionals share their projects, insights, and discoveries in quick, impactful presentations."
-          >
-            Rapid-fire community presentations (5 min each). Experience the
-            energy of our Python community as developers, students, and
-            professionals share their projects, insights, and discoveries ...
-          </div>
-          <div class="avatars-container">
-            <div class="avatars">
-              <div class="avatar avatar-1">
-                <img
-                  class="avatar avatar-1"
-                  src="../static/images/speakers/speaker2.jpg"
-                  alt="Avatar 1"
-                />
-              </div>
-              <div class="avatar avatar-2">
-                <img
-                  class="avatar avatar-2"
-                  src="../static/images/speakers/speaker_mal.jpg"
-                  alt="Avatar 2"
-                />
-              </div>
-              <div class="avatar avatar-3">
-                <img
-                  class="avatar avatar-3"
-                  src="../static/images/speakers/speakfemale.jpg"
-                  alt="Avatar 3"
-                />
-              </div>
-              <div class="avatar avatar-4">
-                <img
-                  class="avatar avatar-4"
-                  src="../static/images/speakers/speaker2.jpg"
-                  alt="Avatar 4"
-                />
-              </div>
-              <div class="avatar avatar-5">
-                <img
-                  class="avatar avatar-5"
-                  src="../static/images/speakers/speaker_mal.jpg"
-                  alt="Avatar 5"
-                />
-              </div>
-            </div>
-            <span class="participant-count">5 speakers</span>
-          </div>
-          <div class="session-duration">60 min</div>
-        </div>
-      </div>
-
-      <!-- Lunch Break -->
-      <div class="session-card break">
-        <div class="time-ribbon break-ribbon">
-          <span class="time-text">14:00<br />–<br />15:00</span>
-        </div>
-        <div class="session-content">
-          <h3>Lunch Break</h3>
-          <div class="session-description">
-            Time to recharge and network with fellow Pythonistas!
-          </div>
-          <div class="session-duration">60 min</div>
-        </div>
-      </div>
-
-      <!-- Async Workshop -->
-      <div class="session-card">
-        <div class="time-ribbon">
-          <span class="time-text">15:00<br />–<br />16:30</span>
-        </div>
-        <div class="session-content">
-          <h3>Modern Web Development Workshop</h3>
-          <div class="session-subtitle">
-            "Building Scalable APIs with FastAPI and Async Python"
-          </div>
-          <div
-            class="session-description"
-            title="Master the art of building high-performance, scalable web APIs using FastAPI and Python's async capabilities. This intensive workshop covers async/await patterns, concurrent programming with asyncio, and building production-ready REST APIs. You'll learn to implement authentication, database integration with async ORMs like SQLAlchemy, request validation with Pydantic models, and API documentation generation. We'll also explore deployment strategies, testing async code, and performance optimization techniques. By the end, you'll have built a complete async API ready for production deployment with proper error handling and monitoring."
-          >
-            Master the art of building high-performance, scalable web APIs using
-            FastAPI and Python's async capabilities. This intensive workshop
-            covers async/await patterns, concurrent programming with asyncio,
-            and building production-ready REST APIs. You'll learn to implement
-            authentication, database integration with async ORMs like
-            SQLAlchemy, request validation with Pydantic models, and API
-            documentation generation ...
-          </div>
-          <div class="avatars-container">
-            <div class="avatars">
-              <div class="avatar avatar-1">
-                <img
-                  class="avatar avatar-1"
-                  src="../static/images/speakers/speaker_mal.jpg"
-                  alt="Avatar 1"
-                />
-              </div>
-              <div class="avatar avatar-4">
-                <img
-                  class="avatar avatar-4"
-                  src="../static/images/speakers/speakfemale.jpg"
-                  alt="Avatar 2"
-                />
-              </div>
-              <div class="avatar avatar-5">
-                <img
-                  class="avatar avatar-5"
-                  src="../static/images/speakers/speaker2.jpg"
-                  alt="Avatar 3"
-                />
-              </div>
-            </div>
-            <span class="participant-count">3 experts</span>
-          </div>
-          <div class="session-duration">90 min</div>
-        </div>
-      </div>
-
-      <!-- Closing Panel -->
-      <div class="session-card">
-        <div class="time-ribbon">
-          <span class="time-text">17:00<br />–<br />18:00</span>
-        </div>
-        <div class="session-content">
-          <h3>Closing Panel</h3>
-          <div class="session-subtitle">"Python in Industry"</div>
-          <div
-            class="session-description"
-            title="Discussion with professionals on real-world Python use cases. Join industry leaders as they share insights on how Python is transforming businesses across different sectors, from fintech and healthcare to agriculture and education, with special focus on opportunities in the African tech ecosystem."
-          >
-            Discussion with professionals on real-world Python use cases. Join
-            industry leaders as they share insights on how Python is
-            transforming businesses across different sectors...
-          </div>
-          <div class="avatars-container">
-            <div class="avatars">
-              <div class="avatar avatar-2">
-                <img
-                  class="avatar avatar-2"
-                  src="../static/images/speakers/speaker_mal.jpg"
-                  alt="Avatar 1"
-                />
-              </div>
-              <div class="avatar avatar-3">
-                <img
-                  class="avatar avatar-3"
-                  src="../static/images/speakers/speakfemale.jpg"
-                  alt="Avatar 2"
-                />
-              </div>
-              <div class="avatar avatar-4">
-                <img
-                  class="avatar avatar-4"
-                  src="../static/images/speakers/speaker2.jpg"
-                  alt="Avatar 3"
-                />
-              </div>
-              <div class="avatar avatar-5">
-                <img
-                  class="avatar avatar-5"
-                  src="../static/images/speakers/speaker_mal.jpg"
-                  alt="Avatar 4"
-                />
-              </div>
-            </div>
-            <span class="participant-count">4 panelists</span>
-          </div>
-          <div class="session-duration">60 min</div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
 
     <!-- Footer -->
@@ -347,5 +72,4 @@ endblock %} {% block style %}
         </div> -->
   </div>
 </section>
-
 {% endblock %}

@@ -141,12 +141,44 @@
 /* 🔧 UPDATED: Break Card Special Styling with bold dashed border */
 .session-card.break {
   background: rgba(255, 212, 59, 0.1);
-  border: 3px dashed #ffd43b; /* 🔧 UPDATED: Bold dashed border (3px instead of 1px) */
+  border: 3px dashed #ffd43b; /* 🔧 UPDATED: Bold dashed border (3px instead of 2px) */
   height: fit-content;
+  min-height: 80px; /* ✨ NEW: Reduced min-height for break cards */
+  padding: 12px 12px 12px 60px; /* ✨ NEW: Reduced padding for break cards */
 }
 
 .session-card.break:hover {
   border: 3px dashed rgba(255, 212, 59, 0.8); /* 🔧 UPDATED: Bold dashed border on hover */
+}
+
+/* ✨ NEW: Compact styling for short content cards (welcome speech, breaks) */
+.session-card.compact {
+  min-height: 85px; /* ✨ NEW: Reduced min-height for compact cards */
+  padding: 12px 12px 12px 60px; /* ✨ NEW: Reduced padding for compact cards */
+}
+
+.session-card.compact .session-content h3 {
+  margin-bottom: 6px; /* ✨ NEW: Reduced margin for compact cards */
+}
+
+.session-card.compact .session-description {
+  margin-bottom: 8px; /* ✨ NEW: Reduced margin for compact cards */
+  font-size: 0.85rem; /* ✨ NEW: Slightly smaller text for compact cards */
+}
+
+.session-card.compact .session-duration {
+  bottom: 8px; /* ✨ NEW: Adjusted position for compact cards */
+}
+
+/* ✨ NEW: Compact time ribbon for break and welcome cards */
+.session-card.compact .time-ribbon,
+.session-card.break .time-ribbon {
+  width: 50px; /* ✨ NEW: Narrower ribbon for compact cards */
+}
+
+.session-card.compact .time-ribbon .time-text,
+.session-card.break .time-ribbon .time-text {
+  font-size: 0.7rem; /* ✨ NEW: Smaller text in compact ribbon */
 }
 
 /* 🔧 UPDATED: More compact session content */
@@ -326,6 +358,18 @@
     min-height: 130px;
   }
 
+  /* ✨ NEW: Tablet compact card adjustments */
+  .session-card.compact,
+  .session-card.break {
+    min-height: 90px;
+    padding: 14px 14px 14px 65px;
+  }
+
+  .session-card.compact .time-ribbon,
+  .session-card.break .time-ribbon {
+    width: 55px;
+  }
+
   .time-ribbon {
     width: 60px; /* ✨ Slightly wider ribbon */
   }
@@ -362,6 +406,18 @@
   .session-card {
     padding: 20px 20px 20px 80px; /* ✨ Adjusted left padding */
     min-height: 140px;
+  }
+
+  /* ✨ NEW: Desktop compact card adjustments */
+  .session-card.compact,
+  .session-card.break {
+    min-height: 95px;
+    padding: 15px 15px 15px 70px;
+  }
+
+  .session-card.compact .time-ribbon,
+  .session-card.break .time-ribbon {
+    width: 60px;
   }
 
   .time-ribbon {
