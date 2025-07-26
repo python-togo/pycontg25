@@ -113,7 +113,7 @@ proposal_closing_date = datetime(2025, 6, 30, 16).strftime("%d %B %Y at %H:%M UT
    
 # ]
 
-API_ROOT = os.getenv("API_ROOT", "https://api.pycontg.pytogo.org/api")
+API_ROOT = os.getenv("API_ROOT", "http://127.0.0.1:8000/api")
 speakers_list = requests.get(f"{API_ROOT}/speakers")
 if speakers_list.status_code == 200:
     speakers_list = speakers_list.json()
