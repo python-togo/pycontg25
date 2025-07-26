@@ -75,7 +75,6 @@
   padding: 15px 15px 15px 70px; /* ✨ Left padding for ribbon space */
   backdrop-filter: blur(10px);
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
@@ -85,14 +84,14 @@
 
 /* ✨ REMOVED: Old ::before left border - replaced with ribbon */
 
-/* ✨ NEW: Left vertical time ribbon */
+/* ✨ NEW: Left vertical time ribbon - Updated with #004225 gradient */
 .time-ribbon {
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
   width: 55px;
-  background: linear-gradient(180deg, #306998 0%, #4a7bb7 100%);
+  background: linear-gradient(180deg, #004225 0%, #006b3a 100%); /* 🔧 UPDATED: New green gradient */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -110,27 +109,27 @@
   letter-spacing: 0.3px;
 }
 
-/* ✨ NEW: Special ribbon for break sessions */
+/* ✨ NEW: Special ribbon for break sessions - Keep existing yellow gradient */
 .time-ribbon.break-ribbon {
   background: linear-gradient(180deg, #ffd43b 0%, #ffde59 100%);
 }
 
 .time-ribbon.break-ribbon .time-text {
-  color: #306998;
+  color: #004225; /* 🔧 UPDATED: Use the new green color for break ribbon text */
   text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
 }
 
-/* ✨ ENHANCED Hover effects with ribbon integration */
+/* ✨ ENHANCED Hover effects with ribbon integration - Updated for green gradient */
 .session-card:hover {
   transform: translateY(-6px) scale(1.01);
-  box-shadow: 0 16px 48px rgba(48, 105, 152, 0.15);
-  border: 1px solid rgba(48, 105, 152, 0.2);
+  box-shadow: 0 16px 48px rgba(0, 66, 37, 0.15); /* 🔧 UPDATED: Green shadow */
+  border: 1px solid #004225; /* 🔧 UPDATED: Green border */
 }
 
 .session-card:hover .time-ribbon {
-  background: linear-gradient(180deg, #254a7a 0%, #306998 100%);
+  background: linear-gradient(180deg, #002d1b 0%, #004225 100%); /* 🔧 UPDATED: Darker green on hover */
   transform: translateX(-2px);
-  box-shadow: 2px 0 8px rgba(48, 105, 152, 0.2);
+  box-shadow: 2px 0 8px rgba(0, 66, 37, 0.2); /* 🔧 UPDATED: Green shadow */
 }
 
 .session-card.break:hover .time-ribbon.break-ribbon {
@@ -139,17 +138,16 @@
   box-shadow: 2px 0 8px rgba(255, 212, 59, 0.2);
 }
 
-/* Break Card Special Styling */
+/* 🔧 UPDATED: Break Card Special Styling with bold dashed border */
 .session-card.break {
   background: rgba(255, 212, 59, 0.1);
-  border: 1px solid rgba(255, 212, 59, 0.3);
+  border: 3px dashed #ffd43b; /* 🔧 UPDATED: Bold dashed border (3px instead of 1px) */
+  height: fit-content;
 }
 
 .session-card.break:hover {
-  border: 1px solid rgba(255, 212, 59, 0.6);
+  border: 3px dashed rgba(255, 212, 59, 0.8); /* 🔧 UPDATED: Bold dashed border on hover */
 }
-
-/* ✨ REMOVED: Old session-time styles (no longer needed) */
 
 /* 🔧 UPDATED: More compact session content */
 .session-content {
@@ -157,7 +155,7 @@
 }
 
 .session-content h3 {
-  color: #306998;
+  color: #004225;
   font-size: 1.2rem; /* ✨ Further reduced */
   margin-bottom: 4px;
   font-weight: 600;
@@ -259,7 +257,7 @@
 }
 
 .schedule-footer p {
-  color: #306998;
+  color: #004225;
   font-weight: 500;
   font-size: 0.95rem;
 }
@@ -286,7 +284,7 @@
 }
 
 .cta-buttons .btn {
-  background: #306998;
+  background: #004225;
   color: white;
 }
 
@@ -298,7 +296,7 @@
 
 .cta-buttons .secondary-btn {
   background: rgba(255, 212, 59, 0.9);
-  color: #306998;
+  color: #004225;
 }
 
 .cta-buttons .secondary-btn:hover {
