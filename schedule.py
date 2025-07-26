@@ -120,6 +120,19 @@ SCHEDULE_DATA = [
         'speakers': ['speaker2', 'speaker3', 'speaker1', 'speaker2'],
         'participant_count': 4,
         'participant_label': 'panelists'
+    },
+    {
+        'id': 'end_panel',
+        'title': 'Farewell & See You Next Year',
+        'subtitle': '',
+        'start_time': '18:00',
+        'end_time': '18:15',
+        'duration': 15,
+        'type': 'break',
+        'description_short': 'Thank you for being part of PyCon Togo 2025! Safe travels and see you next year!',
+        'description_full': 'As PyCon Togo 2025 comes to an end, we want to express our heartfelt gratitude to all participants, speakers, volunteers, and sponsors who made this event possible. Take with you the connections you\'ve made, the knowledge you\'ve gained, and the inspiration to continue your Python journey. Thank you for being part of our amazing Python community. Safe travels home, and we look forward to seeing you at PyCon Togo 2026!',
+        'speakers': [],
+        'participant_count': 0
     }
 ]
 
