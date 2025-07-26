@@ -3,6 +3,7 @@
 {% block style %}
 <script src="../static/js/main.js" defer></script>
 <script src="../static/js/home.js" defer></script>
+<script src="../static/js/schedule.js" defer></script>
 <link rel="stylesheet" href="../static/css/coming-soon.css" />
 <link rel="stylesheet" href="../static/css/schedule.css" />
 {% endblock %} 
@@ -19,7 +20,7 @@
     <!-- Schedule Grid -->
     <div class="schedule-grid">
       {% for session in schedule %}
-        <div class="session-card {{ session.type }}">
+        <div class="session-card {{ session.type }}" data-session-id="{{ session.id }}">
           <div class="time-ribbon {% if session.type == 'break' %}break-ribbon{% endif %}">
             <span class="time-text">{{ session.start_time }}<br />–<br />{{ session.end_time }}</span>
           </div>
@@ -65,11 +66,44 @@
       </p>
     </div>
 
-    <!-- CTA Buttons -->
-    <!-- <div class="cta-buttons">
-            <a href="{{ url_for('home') }}" class="btn">Back to home page</a>
-            <a href="mailto:contact@pytogo.org" class="secondary-btn">Contact us</a>
-        </div> -->
+    <!-- Session Details Modal -->
+    <div id="session-modal" class="modal-overlay" style="display: none;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modal-title"></h2>
+          <button class="modal-close" aria-label="Close modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="session-time-info">
+            <div class="time-slot">
+              <span class="time-label">Time:</span>
+              <span id="modal-time"></span>
+            </div>
+            <div class="duration-info">
+              <span class="duration-label">Duration:</span>
+              <span id="modal-duration"></span>
+            </div>
+          </div>
+          
+          <div id="modal-subtitle" class="session-subtitle-modal"></div>
+          
+          <div class="session-description-full">
+            <h4>About this session</h4>
+            <p id="modal-description"></p>
+          </div>
+          
+          <div id="modal-speakers" class="speakers-section"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hidden session data for JavaScript -->
+    <script type="application/json" id="session-data">
+      {{ schedule | tojson | safe }}
+    </script>
+    <script type="application/json" id="speaker-images">
+      {{ speaker_images | tojson | safe }}
+    </script>
   </div>
 </section>
 {% endblock %}
