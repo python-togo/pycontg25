@@ -9,8 +9,8 @@ swags = [
     {
         "name": "Python Togo T-Shirt",
         "description": "Proudly represent the Python Togo community with our official t-shirt. Made from high-quality cotton.",
-        "price": 2500,
-        "priceDollar": 4,
+        "price": 3000,
+        "priceDollar": 6,
         "originalPrice": 5000,
         "images": [
             "static/images/swags/tshirt.png",
@@ -26,9 +26,9 @@ swags = [
     {
         "name": "Python Togo Travel Mugs & Tumblers",
         "description": "This tumbler boasts a large capacity and an ergonomic handle for a comfortable hold.",
-        "price": 5000,
-        "priceDollar": 8,
-        "originalPrice": 5000,
+        "price": 10000,
+        "priceDollar": 18,
+        "originalPrice": 15000,
         "images": [
             "static/images/swags/bootle.png",
             "static/images/swags/bootle1.png",
@@ -41,8 +41,8 @@ swags = [
         "name": "Python Togo Hoodie",
         "description": "Stay warm with our Python Togo hoodie. Perfect for coding nights and meetups.",
         "price": 9500,
-        "priceDollar": 15,
-        "originalPrice": 9000,
+        "priceDollar": 17,
+        "originalPrice": 10000,
         "images": [
             "static/images/swags/hoodie8.png",
             "static/images/swags/hoodie2.png",
@@ -87,7 +87,7 @@ swags = [
         "name": "Python all over print",
         "description": "This all-over print is a unique and stylish way to show your love for Python.",
         "price": 15000,
-        "priceDollar": 25,
+        "priceDollar": 30,
         "originalPrice": 20000,
         "images": [
             "static/images/swags/allover3.png",
