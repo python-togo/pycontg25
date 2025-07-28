@@ -1,109 +1,55 @@
-{% extends "base.html" %} 
-{% block title %} Day Schedule - PyCon Togo 2025 {% endblock %} 
+{% extends "base.html" %}
+
+{% block title %}
+Coming soon - PyCon Togo 2025
+
+{% endblock %}
+
 {% block style %}
 <script src="../static/js/main.js" defer></script>
 <script src="../static/js/home.js" defer></script>
-<script src="../static/js/schedule.js" defer></script>
-<link rel="stylesheet" href="../static/css/coming-soon.css" />
-<link rel="stylesheet" href="../static/css/schedule.css" />
-{% endblock %} 
+<link rel="stylesheet" href="../static/css/coming-soon.css">
+
+{% endblock %}
 
 {% block content %}
-<section class="page-content" id="program">
-  <div class="schedule-container">
-    <!-- Header -->
-    <div class="schedule-header">
-      <h1>Talks and Workshops Schedule</h1>
-      <p>Let's Build the Future with Python 🐍</p>
-    </div>
 
-    <!-- Schedule Grid -->
-    <div class="schedule-grid">
-      {% for session in schedule %}
-        <div class="session-card {{ session.type }}" data-session-id="{{ session.id }}">
-          <div class="time-ribbon {% if session.type == 'break' %}break-ribbon{% endif %}">
-            <span class="time-text">{{ session.start_time }}<br />–<br />{{ session.end_time }}</span>
-          </div>
-          <div class="session-content">
-            <h3>{{ session.title }}</h3>
-            {% if session.subtitle %}
-              <div class="session-subtitle">{{ session.subtitle }}</div>
-            {% endif %}
-            {% if session.description_short %}
-              <div class="session-description" title="{{ session.description_full }}">
-                {{ session.description_short }}
-              </div>
-            {% endif %}
-            {% if session.speakers %}
-              <div class="avatars-container">
-                <div class="avatars">
-                  {% for speaker in session.speakers %}
-                    <div class="avatar avatar-{{ loop.index }}">
-                      {% if speaker in speaker_images %}
-                        <img
-                          class="avatar avatar-{{ loop.index }}"
-                          src="{{ speaker_images[speaker] }}"
-                          alt="Speaker {{ loop.index }}"
-                        />
-                      {% endif %}
-                    </div>
-                  {% endfor %}
-                </div>
-                <span class="participant-count">{{ session.participant_count }} {{ session.participant_label }}</span>
-              </div>
-            {% endif %}
-            <div class="session-duration">{{ session.duration }} min</div>
-          </div>
-        </div>
-      {% endfor %}
-    </div>
+<main class="coming-soon">
+    <h2>This page is under development</h2>
+    <p>We are currently working on this feature to provide you with the best possible experience at
+        of PyCon Togo 2025.</p>
 
-    <!-- Footer -->
-    <div class="schedule-footer">
-      <p>
-        Join us in celebrating Python and building the tech community in Togo!
-        🐍🇹🇬
-      </p>
-    </div>
-
-    <!-- Session Details Modal -->
-    <div id="session-modal" class="modal-overlay" style="display: none;">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2 id="modal-title"></h2>
-          <button class="modal-close" aria-label="Close modal">&times;</button>
-        </div>
-        <div class="modal-body">
-          <div class="session-time-info">
-            <div class="time-slot">
-              <span class="time-label">Time:</span>
-              <span id="modal-time"></span>
+    <div class="countdown-container">
+        <h2 class="countdown-title">Event Countdown</h2>
+        <div class="countdown-timer" id="countdown">
+            <div class="countdown-item">
+                <span class="countdown-number" id="days">215</span>
+                <span class="countdown-label">Days</span>
             </div>
-            <div class="duration-info">
-              <span class="duration-label">Duration:</span>
-              <span id="modal-duration"></span>
+            <div class="countdown-item">
+                <span class="countdown-number" id="hours">08</span>
+                <span class="countdown-label">Hours</span>
             </div>
-          </div>
-          
-          <div id="modal-subtitle" class="session-subtitle-modal"></div>
-          
-          <div class="session-description-full">
-            <h4>About this session</h4>
-            <p id="modal-description"></p>
-          </div>
-          
-          <div id="modal-speakers" class="speakers-section"></div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="minutes">45</span>
+                <span class="countdown-label">Minutes</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="seconds">30</span>
+                <span class="countdown-label">Seconds</span>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <!-- Hidden session data for JavaScript -->
-    <script type="application/json" id="session-data">
-      {{ schedule | tojson | safe }}
-    </script>
-    <script type="application/json" id="speaker-images">
-      {{ speaker_images | tojson | safe }}
-    </script>
-  </div>
-</section>
+        <div class="notification">
+            This page will be available soon. Come back in a few days!
+        </div>
+
+    <div class="cta-buttons">
+        <a href="{{ url_for('home')}}" class="btn">Back to home page</a>
+        <a href="mailto:contact@pytogo.org" class="secondary-btn">Contact us</a>
+    </div>
+</main>
+<section class="page-content" id="program"></section>
+
+
 {% endblock %}
