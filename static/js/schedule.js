@@ -1,5 +1,5 @@
 /**
- * Schedule Modal Functionality
+ * Schedule Modal Functionality - Updated for JSON data source
  * Handles displaying session details in a modal when clicking on session cards
  */
 
@@ -7,7 +7,6 @@ class ScheduleModal {
     constructor() {
         this.modal = null;
         this.sessionData = [];
-        this.speakerImages = {};
         this.init();
     }
 
@@ -41,12 +40,6 @@ class ScheduleModal {
             const sessionDataElement = document.getElementById('session-data');
             if (sessionDataElement) {
                 this.sessionData = JSON.parse(sessionDataElement.textContent);
-            }
-
-            // Load speaker images
-            const speakerImagesElement = document.getElementById('speaker-images');
-            if (speakerImagesElement) {
-                this.speakerImages = JSON.parse(speakerImagesElement.textContent);
             }
         } catch (error) {
             console.error('Error loading session data:', error);
@@ -132,23 +125,48 @@ class ScheduleModal {
         // Set duration
         const durationElement = document.getElementById('modal-duration');
         if (durationElement) {
-            timeElement.textContent = `${session.start_time} – ${session.end_time}`;
-        }
-
-        // Set duration
-        const diffDurationElement = document.getElementById('modal-duration');
-        if (durationElement) {
             durationElement.textContent = `${session.duration} minutes`;
         }
 
         // Set description
         const descriptionElement = document.getElementById('modal-description');
         if (descriptionElement) {
-            descriptionElement.textContent = session.description_full || session.description_short || 'No description available.';
+            // Handle line breaks in description
+            const description = session.description_full || session.description_short || 'Aucune description disponible.';
+            descriptionElement.innerHTML = description.replace(/\n/g, '<br>');
         }
+
+        // Handle talks section for talk sessions
+        this.populateTalks(session);
 
         // Set speakers
         this.populateSpeakers(session);
+    }
+
+    populateTalks(session) {
+        const talksContainer = document.getElementById('modal-talks');
+        const talksList = document.getElementById('talks-list');
+        
+        if (!talksContainer || !talksList) return;
+
+        if (session.talks && session.talks.length > 0) {
+            talksContainer.style.display = 'block';
+            
+            const talksHTML = session.talks.map(talk => {
+                const timeSlot = talk.start && talk.end ? `${talk.start} - ${talk.end}` : talk.duration || '';
+                return `
+                    <div class="talk-item" style="margin-bottom: 15px; padding: 12px; background: rgba(0, 66, 37, 0.05); border-radius: 8px; border-left: 3px solid #004225;">
+                        <div style="font-weight: 600; color: #004225; margin-bottom: 4px;">${talk.title}</div>
+                        <div style="color: #646464; font-size: 0.9rem; margin-bottom: 4px;">par ${talk.speaker}</div>
+                        ${timeSlot ? `<div style="color: #888; font-size: 0.8rem;">${timeSlot}</div>` : ''}
+                    </div>
+                `;
+            }).join('');
+            
+            talksList.innerHTML = talksHTML;
+        } else {
+            talksContainer.style.display = 'none';
+        }
     }
 
     populateSpeakers(session) {
@@ -163,19 +181,30 @@ class ScheduleModal {
         speakersContainer.style.display = 'block';
         
         // Create speakers section HTML
+        const participantLabel = this.getParticipantLabel(session.participant_label, session.speakers.length);
+        
         const speakersHTML = `
-            <h4>${session.participant_label ? session.participant_label.charAt(0).toUpperCase() + session.participant_label.slice(1) : 'Speakers'}</h4>
+            <h4>${participantLabel}</h4>
             <div class="speaker-list">
-                ${session.speakers.map((speakerKey, index) => {
-                    const imageSrc = this.speakerImages[speakerKey] || '../static/images/speakers/default-avatar.jpg';
-                    const speakerName = this.getSpeakerName(speakerKey, index);
+                ${session.speakers.map((speaker, index) => {
+                    let avatarSrc = '../static/images/speakers/default-avatar.jpg';
+                    
+                    // Try to get avatar from talks data
+                    if (session.talks && session.talks[index] && session.talks[index].avatar_url) {
+                        avatarSrc = session.talks[index].avatar_url;
+                    }
+                    
                     const speakerTitle = this.getSpeakerTitle(session.participant_label);
                     
                     return `
                         <div class="speaker-item">
-                            <img src="${imageSrc}" alt="${speakerName}" class="speaker-avatar" />
+                            <img src="${avatarSrc}" alt="${speaker}" class="speaker-avatar" 
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                            <div class="speaker-avatar" style="display: none; background: #004225; color: white; align-items: center; justify-content: center; font-weight: bold; font-size: 1rem;">
+                                ${speaker.charAt(0)}
+                            </div>
                             <div class="speaker-info">
-                                <div class="speaker-name">${speakerName}</div>
+                                <div class="speaker-name">${speaker}</div>
                                 <div class="speaker-title">${speakerTitle}</div>
                             </div>
                         </div>
@@ -187,25 +216,28 @@ class ScheduleModal {
         speakersContainer.innerHTML = speakersHTML;
     }
 
-    getSpeakerName(speakerKey, index) {
-        // Generate placeholder names based on speaker key
-        const names = {
-            'speaker1': 'Dr. Kwame Asante',
-            'speaker2': 'Sarah Johnson',
-            'speaker3': 'Prof. Ama Osei'
+    getParticipantLabel(participantLabel, count) {
+        const labels = {
+            'speaker': count > 1 ? 'Intervenant·e·s' : 'Intervenant·e',
+            'speakers': 'Intervenant·e·s', 
+            'participants': 'Participant·e·s',
+            'instructors': 'Formateur·rice·s',
+            'experts': 'Expert·e·s',
+            'panelists': 'Panélistes'
         };
-        return names[speakerKey] || `Speaker ${index + 1}`;
+        return labels[participantLabel] || 'Intervenant·e·s';
     }
 
     getSpeakerTitle(participantLabel) {
-        // Generate appropriate titles based on session type
         const titles = {
-            'speakers': 'Conference Speaker',
-            'instructors': 'Workshop Instructor',
-            'experts': 'Technical Expert',
-            'panelists': 'Industry Panelist'
+            'speaker': 'Intervenant·e',
+            'speakers': 'Intervenant·e',
+            'participants': 'Participant·e',
+            'instructors': 'Formateur·rice',
+            'experts': 'Expert·e Python',
+            'panelists': 'Panéliste'
         };
-        return titles[participantLabel] || 'Python Expert';
+        return titles[participantLabel] || 'Expert·e Python';
     }
 
     showModal() {

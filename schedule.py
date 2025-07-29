@@ -1,152 +1,196 @@
 """
-PyCon Togo 2025 - Schedule Data
-Contains all session information for the conference schedule
+PyCon Togo 2025 - Schedule Data Handler
+Processes JSON schedule data for display
 """
 
-# Speaker images mapping
-SPEAKER_IMAGES = {
-    'speaker1': '../static/images/speakers/speaker2.jpg',
-    'speaker2': '../static/images/speakers/speaker_mal.jpg',
-    'speaker3': '../static/images/speakers/speakfemale.jpg',
-}
+import json
+import os
+from datetime import datetime
 
-# Schedule data for PyCon Togo 2025
-SCHEDULE_DATA = [
-    {
-        'id': 'registration',
-        'title': 'Registration',
-        'subtitle': '',
-        'start_time': '08:00',
-        'end_time': '08:30',
-        'duration': 30,
-        'type': 'break',
-        'description_short': 'Time to check in, grab your badge, and get ready for an exciting day!',
-        'description_full': 'Welcome to PyCon Togo 2025! Please arrive early to collect your conference badge, welcome kit, and network with fellow attendees. Our registration desk will be open with friendly volunteers to help you get oriented.',
-        'speakers': [],
-        'participant_count': 0
-    },
-    {
-        'id': 'welcome_speech',
-        'title': 'Welcome Speech',
-        'subtitle': '',
-        'start_time': '08:30',
-        'end_time': '09:00',
-        'duration': 30,
-        'type': 'compact',
-        'description_short': 'Kick off the conference with our organizers and special guests.',
-        'description_full': 'Join us for the official opening of PyCon Togo 2025 as our organizers and distinguished guests welcome attendees and set the stage for an incredible day of learning, networking, and Python celebration.',
-        'speakers': [],
-        'participant_count': 0
-    },
-    {
-        'id': 'opening_keynote',
-        'title': 'Opening Keynote',
-        'subtitle': "Python's Evolution: From Scripting to AI Powerhouse",
-        'start_time': '09:00',
-        'end_time': '10:00',
-        'duration': 60,
-        'type': 'session',
-        'description_short': 'Join us for an inspiring journey through Python\'s remarkable transformation from a simple scripting language to the backbone of modern AI and machine learning. Our keynote speakers will explore how Python\'s simplicity and versatility have made it the language of choice for data scientists...',
-        'description_full': 'Join us for an inspiring journey through Python\'s remarkable transformation from a simple scripting language to the backbone of modern AI and machine learning. Our keynote speakers will explore how Python\'s simplicity and versatility have made it the language of choice for data scientists, web developers, and AI researchers worldwide. Discover the latest developments in Python 3.12+, upcoming features, and how the Python community continues to drive innovation in technology across Africa and beyond.',
-        'speakers': ['speaker1', 'speaker2', 'speaker3'],
-        'participant_count': 3,
-        'participant_label': 'speakers'
-    },
-    {
-        'id': 'ml_workshop',
-        'title': 'Machine Learning Workshop',
-        'subtitle': 'Building Intelligent Applications with scikit-learn and TensorFlow',
-        'start_time': '10:15',
-        'end_time': '12:00',
-        'duration': 105,
-        'type': 'session',
-        'description_short': 'Dive deep into the world of machine learning with Python in this comprehensive hands-on workshop. Learn to build, train, and deploy machine learning models using industry-standard libraries like scikit-learn, pandas, and TensorFlow...',
-        'description_full': 'Dive deep into the world of machine learning with Python in this comprehensive hands-on workshop. Learn to build, train, and deploy machine learning models using industry-standard libraries like scikit-learn, pandas, and TensorFlow. We\'ll start with data preprocessing and exploration using pandas and NumPy, then move on to implementing classification and regression models. The workshop includes real-world datasets, feature engineering techniques, model evaluation strategies, and an introduction to neural networks with TensorFlow. Perfect for developers looking to add ML capabilities to their applications or transition into data science roles.',
-        'speakers': ['speaker1', 'speaker2', 'speaker3', 'speaker1'],
-        'participant_count': 4,
-        'participant_label': 'instructors'
-    },
-    {
-        'id': 'lightning_talks',
-        'title': 'Lightning Talks',
-        'subtitle': '',
-        'start_time': '13:00',
-        'end_time': '14:00',
-        'duration': 60,
-        'type': 'session',
-        'description_short': 'Rapid-fire community presentations (5 min each). Experience the energy of our Python community as developers, students, and professionals share their projects, insights, and discoveries...',
-        'description_full': 'Rapid-fire community presentations (5 min each). Experience the energy of our Python community as developers, students, and professionals share their projects, insights, and discoveries in quick, impactful presentations.',
-        'speakers': ['speaker1', 'speaker2', 'speaker3', 'speaker1', 'speaker2'],
-        'participant_count': 5,
-        'participant_label': 'speakers'
-    },
-    {
-        'id': 'lunch_break',
-        'title': 'Lunch Break',
-        'subtitle': '',
-        'start_time': '14:00',
-        'end_time': '15:00',
-        'duration': 60,
-        'type': 'break',
-        'description_short': 'Time to recharge and network with fellow Pythonistas!',
-        'description_full': 'Take a break from all the learning and enjoy a delicious lunch while networking with fellow Python enthusiasts. This is a great opportunity to discuss what you\'ve learned so far and make new connections in the Python community.',
-        'speakers': [],
-        'participant_count': 0
-    },
-    {
-        'id': 'web_workshop',
-        'title': 'Modern Web Development Workshop',
-        'subtitle': 'Building Scalable APIs with FastAPI and Async Python',
-        'start_time': '15:00',
-        'end_time': '16:30',
-        'duration': 90,
-        'type': 'session',
-        'description_short': 'Master the art of building high-performance, scalable web APIs using FastAPI and Python\'s async capabilities. This intensive workshop covers async/await patterns, concurrent programming with asyncio...',
-        'description_full': 'Master the art of building high-performance, scalable web APIs using FastAPI and Python\'s async capabilities. This intensive workshop covers async/await patterns, concurrent programming with asyncio, and building production-ready REST APIs. You\'ll learn to implement authentication, database integration with async ORMs like SQLAlchemy, request validation with Pydantic models, and API documentation generation. We\'ll also explore deployment strategies, testing async code, and performance optimization techniques. By the end, you\'ll have built a complete async API ready for production deployment with proper error handling and monitoring.',
-        'speakers': ['speaker2', 'speaker3', 'speaker1'],
-        'participant_count': 3,
-        'participant_label': 'experts'
-    },
-    {
-        'id': 'closing_panel',
-        'title': 'Closing Panel',
-        'subtitle': 'Python in Industry',
-        'start_time': '17:00',
-        'end_time': '18:00',
-        'duration': 60,
-        'type': 'session',
-        'description_short': 'Discussion with professionals on real-world Python use cases. Join industry leaders as they share insights on how Python is transforming businesses across different sectors...',
-        'description_full': 'Discussion with professionals on real-world Python use cases. Join industry leaders as they share insights on how Python is transforming businesses across different sectors, from fintech and healthcare to agriculture and education, with special focus on opportunities in the African tech ecosystem.',
-        'speakers': ['speaker2', 'speaker3', 'speaker1', 'speaker2'],
-        'participant_count': 4,
-        'participant_label': 'panelists'
-    },
-    {
-        'id': 'end_panel',
-        'title': 'Farewell & See You Next Year',
-        'subtitle': '',
-        'start_time': '18:00',
-        'end_time': '18:15',
-        'duration': 15,
-        'type': 'break',
-        'description_short': 'Thank you for being part of PyCon Togo 2025! Safe travels and see you next year!',
-        'description_full': 'As PyCon Togo 2025 comes to an end, we want to express our heartfelt gratitude to all participants, speakers, volunteers, and sponsors who made this event possible. Take with you the connections you\'ve made, the knowledge you\'ve gained, and the inspiration to continue your Python journey. Thank you for being part of our amazing Python community. Safe travels home, and we look forward to seeing you at PyCon Togo 2026!',
-        'speakers': [],
-        'participant_count': 0
+def load_schedule_json():
+    """Load schedule data from external JSON file"""
+    try:
+        # Get the directory of the current script
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        json_file_path = os.path.join(current_dir, 'schedule.json')
+        
+        with open(json_file_path, 'r', encoding='utf-8') as file:
+            return json.load(file)
+    except FileNotFoundError:
+        print(f"Warning: schedule.json not found at {json_file_path}")
+        return {"schedule": []}
+    except json.JSONDecodeError as e:
+        print(f"Error parsing JSON: {e}")
+        return {"schedule": []}
+    except Exception as e:
+        print(f"Error loading schedule data: {e}")
+        return {"schedule": []}
+
+def calculate_duration(start_time, end_time):
+    """Calculate duration in minutes from start and end times"""
+    try:
+        start = datetime.strptime(start_time, "%H:%M")
+        end = datetime.strptime(end_time, "%H:%M")
+        duration = (end - start).total_seconds() / 60
+        return int(duration)
+    except:
+        return 0
+
+def get_fallback_description(item, description_type='short'):
+    """Generate fallback descriptions when not provided in JSON"""
+    fallbacks = {
+        'talks': {
+            'short': f"Session de {len(item.get('talks', []))} présentations techniques",
+            'full': f"Cette session comprend {len(item.get('talks', []))} présentations techniques."
+        },
+        'lightning_talks': {
+            'short': f"Présentations rapides de 5 minutes chacune. {len(item.get('talks', []))} talks au programme",
+            'full': f"Session de Lightning Talks avec {len(item.get('talks', []))} présentations de 5 minutes."
+        },
+        'keynote': {
+            'short': f"Conférence d'ouverture par {item.get('speaker', 'Invité spécial')}",
+            'full': f"Conférence d'ouverture présentée par {item.get('speaker', 'Invité spécial')}."
+        },
+        'sponsor_session': {
+            'short': f"Présentation de nos sponsors et partenaires",
+            'full': f"Session dédiée à nos sponsors et partenaires qui soutiennent PyCon Togo 2025."
+        },
+        'break': {
+            'short': f"Temps de pause pour se restaurer et échanger",
+            'full': f"Moment convivial pour se détendre et échanger avec les autres participants."
+        },
+        'opening': {
+            'short': f"Ouverture officielle par {item.get('speaker', 'l\'équipe organisatrice')}",
+            'full': f"Ouverture officielle de PyCon Togo 2025 par {item.get('speaker', 'l\'équipe organisatrice')}."
+        },
+        'closing': {
+            'short': f"Clôture officielle par {item.get('speaker', 'l\'équipe organisatrice')}",
+            'full': f"Clôture officielle de PyCon Togo 2025 par {item.get('speaker', 'l\'équipe organisatrice')}."
+        }
     }
-]
+    
+    session_type = item.get('type', 'session')
+    return fallbacks.get(session_type, {}).get(description_type, f"Session {item.get('title', 'sans titre')}")
+
+def transform_json_to_schedule_format(json_data):
+    """Transform JSON schedule data to the format expected by the template"""
+    schedule_items = []
+    
+    for item in json_data.get('schedule', []):
+        session_id = f"{item['start'].replace(':', '')}-{item.get('type', 'session')}"
+        duration = calculate_duration(item['start'], item['end'])
+        
+        # Determine session type and styling
+        if item.get('type') == 'break':
+            session_type = 'break'
+            participant_count = 0
+            speakers = []
+            participant_label = ''
+        elif item.get('type') in ['opening', 'closing']:
+            session_type = 'compact'
+            participant_count = 1 if item.get('speaker') else 0
+            speakers = [item.get('speaker', '')] if item.get('speaker') else []
+            participant_label = 'speaker' if item.get('speaker') else ''
+        elif item.get('type') == 'keynote':
+            session_type = 'session'
+            participant_count = 1
+            speakers = [item.get('speaker', 'Keynote Speaker')]
+            participant_label = 'speaker'
+        elif item.get('type') in ['talks', 'lightning_talks']:
+            session_type = 'session'
+            talks = item.get('talks', [])
+            participant_count = len(talks)
+            speakers = [talk.get('speaker', f'Speaker {i+1}') for i, talk in enumerate(talks)]
+            participant_label = 'speakers'
+        elif item.get('type') == 'sponsor_session':
+            session_type = 'session'
+            participants = item.get('participants', [])
+            participant_count = len(participants)
+            speakers = participants
+            participant_label = 'participants'
+        else:
+            session_type = 'session'
+            participant_count = 1 if item.get('speaker') else 0
+            speakers = [item.get('speaker')] if item.get('speaker') else []
+            participant_label = 'speaker'
+
+        # Use JSON description if available, otherwise use fallback
+        description_full = item.get('description', get_fallback_description(item, 'full'))
+        
+        # Create short description (truncate full description or use fallback)
+        if item.get('description'):
+            # Truncate long descriptions for short version
+            description_short = item['description'][:150] + "..." if len(item['description']) > 150 else item['description']
+        else:
+            description_short = get_fallback_description(item, 'short')
+
+        # For talks sessions, enhance description with talk details if not provided
+        if item.get('type') in ['talks', 'lightning_talks'] and not item.get('description'):
+            talks_list = item.get('talks', [])
+            if talks_list:
+                description_short = f"Session de {len(talks_list)} présentations : " + ", ".join([talk['title'][:30] + "..." if len(talk['title']) > 30 else talk['title'] for talk in talks_list[:2]])
+                if len(talks_list) > 2:
+                    description_short += "..."
+                
+                description_full = f"Cette session comprend {len(talks_list)} présentations :\n\n" + "\n".join([
+                    f"• {talk['title']} par {talk['speaker']} ({talk.get('start', '')}-{talk.get('end', talk.get('duration', ''))})"
+                    for talk in talks_list
+                ])
+
+        session_data = {
+            'id': session_id,
+            'title': item.get('title', 'Session sans titre'),
+            'subtitle': item.get('subtitle', ''),
+            'start_time': item.get('start', ''),
+            'end_time': item.get('end', ''), 
+            'duration': duration,
+            'type': session_type,
+            'description_short': description_short,
+            'description_full': description_full,
+            'speakers': speakers,
+            'participant_count': participant_count,
+            'participant_label': participant_label,
+            'talks': item.get('talks', [])  # Keep original talks data for modal
+        }
+        
+        schedule_items.append(session_data)
+    
+    return schedule_items
 
 def get_schedule():
-    """Return the complete schedule data"""
-    return SCHEDULE_DATA
+    """Return the complete schedule data in the expected format"""
+    json_data = load_schedule_json()
+    return transform_json_to_schedule_format(json_data)
 
-def get_session_by_id(session_id):
-    """Get a specific session by its ID"""
-    for session in SCHEDULE_DATA:
-        if session['id'] == session_id:
-            return session
-    return None
+def get_speaker_images():
+    """Return speaker images mapping from avatar URLs in JSON"""
+    json_data = load_schedule_json()
+    speaker_images = {}
+    
+    # Extract avatar URLs from JSON data
+    for item in json_data.get('schedule', []):
+        if 'talks' in item:
+            for i, talk in enumerate(item['talks']):
+                if talk.get('avatar_url'):
+                    # Create unique keys for each speaker
+                    speaker_key = f"speaker_{item['start'].replace(':', '')}_{i}"
+                    speaker_images[speaker_key] = talk['avatar_url']
+        
+        # Handle single speaker sessions (keynotes, opening, closing)
+        if item.get('speaker') and item.get('avatar_url'):
+            speaker_key = f"speaker_{item['start'].replace(':', '')}_main"
+            speaker_images[speaker_key] = item['avatar_url']
+    
+    print(f"Speaker images loaded: {speaker_images}")
+    
+    return speaker_images
 
-def get_sessions_by_type(session_type):
-    """Get all sessions of a specific type (session, break, compact)"""
-    return [session for session in SCHEDULE_DATA if session['type'] == session_type]
+def get_event_info():
+    """Return general event information from JSON"""
+    json_data = load_schedule_json()
+    return {
+        'event': json_data.get('event', 'PyCon Togo 2025'),
+        'date': json_data.get('date', '2025-08-20'),
+        'location': json_data.get('location', 'Lomé, Togo'),
+        'timezone': json_data.get('timezone', 'GMT')
+    }

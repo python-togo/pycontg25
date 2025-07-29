@@ -1,7 +1,7 @@
 import typing
 from send_email import send_sponsor_email
 from ticket import send_ticket_email
-from schedule import get_schedule, SPEAKER_IMAGES
+from schedule import get_schedule, get_speaker_images, get_event_info
 
 
 if not hasattr(typing, "_ClassVar") and hasattr(typing, "ClassVar"):
@@ -294,11 +294,16 @@ def coming_soon():
     )
 
 
-@app.route("/schedule")
+@app.route('/schedule')
 def schedule():
     schedule_data = get_schedule()
+    speaker_images = get_speaker_images()
+    event_info = get_event_info()
     return render_template(
-        "schedule.html", schedule=schedule_data, speaker_images=SPEAKER_IMAGES
+        "schedule.html", 
+        schedule=schedule_data, 
+        speaker_images=speaker_images,
+        event_info=event_info
     )
 
 
