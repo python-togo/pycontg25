@@ -667,6 +667,13 @@ def code_of_conduct():
         sponsor_tiers=sponsor_tiers,
     )
 
+@app.route("/team")
+def team():
+    return render_template(
+        "team.html",
+        year=year,
+        sponsor_tiers=sponsor_tiers,
+    )
 
 @app.errorhandler(404)
 def page_not_found(e):

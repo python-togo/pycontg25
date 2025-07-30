@@ -36,12 +36,12 @@ a {
 }
 
 .sponsor-logo-container {
-     display: flex;
-     flex-wrap: wrap;
-     justify-content: center;
-     gap: 50px;
-     align-items: center;
- }
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+    align-items: center;
+}
 
 
 .btn {
@@ -160,6 +160,42 @@ header {
 
 .main-nav .link:hover {
     color: var(--primary-color);
+}
+
+/* Dropdown items */
+.main-nav .has-dropdown:hover .dropdown {
+    display: block;
+}
+.main-nav .dropdown li {
+    text-align: left;
+    width: 100%;
+}
+
+.main-nav .dropdown li a {
+    display: block;
+    padding: 8px 0 0 8px;
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.2s;
+}
+
+.main-nav .dropdown li a:hover {
+    background-color: #e8f5e9;
+    border-radius: 4px;
+}
+
+.main-nav ul {
+    display: none;
+    list-style: none;
+    padding: 0;
+    border-radius: 1px;
+    position: absolute;
+    background-color: var(--light-gray);
+}
+
+.main-nav ul:hover li {
+    display: block;
+
 }
 
 .mobile-menu-btn {
@@ -346,20 +382,24 @@ header {
 
 /* Responsive styles for partner logos */
 @media (max-width: 768px) {
+
     .partner-logo,
     .pytogo_logo {
         width: 140px;
         height: 70px;
         padding: 10px;
     }
+
     .psf_logo {
         width: 160px;
         height: 60px;
         padding: 10px;
     }
+
     .powered_by {
         gap: 10px;
     }
+
     .partner-logo img,
     .pytogo_logo img {
         width: 140px;
@@ -367,20 +407,24 @@ header {
 }
 
 @media (max-width: 576px) {
+
     .partner-logo,
     .pytogo_logo {
         width: 100px;
         height: 50px;
         padding: 5px;
     }
+
     .psf_logo {
         width: 100px;
         height: 40px;
         padding: 5px;
     }
+
     .powered_by {
         gap: 5px;
     }
+
     .partner-logo img,
     .pytogo_logo img {
         width: 100px;
@@ -973,6 +1017,7 @@ footer {
         max-width: 300px;
         max-height: 100px;
     }
+
     .hero-content {
         padding-right: 0;
         margin-bottom: 30px;
@@ -981,7 +1026,8 @@ footer {
     .tier {
         min-width: 220px;
     }
-        .sponsor-logo {
+
+    .sponsor-logo {
         max-width: 300px;
         max-height: 100px;
     }
@@ -993,10 +1039,12 @@ footer {
         align-items: center;
         gap: 10px;
     }
+
     .sponsor-logo {
         max-width: 300px;
         max-height: 100px;
     }
+
     .mobile-menu-btn {
         display: block;
     }
@@ -1017,6 +1065,12 @@ footer {
     }
 
     .main-nav li {
+        margin-right: 0;
+        padding: 15px;
+        text-align: center;
+        border-bottom: 1px solid var(--medium-gray);
+    }
+    .main-nav li ul li {
         margin-right: 0;
         padding: 15px;
         text-align: center;
@@ -1050,6 +1104,7 @@ footer {
     .logo-text {
         display: none;
     }
+
     .sponsor-logo {
         max-width: 300px;
         max-height: 100px;
