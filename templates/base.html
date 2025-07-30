@@ -53,21 +53,28 @@
 
 
             </div>
-
             <div class="nav-container">
                 <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
                 <ul class="main-nav" id="mainNav">
                     <li><a class="link" href="{{ url_for('home')}}">Home</a></li>
-                    <li><a class="link" href="{{ url_for('about_us')}}">About Us</a></li>
+
+                    <li class="has-dropdown">
+                        <a class="link" href="{{ url_for('about_us') }}">About ▾</a>
+                        <ul class="dropdown">
+                            <li><a class="link" href="{{ url_for('team') }}">Team</a></li>
+                            <li><a class="link" href="{{ url_for('code_of_conduct') }}">CoC</a></li>
+                            <li><a class="link" href="{{ url_for('health_safety') }}">Health & Safety Policy</a></li>
+                        </ul>
+                    </li>
+
                     <li><a class="link" href="{{ url_for('sponsors')}}">Sponsors</a></li>
                     <li><a class="link" href="{{ url_for('speakers')}}">Speakers</a></li>
                     <li><a class="link" href="{{ url_for('schedule')}}">Schedule</a></li>
-                    <li><a class="link" href="{{ url_for('code_of_conduct')}}">CoC</a></li>
-                    <li><a class="link" href="{{ url_for('health_safety')}}">Health & Safety Policy</a></li>
                     <li><a class="link" href="{{ url_for('shop_swag')}}">Shop</a></li>
                     <li><a href="{{ url_for('register')}}" class="btn btn-primary">Register</a></li>
                 </ul>
             </div>
+
         </div>
     </header>
     {% block content %}{% endblock %}
