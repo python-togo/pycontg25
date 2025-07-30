@@ -6,6 +6,16 @@ from migration import create_sponsor_tiers
 
 
 swags = [
+         {
+        "name": "Black PyCon Togo 2025 T-Shirt",
+        "description": "Proudly represent the Python Togo community with our official t-shirt. Made from high-quality cotton.",
+        "price": 3000,
+        "priceDollar": 6,
+        "originalPrice": 5000,
+        "images": [
+            "static/images/swags/unisex-lightweight-t-shirt-black-front-688a5d3c5ed2a.png",
+        ],
+    },
     {
         "name": "Python Togo T-Shirt",
         "description": "Proudly represent the Python Togo community with our official t-shirt. Made from high-quality cotton.",
@@ -13,7 +23,37 @@ swags = [
         "priceDollar": 6,
         "originalPrice": 5000,
         "images": [
-            "static/images/swags/tshirt.png",
+            "static/images/swags/unisex-lightweight-t-shirt-black-front-688a69a51a405.png",
+     
+            "static/images/swags/tshirt5.png",
+        ],
+    },
+   
+     {
+        "name": "Black PyConn Togo 2025 T-Shirt",
+        "description": "Proudly represent the Python Togo community with our official t-shirt. Made from high-quality cotton.",
+        "price": 3000,
+        "priceDollar": 6,
+        "originalPrice": 5000,
+        "images": [
+            "static/images/swags/unisex-lightweight-t-shirt-black-front-688a5de8907f5.png",
+            "static/images/swags/tshirt1.png",
+            "static/images/swags/tshirt2.png",
+            "static/images/swags/tshirt3.png",
+            "static/images/swags/tshirt6.png",
+            "static/images/swags/tshirt7.png",
+            "static/images/swags/tshirt4.png",
+            "static/images/swags/tshirt5.png",
+        ],
+    },
+      {
+        "name": "White PyConn Togo 2025 T-Shirt",
+        "description": "Proudly represent the Python Togo community with our official t-shirt. Made from high-quality cotton.",
+        "price": 3000,
+        "priceDollar": 6,
+        "originalPrice": 5000,
+        "images": [
+            "static/images/swags/unisex-lightweight-t-shirt-white-left-front-688a5d3d9259d.png",
             "static/images/swags/tshirt1.png",
             "static/images/swags/tshirt2.png",
             "static/images/swags/tshirt3.png",
@@ -38,7 +78,7 @@ swags = [
         ],
     },
     {
-        "name": "Python Togo Hoodie",
+        "name": "White Python Togo Hoodie",
         "description": "Stay warm with our Python Togo hoodie. Perfect for coding nights and meetups.",
         "price": 9500,
         "priceDollar": 17,
@@ -49,6 +89,18 @@ swags = [
             "static/images/swags/hoodie.png",
             "static/images/swags/hoodie1.png",
             "static/images/swags/hoodie7.png",
+            "static/images/swags/hoodie4.png",
+            "static/images/swags/hoodie5.png",
+            "static/images/swags/hoodie6.png",
+        ],
+    },
+      {
+        "name": "Black Python Togo Hoodie",
+        "description": "Stay warm with our Python Togo hoodie. Perfect for coding nights and meetups.",
+        "price": 9500,
+        "priceDollar": 17,
+        "originalPrice": 10000,
+        "images": [
             "static/images/swags/hoodie4.png",
             "static/images/swags/hoodie5.png",
             "static/images/swags/hoodie6.png",
@@ -71,6 +123,18 @@ swags = [
             "static/images/swags/cap6.png",
         ],
     },
+        {
+        "name": "Red PyCon Togo 2025 Cap",
+        "description": "Complete your tech look with our exclusive Red PyCon Togo 2025  cap. Adjustable and comfortable.",
+        "price": 1500,
+        "priceDollar": 3,
+        "originalPrice": 3500,
+        "images": [
+            "static/images/swags/redcap.png",
+            "static/images/swags/cap5.png",
+            "static/images/swags/cap6.png",
+        ],
+    },
     {
         "name": "Python Togo Stickers",
         "description": "Decorate your laptop, phone, and more with our Python Togo stickers. Durable and waterproof.",
@@ -79,6 +143,30 @@ swags = [
         "originalPrice": 1000,
         "images": [
             "static/images/swags/stickers1.png",
+            "static/images/swags/stickers.png",
+            "static/images/swags/stickers2.png",
+        ],
+    },
+     {
+        "name": "PyCon Togo 2025 Stickers",
+        "description": "Decorate your laptop, phone, and more with our PyCon Togo 2025 stickers. Durable and waterproof.",
+        "price": 500,
+        "priceDollar": 1,
+        "originalPrice": 1000,
+        "images": [
+            "static/images/swags/kiss-cut-stickers-white-4x4-default-688a608b163f1.png",
+            "static/images/swags/stickers.png",
+            "static/images/swags/stickers2.png",
+        ],
+    },
+         {
+        "name": "PyCon Togo 2025 Stickers",
+        "description": "Decorate your laptop, phone, and more with our PyCon Togo 2025 stickers. Durable and waterproof.",
+        "price": 500,
+        "priceDollar": 1,
+        "originalPrice": 1000,
+        "images": [
+            "static/images/swags/kiss-cut-stickers-white-4x4-default-688a60dee3beb.png",
             "static/images/swags/stickers.png",
             "static/images/swags/stickers2.png",
         ],
