@@ -298,8 +298,8 @@ def coming_soon():
 
 @app.route("/schedule", methods=["GET"])
 def schedule():
-    if datetime.now(timezone.utc) < schedule_release_date:
-        return redirect(url_for("coming_soon"))
+    # if datetime.now(timezone.utc) < schedule_release_date:
+    #     return redirect(url_for("coming_soon"))
     schedule_data = get_schedule()
     speaker_images = get_speaker_images()
     event_info = get_event_info()

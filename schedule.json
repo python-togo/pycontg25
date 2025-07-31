@@ -8,219 +8,94 @@
       "start": "08:00",
       "end": "08:30",
       "title": "Accueil & Petit Déjeuner",
-      "type": "break",
-      "description": "Temps d'accueil pour récupérer votre badge et prendre un petit-déjeuner avant le début de la conférence."
+      "type": "break"
     },
     {
       "start": "08:30",
       "end": "08:45",
       "title": "Mot de bienvenue",
       "speaker": "Coordinateur principal",
-      "type": "opening",
-      "description": "Ouverture officielle de PyCon Togo 2025 par l'équipe organisatrice."
+      "type": "opening"
     },
     {
       "start": "08:45",
       "end": "09:15",
       "title": "Keynote : L'impact de Python en Afrique de l'Ouest",
       "speaker": "Invité spécial",
-      "type": "keynote",
-      "description": "Une présentation inspirante sur l'écosystème Python en Afrique de l'Ouest et son potentiel pour l'innovation technologique dans la région."
+      "type": "keynote"
     },
     {
       "start": "09:15",
       "end": "10:45",
       "title": "Talks - Session 1",
       "type": "talks",
-      "description": "Première session de présentations techniques couvrant la data science, l'automatisation, Django et FastAPI.",
       "talks": [
-        { 
-          "title": "Python pour la data science", 
-          "speaker": "A. Kodjo", 
-          "start": "09:15", 
-          "end": "09:35", 
-          "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg",
-          "description": "Découvrez les bibliothèques essentielles pour l'analyse de données avec Python."
-        },
-        { 
-          "title": "Automatiser les tâches quotidiennes", 
-          "speaker": "B. Mensah", 
-          "start": "09:35", 
-          "end": "09:55", 
-          "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg",
-          "description": "Comment utiliser Python pour automatiser vos tâches répétitives."
-        },
-        { 
-          "title": "Introduction à Django", 
-          "speaker": "C. Abalo", 
-          "start": "09:55", 
-          "end": "10:15", 
-          "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg",
-          "description": "Les bases du framework web Django pour créer des applications robustes."
-        },
-        { 
-          "title": "Construire des APIs REST avec FastAPI", 
-          "speaker": "D. Tchalla", 
-          "start": "10:15", 
-          "end": "10:35", 
-          "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg",
-          "description": "Créez des APIs modernes et performantes avec FastAPI."
-        }
+        { "title": "Python pour la data science", "speaker": "A. Kodjo", "start": "09:15", "end": "09:35", "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg"},
+        { "title": "Automatiser les tâches quotidiennes", "speaker": "B. Mensah", "start": "09:35", "end": "09:55", "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg" },
+        { "title": "Introduction à Django", "speaker": "C. Abalo", "start": "09:55", "end": "10:15" , "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg"},
+        { "title": "Construire des APIs REST avec FastAPI", "speaker": "D. Tchalla", "start": "10:15", "end": "10:35", "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg" }
       ]
     },
     {
       "start": "10:45",
       "end": "11:00",
       "title": "Pause Café",
-      "type": "break",
-      "description": "Moment de détente avec café, thé et collations pour échanger avec les autres participants."
+      "type": "break"
     },
     {
       "start": "11:00",
       "end": "12:30",
       "title": "Talks - Session 2",
       "type": "talks",
-      "description": "Deuxième session abordant l'IA, les tests, les décorateurs et l'IoT.",
       "talks": [
-        { 
-          "title": "L'intelligence artificielle avec Python", 
-          "speaker": "E. Sika", 
-          "start": "11:00", 
-          "end": "11:20", 
-          "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg",
-          "description": "Introduction aux concepts d'IA et machine learning avec Python."
-        },
-        { 
-          "title": "Les bases des tests unitaires", 
-          "speaker": "F. Atayi", 
-          "start": "11:20", 
-          "end": "11:40", 
-          "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg",
-          "description": "Apprenez à écrire des tests efficaces pour vos applications Python."
-        },
-        { 
-          "title": "Comprendre les décorateurs", 
-          "speaker": "G. Napo", 
-          "start": "11:40", 
-          "end": "12:00", 
-          "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg",
-          "description": "Maîtrisez les décorateurs Python pour un code plus élégant."
-        },
-        { 
-          "title": "Python et les objets connectés", 
-          "speaker": "H. Komlan", 
-          "start": "12:00", 
-          "end": "12:20", 
-          "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg",
-          "description": "Utilisez Python pour contrôler et interagir avec des dispositifs IoT."
-        }
+        { "title": "L'intelligence artificielle avec Python", "speaker": "E. Sika", "start": "11:00", "end": "11:20", "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg" },
+        { "title": "Les bases des tests unitaires", "speaker": "F. Atayi", "start": "11:20", "end": "11:40", "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg" },
+        { "title": "Comprendre les décorateurs", "speaker": "G. Napo", "start": "11:40", "end": "12:00", "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg" },
+        { "title": "Python et les objets connectés", "speaker": "H. Komlan", "start": "12:00", "end": "12:20", "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg" }
       ]
     },
     {
       "start": "12:30",
       "end": "13:30",
       "title": "Pause Déjeuner",
-      "type": "break",
-      "description": "Pause déjeuner avec repas fourni et opportunités de networking."
+      "type": "break"
     },
     {
       "start": "13:30",
       "end": "14:00",
       "title": "Session Sponsors & Partenaires",
       "type": "sponsor_session",
-      "participants": ["Sponsor A", "Sponsor B", "Partenaire C"],
-      "description": "Présentation de nos sponsors et partenaires qui soutiennent l'écosystème Python au Togo."
+      "participants": ["Sponsor A", "Sponsor B", "Partenaire C"]
     },
     {
       "start": "14:00",
       "end": "15:30",
       "title": "Talks - Session 3",
       "type": "talks",
-      "description": "Troisième session couvrant la cybersécurité, les bots, la programmation asynchrone et le web scraping.",
       "talks": [
-        { 
-          "title": "Python pour la cybersécurité", 
-          "speaker": "I. Kouami", 
-          "start": "14:00", 
-          "end": "14:20", 
-          "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg",
-          "description": "Découvrez comment Python peut être utilisé dans le domaine de la cybersécurité."
-        },
-        { 
-          "title": "Créer un bot Telegram/Discord", 
-          "speaker": "J. Adzo", 
-          "start": "14:20", 
-          "end": "14:40", 
-          "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg",
-          "description": "Guide pratique pour développer des bots interactifs sur les plateformes de messagerie."
-        },
-        { 
-          "title": "AsyncIO et applications concurrentes", 
-          "speaker": "K. Wassi", 
-          "start": "14:40", 
-          "end": "15:00", 
-          "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg",
-          "description": "Maîtrisez la programmation asynchrone pour des applications plus performantes."
-        },
-        { 
-          "title": "Web scraping avec BeautifulSoup", 
-          "speaker": "L. Dossou", 
-          "start": "15:00", 
-          "end": "15:20", 
-          "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg",
-          "description": "Techniques d'extraction de données web avec Python et BeautifulSoup."
-        }
+        { "title": "Python pour la cybersécurité", "speaker": "I. Kouami", "start": "14:00", "end": "14:20" , "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg"},
+        { "title": "Créer un bot Telegram/Discord", "speaker": "J. Adzo", "start": "14:20", "end": "14:40", "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg" },
+        { "title": "AsyncIO et applications concurrentes", "speaker": "K. Wassi", "start": "14:40", "end": "15:00", "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg" },
+        { "title": "Web scraping avec BeautifulSoup", "speaker": "L. Dossou", "start": "15:00", "end": "15:20" , "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg"}
       ]
     },
     {
       "start": "15:30",
       "end": "15:45",
       "title": "Pause",
-      "type": "break",
-      "description": "Courte pause pour se rafraîchir avant la dernière session."
+      "type": "break"
     },
     {
       "start": "15:45",
       "end": "16:30",
       "title": "Lightning Talks",
       "type": "lightning_talks",
-      "description": "Session de présentations courtes où la communauté partage ses projets et découvertes.",
       "talks": [
-        { 
-          "title": "Ma première bibliothèque Python", 
-          "speaker": "M. Aya", 
-          "duration": "5min", 
-          "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg",
-          "description": "Retour d'expérience sur la création d'une première bibliothèque Python."
-        },
-        { 
-          "title": "Python + IoT : projet étudiant", 
-          "speaker": "N. Koffi", 
-          "duration": "5min", 
-          "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg",
-          "description": "Présentation d'un projet étudiant alliant Python et objets connectés."
-        },
-        { 
-          "title": "Astuces avec VS Code", 
-          "speaker": "O. Yao", 
-          "duration": "5min", 
-          "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg",
-          "description": "Tips et extensions utiles pour développer en Python avec VS Code."
-        },
-        { 
-          "title": "Faire de l'art avec Python", 
-          "speaker": "P. Mawuli", 
-          "duration": "5min", 
-          "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg",
-          "description": "Explorez les possibilités créatives de Python pour l'art génératif."
-        },
-        { 
-          "title": "Créer un package Python", 
-          "speaker": "Q. Sewonou", 
-          "duration": "5min", 
-          "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg",
-          "description": "Guide rapide pour publier votre premier package sur PyPI."
-        }
+        { "title": "Ma première bibliothèque Python", "speaker": "M. Aya", "duration": "5min", "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg" },
+        { "title": "Python + IoT : projet étudiant", "speaker": "N. Koffi", "duration": "5min", "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg"},
+        { "title": "Astuces avec VS Code", "speaker": "O. Yao", "duration": "5min", "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg" },
+        { "title": "Faire de l’art avec Python", "speaker": "P. Mawuli", "duration": "5min", "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg" },
+        { "title": "Créer un package Python", "speaker": "Q. Sewonou", "duration": "5min", "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg" }
       ]
     },
     {
@@ -228,8 +103,7 @@
       "end": "17:00",
       "title": "Clôture & Remerciements",
       "type": "closing",
-      "speaker": "Comité PyCon Togo",
-      "description": "Clôture officielle de la conférence avec remerciements aux participants, sponsors et organisateurs."
+      "speaker": "Comité PyCon Togo"
     }
   ]
 }

@@ -1,5 +1,5 @@
 /**
- * Schedule Modal Functionality - Updated for JSON data source
+ * Schedule Modal Functionality - Updated for individual talk sessions
  * Handles displaying session details in a modal when clicking on session cards
  */
 
@@ -136,37 +136,8 @@ class ScheduleModal {
             descriptionElement.innerHTML = description.replace(/\n/g, '<br>');
         }
 
-        // Handle talks section for talk sessions
-        this.populateTalks(session);
-
         // Set speakers
         this.populateSpeakers(session);
-    }
-
-    populateTalks(session) {
-        const talksContainer = document.getElementById('modal-talks');
-        const talksList = document.getElementById('talks-list');
-        
-        if (!talksContainer || !talksList) return;
-
-        if (session.talks && session.talks.length > 0) {
-            talksContainer.style.display = 'block';
-            
-            const talksHTML = session.talks.map(talk => {
-                const timeSlot = talk.start && talk.end ? `${talk.start} - ${talk.end}` : talk.duration || '';
-                return `
-                    <div class="talk-item" style="margin-bottom: 15px; padding: 12px; background: rgba(0, 66, 37, 0.05); border-radius: 8px; border-left: 3px solid #004225;">
-                        <div style="font-weight: 600; color: #004225; margin-bottom: 4px;">${talk.title}</div>
-                        <div style="color: #646464; font-size: 0.9rem; margin-bottom: 4px;">par ${talk.speaker}</div>
-                        ${timeSlot ? `<div style="color: #888; font-size: 0.8rem;">${timeSlot}</div>` : ''}
-                    </div>
-                `;
-            }).join('');
-            
-            talksList.innerHTML = talksHTML;
-        } else {
-            talksContainer.style.display = 'none';
-        }
     }
 
     populateSpeakers(session) {
@@ -206,6 +177,10 @@ class ScheduleModal {
                             <div class="speaker-info">
                                 <div class="speaker-name">${speaker}</div>
                                 <div class="speaker-title">${speakerTitle}</div>
+                                ${session.talks && session.talks[index] && session.talks[index].description ? 
+                                    `<div class="speaker-talk-desc" style="margin-top: 8px; font-size: 0.85rem; color: #666; font-style: italic;">${session.talks[index].description}</div>` : 
+                                    ''
+                                }
                             </div>
                         </div>
                     `;

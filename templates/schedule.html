@@ -1,116 +1,78 @@
-{% extends "base.html" %} {% block title %} Day Schedule - PyCon Togo 2025 {%
-endblock %} {% block style %}
+{% extends "base.html" %} 
+{% block title %} Day Schedule - PyCon Togo 2025 {% endblock %} 
+{% block style %}
 <script src="../static/js/main.js" defer></script>
 <script src="../static/js/coming-soon.js" defer></script>
 <script src="../static/js/schedule.js" defer></script>
 <link rel="stylesheet" href="../static/css/coming-soon.css" />
 <link rel="stylesheet" href="../static/css/schedule.css" />
-{% endblock %} {% block content %}
+{% endblock %} 
+
+{% block content %}
 <section class="page-content" id="program">
   <div class="schedule-container">
     <!-- Header -->
     <div class="schedule-header">
-      <h1>Talks and Workshops Schedule</h1>
-      <p>Let's Build the Future with Python 🐍</p>
+      <h1>Programme PyCon Togo 2025</h1>
+      <p>Construisons l'avenir avec Python 🐍</p>
     </div>
+
     <!-- Schedule Grid -->
     <div class="schedule-grid">
       {% for session in schedule %}
-      <div
-        class="session-card {{ session.type }}"
-        data-session-id="{{ session.id }}"
-      >
-        <div
-          class="time-ribbon {% if session.type == 'break' %}break-ribbon{% endif %}"
-        >
-          <span class="time-text"
-            >{{ session.start_time }}<br />–<br />{{ session.end_time }}</span
-          >
-        </div>
-        <div class="session-content">
-          <h3>{{ session.title }}</h3>
-          {% if session.subtitle %}
-          <div class="session-subtitle">{{ session.subtitle }}</div>
-          {% endif %} {% if session.description_short %}
-          <div
-            class="session-description"
-            title="{{ session.description_full }}"
-          >
-            {{ session.description_short }}
+        <div class="session-card {{ session.type }}" data-session-id="{{ session.id }}">
+          <div class="time-ribbon {% if session.type == 'break' %}break-ribbon{% endif %}">
+            <span class="time-text">{{ session.start_time }}<br />–<br />{{ session.end_time }}</span>
           </div>
-          {% endif %} {% if session.speakers and session.participant_count > 0
-          %}
-          <div class="avatars-container">
-            <div class="avatars">
-              {% set max_display = 5 %} {% for speaker in
-              session.speakers[:max_display] %}
-              <div class="avatar avatar-{{ loop.index }}">
-                {% if session.talks and loop.index0 < session.talks|length %} {%
-                set talk = session.talks[loop.index0] %} {% if talk.avatar_url
-                %}
-                <img
-                  class="avatar avatar-{{ loop.index }}"
-                  src="{{ talk.avatar_url }}"
-                  alt="{{ talk.speaker }}"
-                />
-                {% else %}
-                <!-- Fallback avatar with speaker initial -->
-                <div
-                  class="avatar avatar-{{ loop.index }}"
-                  style="
-                    background: #004225;
-                    color: white;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    font-weight: bold;
-                    font-size: 0.8rem;
-                  "
-                >
-                  {{ talk.speaker[:1] }}
-                </div>
-                {% endif %} {% else %}
-                <!-- Fallback avatar for non-talk sessions -->
-                <div
-                  class="avatar avatar-{{ loop.index }}"
-                  style="
-                    background: #004225;
-                    color: white;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    font-weight: bold;
-                    font-size: 0.8rem;
-                  "
-                >
-                  {{ speaker[:1] }}
-                </div>
-                {% endif %}
+          <div class="session-content">
+            <h3>{{ session.title }}</h3>
+            {% if session.subtitle %}
+              <div class="session-subtitle">{{ session.subtitle }}</div>
+            {% endif %}
+            {% if session.description_short %}
+              <div class="session-description" title="{{ session.description_full }}">
+                {{ session.description_short }}
               </div>
-              {% endfor %}
-            </div>
-            <span class="participant-count"
-              >{{ session.participant_count }} {{ session.participant_label }}{{
-              's' if session.participant_count > 1 else '' }}</span
-            >
+            {% endif %}
+            {% if session.speakers and session.participant_count > 0 %}
+              <div class="avatars-container">
+                <div class="avatars">
+                  {% for speaker in session.speakers[:1] %}
+                    <div class="avatar avatar-{{ loop.index }}">
+                      {% if session.talks and session.talks[0].avatar_url %}
+                        <img
+                          class="avatar avatar-{{ loop.index }}"
+                          src="{{ session.talks[0].avatar_url }}"
+                          alt="{{ session.talks[0].speaker }}"
+                        />
+                      {% else %}
+                        <!-- Fallback avatar with speaker initial -->
+                        <div class="avatar avatar-{{ loop.index }}" style="background: #004225; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;">
+                          {{ speaker[:1] }}
+                        </div>
+                      {% endif %}
+                    </div>
+                  {% endfor %}
+                </div>
+                <span class="participant-count">{{ session.participant_count }} {{ session.participant_label }}{{ 's' if session.participant_count > 1 else '' }}</span>
+              </div>
+            {% endif %}
+            <div class="session-duration">{{ session.duration }} min</div>
           </div>
-          {% endif %}
-          <div class="session-duration">{{ session.duration }} min</div>
         </div>
-      </div>
       {% endfor %}
     </div>
 
     <!-- Footer -->
     <div class="schedule-footer">
       <p>
-        Join us in celebrating Python and building the tech community in Togo!
+        Rejoignez-nous pour célébrer Python et construire la communauté tech au Togo !
         🐍🇹🇬
       </p>
     </div>
 
     <!-- Session Details Modal -->
-    <div id="session-modal" class="modal-overlay" style="display: none">
+    <div id="session-modal" class="modal-overlay" style="display: none;">
       <div class="modal-content">
         <div class="modal-header">
           <h2 id="modal-title"></h2>
@@ -119,22 +81,22 @@ endblock %} {% block style %}
         <div class="modal-body">
           <div class="session-time-info">
             <div class="time-slot">
-              <span class="time-label">Time:</span>
+              <span class="time-label">Horaire:</span>
               <span id="modal-time"></span>
             </div>
             <div class="duration-info">
-              <span class="duration-label">Duration:</span>
+              <span class="duration-label">Durée:</span>
               <span id="modal-duration"></span>
             </div>
           </div>
-
+          
           <div id="modal-subtitle" class="session-subtitle-modal"></div>
-
+          
           <div class="session-description-full">
-            <h4>About this session</h4>
-            <p id="modal-description"></p>
+            <h4>À propos de cette session</h4>
+            <div id="modal-description"></div>
           </div>
-
+          
           <div id="modal-speakers" class="speakers-section"></div>
         </div>
       </div>
@@ -143,9 +105,6 @@ endblock %} {% block style %}
     <!-- Hidden session data for JavaScript -->
     <script type="application/json" id="session-data">
       {{ schedule | tojson | safe }}
-    </script>
-    <script type="application/json" id="speaker-images">
-      {{ speaker_images | tojson | safe }}
     </script>
   </div>
 </section>
