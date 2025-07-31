@@ -1,0 +1,670 @@
+/* Day Schedule Styles */
+.schedule-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* ✨ ENHANCED Header with gradient and spotlight effect */
+.schedule-header {
+  text-align: center;
+  margin-bottom: 40px;
+  /* Enhanced gradient background */
+  background: linear-gradient(
+    135deg,
+    rgba(171, 229, 179, 0.98) 0%,
+    rgba(48, 105, 152, 0.05) 50%,
+    rgba(255, 212, 59, 0.08) 100%
+  );
+  padding: 25px 20px; /* Slightly reduced padding */
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ✨ Subtle spotlight effect overlay */
+.schedule-header::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 212, 59, 0.1) 0%,
+    transparent 70%
+  );
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.schedule-header h1 {
+  color: var(--text-dark);
+  font-size: 2.2rem;
+  margin-bottom: 8px; /* Reduced margin */
+  font-weight: 700;
+  position: relative;
+  z-index: 1;
+}
+
+.schedule-header p {
+  color: #646464;
+  font-size: 1rem;
+  font-weight: 400;
+  position: relative;
+  z-index: 1;
+}
+
+/* Schedule Grid */
+.schedule-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px; /* ✨ Further reduced gap */
+  margin-bottom: 40px;
+}
+
+/* 🔧 RESTRUCTURED: Session Card with left ribbon layout */
+.session-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 15px 15px 15px 70px; /* ✨ Left padding for ribbon space */
+  backdrop-filter: blur(10px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  min-height: 120px; /* ✨ Minimum height for consistent ribbon display */
+}
+
+/* ✨ REMOVED: Old ::before left border - replaced with ribbon */
+
+/* ✨ NEW: Left vertical time ribbon - Updated with #004225 gradient */
+.time-ribbon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 55px;
+  background: linear-gradient(180deg, #004225 0%, #006b3a 100%); /* 🔧 UPDATED: New green gradient */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px 0 0 16px;
+  z-index: 2;
+}
+
+.time-ribbon .time-text {
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.2;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.3px;
+}
+
+/* ✨ NEW: Special ribbon for break sessions - Keep existing yellow gradient */
+.time-ribbon.break-ribbon {
+  background: linear-gradient(180deg, #ffd43b 0%, #ffde59 100%);
+}
+
+.time-ribbon.break-ribbon .time-text {
+  color: #004225; /* 🔧 UPDATED: Use the new green color for break ribbon text */
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+/* ✨ ENHANCED Hover effects with ribbon integration - Updated for green gradient */
+.session-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 16px 48px rgba(0, 66, 37, 0.15); /* 🔧 UPDATED: Green shadow */
+  border: 1px solid #004225; /* 🔧 UPDATED: Green border */
+}
+
+.session-card:hover .time-ribbon {
+  background: linear-gradient(180deg, #002d1b 0%, #004225 100%); /* 🔧 UPDATED: Darker green on hover */
+  transform: translateX(-2px);
+  box-shadow: 2px 0 8px rgba(0, 66, 37, 0.2); /* 🔧 UPDATED: Green shadow */
+}
+
+.session-card.break:hover .time-ribbon.break-ribbon {
+  background: linear-gradient(180deg, #ffde59 0%, #ffd43b 100%);
+  transform: translateX(-2px);
+  box-shadow: 2px 0 8px rgba(255, 212, 59, 0.2);
+}
+
+/* 🔧 UPDATED: Break Card Special Styling with bold dashed border */
+.session-card.break {
+  background: rgba(255, 212, 59, 0.1);
+  border: 3px dashed #ffd43b; /* 🔧 UPDATED: Bold dashed border (3px instead of 2px) */
+  height: fit-content;
+  min-height: 80px; /* ✨ NEW: Reduced min-height for break cards */
+  padding: 12px 12px 12px 60px; /* ✨ NEW: Reduced padding for break cards */
+}
+
+.session-card.break:hover {
+  border: 3px dashed rgba(255, 212, 59, 0.8); /* 🔧 UPDATED: Bold dashed border on hover */
+}
+
+/* ✨ NEW: Compact styling for short content cards (welcome speech, breaks) */
+.session-card.compact {
+  min-height: 85px; /* ✨ NEW: Reduced min-height for compact cards */
+  padding: 12px 12px 12px 60px; /* ✨ NEW: Reduced padding for compact cards */
+}
+
+.session-card.compact .session-content h3 {
+  margin-bottom: 6px; /* ✨ NEW: Reduced margin for compact cards */
+}
+
+.session-card.compact .session-description {
+  margin-bottom: 8px; /* ✨ NEW: Reduced margin for compact cards */
+  font-size: 0.85rem; /* ✨ NEW: Slightly smaller text for compact cards */
+}
+
+.session-card.compact .session-duration {
+  bottom: 8px; /* ✨ NEW: Adjusted position for compact cards */
+}
+
+/* ✨ NEW: Compact time ribbon for break and welcome cards */
+.session-card.compact .time-ribbon,
+.session-card.break .time-ribbon {
+  width: 50px; /* ✨ NEW: Narrower ribbon for compact cards */
+}
+
+.session-card.compact .time-ribbon .time-text,
+.session-card.break .time-ribbon .time-text {
+  font-size: 0.7rem; /* ✨ NEW: Smaller text in compact ribbon */
+}
+
+/* 🔧 UPDATED: More compact session content */
+.session-content {
+  position: relative;
+}
+
+.session-content h3 {
+  color: #004225;
+  font-size: 1.2rem; /* ✨ Further reduced */
+  margin-bottom: 4px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.session-subtitle {
+  color: #646464;
+  font-style: italic;
+  margin-bottom: 8px; /* ✨ Further reduced */
+  font-size: 0.9rem;
+  line-height: 1.3;
+}
+.session-description {
+  color: #555;
+  margin-bottom: 12px; /* ✨ Further reduced */
+  line-height: 1.4;
+  font-size: 0.9rem;
+}
+
+/* 🔧 UPDATED: Compact avatars container */
+.avatars-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 0; /* ✨ No bottom margin - duration handles spacing */
+}
+
+.avatars {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 28px; /* ✨ Smaller avatars */
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid white;
+  margin-left: -5px;
+  transition: transform 0.25s ease;
+}
+
+.avatar:first-child {
+  margin-left: 0;
+}
+
+.avatar:hover {
+  transform: scale(1.15);
+  z-index: 10;
+  position: relative;
+}
+
+/* Avatar Colors */
+.avatar-1 {
+  background: #306998;
+}
+.avatar-2 {
+  background: #ffd43b;
+}
+.avatar-3 {
+  background: #646464;
+}
+.avatar-4 {
+  background: #4caf50;
+}
+.avatar-5 {
+  background: #ff6b6b;
+}
+
+.participant-count {
+  color: #646464;
+  font-size: 0.8rem; /* ✨ Smaller text */
+  font-weight: 500;
+}
+
+/* ✨ NEW: Session duration at bottom */
+.session-duration {
+  position: absolute;
+  bottom: 5px;
+  right: 0;
+  font-size: 0.7rem;
+  color: var(--text-dark);
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 2px 6px;
+  border-radius: 8px;
+  backdrop-filter: blur(3px);
+}
+
+/* Schedule Footer */
+.schedule-footer {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 18px;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.schedule-footer p {
+  color: #004225;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+/* CTA Buttons - Updated styling to match schedule theme */
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.cta-buttons .btn,
+.cta-buttons .secondary-btn {
+  padding: 12px 30px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+
+.cta-buttons .btn {
+  background: #004225;
+  color: white;
+}
+
+.cta-buttons .btn:hover {
+  background: #254a7a;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(48, 105, 152, 0.3);
+}
+
+.cta-buttons .secondary-btn {
+  background: rgba(255, 212, 59, 0.9);
+  color: #004225;
+}
+
+.cta-buttons .secondary-btn:hover {
+  background: #ffd43b;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(255, 212, 59, 0.3);
+}
+
+/* ✨ ENHANCED Responsive Design with ribbon adjustments */
+
+/* Tablet - 768px and up */
+@media (min-width: 768px) {
+  .schedule-container {
+    padding: 40px 40px;
+  }
+
+  .schedule-header {
+    padding: 28px 25px;
+  }
+
+  .schedule-header h1 {
+    font-size: 2.8rem;
+  }
+
+  .session-card {
+    padding: 18px 18px 18px 75px; /* ✨ Adjusted left padding */
+    min-height: 130px;
+  }
+
+  /* ✨ NEW: Tablet compact card adjustments */
+  .session-card.compact,
+  .session-card.break {
+    min-height: 90px;
+    padding: 14px 14px 14px 65px;
+  }
+
+  .session-card.compact .time-ribbon,
+  .session-card.break .time-ribbon {
+    width: 55px;
+  }
+
+  .time-ribbon {
+    width: 60px; /* ✨ Slightly wider ribbon */
+  }
+
+  .time-ribbon .time-text {
+    font-size: 0.8rem;
+  }
+
+  .session-content h3 {
+    font-size: 1.3rem;
+  }
+
+  .avatar {
+    width: 30px;
+    height: 30px;
+  }
+
+  .session-duration {
+    font-size: 0.75rem;
+    bottom: 8px;
+  }
+}
+
+/* Desktop - 1024px and up */
+@media (min-width: 1024px) {
+  .schedule-header {
+    padding: 35px 30px;
+  }
+
+  .schedule-header h1 {
+    font-size: 2.4rem;
+  }
+
+  .session-card {
+    padding: 20px 20px 20px 80px; /* ✨ Adjusted left padding */
+    min-height: 140px;
+  }
+
+  /* ✨ NEW: Desktop compact card adjustments */
+  .session-card.compact,
+  .session-card.break {
+    min-height: 95px;
+    padding: 15px 15px 15px 70px;
+  }
+
+  .session-card.compact .time-ribbon,
+  .session-card.break .time-ribbon {
+    width: 60px;
+  }
+
+  .time-ribbon {
+    width: 65px; /* ✨ Desktop ribbon width */
+  }
+
+  .time-ribbon .time-text {
+    font-size: 0.85rem;
+  }
+
+  .session-content h3 {
+    font-size: 1.4rem;
+  }
+
+  .avatar {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* ✨ NEW: Modal Styles - Minimal addition to existing design system */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-overlay.show {
+  opacity: 1;
+}
+
+.modal-content {
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 20px;
+  max-width: 800px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transform: scale(0.8) translateY(30px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-overlay.show .modal-content {
+  transform: scale(1) translateY(0);
+}
+
+.modal-header {
+  padding: 25px 30px 15px;
+  border-bottom: 1px solid rgba(0, 66, 37, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+}
+
+.modal-header h2 {
+  color: #004225;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.3;
+  padding-right: 40px;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #646464;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  position: absolute;
+  top: 20px;
+  right: 25px;
+}
+
+.modal-close:hover {
+  background: rgba(0, 66, 37, 0.1);
+  color: #004225;
+}
+
+.modal-body {
+  padding: 20px 30px 30px;
+}
+
+.session-time-info {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: rgba(0, 66, 37, 0.05);
+  border-radius: 12px;
+  border-left: 4px solid #004225;
+}
+
+.time-slot, .duration-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.time-label, .duration-label {
+  font-size: 0.8rem;
+  color: #646464;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.time-slot span:last-child, .duration-info span:last-child {
+  font-size: 1.1rem;
+  color: #004225;
+  font-weight: 700;
+}
+
+.session-subtitle-modal {
+  color: #646464;
+  font-style: italic;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+
+.session-description-full h4 {
+  color: #004225;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.session-description-full p {
+  color: #555;
+  line-height: 1.6;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+.speakers-section {
+  border-top: 1px solid rgba(0, 66, 37, 0.1);
+  padding-top: 20px;
+}
+
+.speakers-section h4 {
+  color: #004225;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.speaker-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.speaker-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 25px;
+  border: 1px solid rgba(0, 66, 37, 0.1);
+}
+
+.speaker-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #004225;
+}
+
+.speaker-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.speaker-name {
+  font-weight: 600;
+  color: #004225;
+  font-size: 0.9rem;
+}
+
+.speaker-title {
+  font-size: 0.8rem;
+  color: #646464;
+}
+
+/* ✨ NEW: Enhanced clickable session cards */
+.session-card {
+  cursor: pointer;
+}
+
+.session-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 16px 48px rgba(0, 66, 37, 0.15);
+  border: 1px solid #004225;
+}
+
+/* ✨ NEW: Mobile responsiveness for modal */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    max-height: 85vh;
+    margin: 20px;
+  }
+  
+  .modal-header {
+    padding: 20px 20px 15px;
+  }
+  
+  .modal-header h2 {
+    font-size: 1.4rem;
+    padding-right: 35px;
+  }
+  
+  .modal-close {
+    top: 15px;
+    right: 15px;
+  }
+  
+  .modal-body {
+    padding: 15px 20px 25px;
+  }
+  
+  .session-time-info {
+    flex-direction: column;
+    gap: 15px;
+  }
+}

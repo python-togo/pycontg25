@@ -5,8 +5,9 @@ const seconds = document.getElementById("seconds");
 const countdown = document.getElementById("countdown");
 const program = document.getElementById("program");
 const mainNav = document.getElementById("mainNav");
-const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-const countdownDate = new Date(Date.UTC(2025, 7, 23, 0, 0, 0)).getTime();
+const  mobileMenuBtn = document.getElementById("mobileMenuBtn");
+
+const countdownDate = new Date(Date.UTC(2025, 7, 4, 16, 30, 0)).getTime();
 
 let now = new Date(new Date().toUTCString()).getTime();
 let distance = countdownDate - now;

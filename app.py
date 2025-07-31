@@ -1,6 +1,8 @@
 import typing
 from send_email import send_sponsor_email
 from ticket import send_ticket_email
+from schedule import get_schedule, get_speaker_images, get_event_info
+
 
 if not hasattr(typing, "_ClassVar") and hasattr(typing, "ClassVar"):
     typing._ClassVar = typing.ClassVar
@@ -15,8 +17,6 @@ from models import (
     VolunteerInquiry,
     WaitlistInquiry,
     RegistrationInquiry,
-
-
 )
 from datas import (
     get_swags,
@@ -35,7 +35,7 @@ import requests
 
 load_dotenv()
 
-    
+
 app = Flask(__name__)
 
 app.static_folder = "static"
@@ -47,6 +47,8 @@ event_date = datetime(2025, 8, 23, 7, 0, 0)
 event_date_str = event_date.strftime("%d %B %Y at %H:%M")
 registration_date = datetime(2025, 7, 23, 16, 45, 0)
 registration_closing_date = datetime(2025, 8, 16, 16, 30, 0)
+schedule_release_date = datetime(2025, 8, 5, 16, 0, 0)
+schedule_release_date = schedule_release_date.replace(tzinfo=timezone.utc)
 
 registration_closing_date = registration_closing_date.replace(tzinfo=timezone.utc)
 
@@ -110,7 +112,7 @@ proposal_closing_date = datetime(2025, 6, 30, 16).strftime("%d %B %Y at %H:%M UT
 #     "social_link": "https://linkedin.com/in/afilawson",
 #     "social_platform": "LinkedIn"
 #     },
-   
+
 # ]
 
 API_ROOT = os.getenv("API_ROOT", "http://127.0.0.1:8000/api")
@@ -129,13 +131,27 @@ else:
 
 
 gold_sponsors = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "gold"]
-silver_sponsors = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "silver"]
-bronze_sponsors = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "bronze"]
-headline_sponsors = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "headline"]
-inkind_sponsors = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "inkind"]
-community_sponsors = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "community"]
-media_sponsors = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "media"]
-educational_supporters = [sponsor for sponsor in paidsponsors if sponsor.get("level") == "educational"]
+silver_sponsors = [
+    sponsor for sponsor in paidsponsors if sponsor.get("level") == "silver"
+]
+bronze_sponsors = [
+    sponsor for sponsor in paidsponsors if sponsor.get("level") == "bronze"
+]
+headline_sponsors = [
+    sponsor for sponsor in paidsponsors if sponsor.get("level") == "headline"
+]
+inkind_sponsors = [
+    sponsor for sponsor in paidsponsors if sponsor.get("level") == "inkind"
+]
+community_sponsors = [
+    sponsor for sponsor in paidsponsors if sponsor.get("level") == "community"
+]
+media_sponsors = [
+    sponsor for sponsor in paidsponsors if sponsor.get("level") == "media"
+]
+educational_supporters = [
+    sponsor for sponsor in paidsponsors if sponsor.get("level") == "educational"
+]
 
 
 @app.route("/favicon.ico")
@@ -168,8 +184,8 @@ def shop_swag():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "GET":
-        
-        if registration_date >  datetime.now(timezone.utc):
+
+        if registration_date > datetime.now(timezone.utc):
             return render_template(
                 "registration.html",
                 year=year,
@@ -184,7 +200,7 @@ def register():
                 call_to_action="registration",
                 intro_message="Thank you for your interest in attending PyCon Togo 2025. Registration is now closed.",
             )
-        
+
         return render_template(
             "register.html",
             year=year,
@@ -192,7 +208,7 @@ def register():
             registration_open=False,
         )
     else:
-        if registration_date >  datetime.now(timezone.utc):
+        if registration_date > datetime.now(timezone.utc):
             return render_template(
                 "registration.html",
                 year=year,
@@ -225,7 +241,10 @@ def register():
         )
 
         if not is_valid_email(data.email):
-            abort(400, description="There was an error submitting your registration. Please try again.")
+            abort(
+                400,
+                description="There was an error submitting your registration. Please try again.",
+            )
             return
 
         existing_entry = get_something_email("registrations", data.email)
@@ -233,7 +252,9 @@ def register():
             abort(403, description="You are already registered.")
             return
         try:
-            send_ticket_email(data.fullName, data.email, data.id, data.organization, data.country)
+            send_ticket_email(
+                data.fullName, data.email, data.id, data.organization, data.country
+            )
             successed = insert_something("registrations", data.dict())
         except Exception as e:
             if e.args and "duplicate key" in str(e.args[0]).lower():
@@ -244,18 +265,19 @@ def register():
                 successed = False
                 abort(422, description="Unprocessable Entity")
                 return
-            
 
         if not successed:
-            abort(500, description="There was an error submitting your registration. Please try again.")
+            abort(
+                500,
+                description="There was an error submitting your registration. Please try again.",
+            )
             return
 
         success_message = [
             "Thank you for your registration!",
             "We have received your registration and will review it shortly.",
         ]
-        
-        
+
         return render_template(
             "success.html",
             year=year,
@@ -273,6 +295,22 @@ def coming_soon():
         year=year,
     )
 
+
+@app.route("/schedule", methods=["GET"])
+def schedule():
+    if datetime.now(timezone.utc) < schedule_release_date:
+         return redirect(url_for("coming_soon"))
+    schedule_data = get_schedule()
+    speaker_images = get_speaker_images()
+    event_info = get_event_info()
+    return render_template(
+        "schedule.html", 
+        schedule=schedule_data, 
+        speaker_images=speaker_images,
+        event_info=event_info
+    )
+
+
 @app.route("/health-safety")
 def health_safety():
     return render_template(
@@ -280,9 +318,11 @@ def health_safety():
         year=year,
     )
 
-@app.route("/schedule")
-def schedule():
-    return redirect(url_for("coming_soon"))
+
+# @app.route("/schedule")
+# def schedule():
+#     return redirect(url_for("coming_soon"))
+
 
 @app.route("/volunteer", methods=["GET", "POST"])
 def volunteer():
@@ -295,8 +335,8 @@ def volunteer():
                 year=year,
                 call_to_action="volunteers",
                 intro_message="Thank you for your interest in volunteering for PyCon Togo 2025. We appreciate your enthusiasm and\
-                      support!"
-            )  
+                      support!",
+            )
         return render_template(
             "volunteer.html",
             year=year,
@@ -308,9 +348,9 @@ def volunteer():
                 year=year,
                 call_to_action="volunteers",
                 intro_message="Thank you for your interest in volunteering for PyCon Togo 2025. We appreciate your enthusiasm and\
-                      support!"
+                      support!",
             )
-         
+
         form_data = request.form
         data = VolunteerInquiry(
             first_name=form_data.get("first_name"),
@@ -358,7 +398,6 @@ def volunteer():
                 message=[
                     "You are already registered.",
                     "We are currently in the process of reviewing applications and will be in touch with selected candidates soon.",
-
                 ],
             )
 
@@ -400,7 +439,7 @@ def waitlist():
                 year=year,
             )
         return redirect(url_for("register"))
-    else:  
+    else:
         form_data = request.form
         data = WaitlistInquiry(
             email=form_data.get("email"),
@@ -461,14 +500,14 @@ def waitlist():
             message=success_message,
             status="success",
         )
-    
+
 
 @app.route("/speakers", methods=["GET"])
 def speakers():
     speaker_release_date = datetime(2025, 7, 10, 16, 0, 0)
     release_speaker_theme_date = datetime(2025, 7, 20, 16, 0, 0)
     speaker_release_date = speaker_release_date.replace(tzinfo=timezone.utc)
-    release_speaker_theme_date  = release_speaker_theme_date.replace(tzinfo=timezone.utc)
+    release_speaker_theme_date = release_speaker_theme_date.replace(tzinfo=timezone.utc)
     release_speaker_theme = False
 
     if speaker_release_date > datetime.now(timezone.utc):
@@ -478,10 +517,9 @@ def speakers():
             year=year,
             message="Speakers will be announced soon!",
             event_date=event_date_str,
-            
         )
 
-    if  datetime.now(timezone.utc) > release_speaker_theme_date:
+    if datetime.now(timezone.utc) > release_speaker_theme_date:
         release_speaker_theme = True
         print(release_speaker_theme)
     return render_template(
@@ -489,7 +527,7 @@ def speakers():
         year=year,
         event_date=event_date_str,
         speakers=speakers_list,
-        is_themes_released=release_speaker_theme
+        is_themes_released=release_speaker_theme,
     )
 
 
@@ -514,14 +552,14 @@ def proposal():
                 year=year,
                 call_to_action="Proposals",
                 intro_message="Thank you for your interest in speaking at PyCon Togo 2025. The Call for Proposals is now closed.",
-            )  
-        
+            )
+
         return render_template(
             "speaker.html",
             year=year,
         )
     else:
-     
+
         form_data = request.form
         data = Proposal(
             format=form_data.get("format"),
@@ -548,11 +586,14 @@ def proposal():
         print(existing_entry)
         if existing_entry:
             abort(403, description="You are already registered.")
-            return 
+            return
 
         successed = insert_something("proposals", data.dict())
         if not successed:
-            abort(500, description="There was an error submitting your proposal. Please try again.")
+            abort(
+                500,
+                description="There was an error submitting your proposal. Please try again.",
+            )
             return
 
         success_message = [
@@ -583,7 +624,7 @@ def sponsor():
             inkind=inkind,
             sponsor_tiers=sponsor_tiers,
         )
-    else:  
+    else:
         form_data = request.form
         data = SponsorInquiry(
             company=form_data.get("company"),
@@ -627,6 +668,7 @@ def sponsor():
             status="success",
         )
 
+
 @app.route("/sponsors")
 def sponsors():
     return render_template(
@@ -651,6 +693,7 @@ def contact():
         sponsor_tiers=sponsor_tiers,
     )
 
+
 @app.route("/about")
 def about_us():
     return render_template(
@@ -658,6 +701,7 @@ def about_us():
         year=year,
         sponsor_tiers=sponsor_tiers,
     )
+
 
 @app.route("/code-of-conduct")
 def code_of_conduct():
@@ -677,23 +721,53 @@ def team():
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template("404.html", year=year, message="Oops! The page you're looking for seems to have disappeared or doesn't exist. Perhaps it has gone off to discover the wild python in Africa!"), 404
+    return (
+        render_template(
+            "404.html",
+            year=year,
+            message="Oops! The page you're looking for seems to have disappeared or doesn't exist. Perhaps it has gone off to discover the wild python in Africa!",
+        ),
+        404,
+    )
+
 
 @app.errorhandler(403)
 def forbidden(e):
     return render_template("403.html", year=year, message=e.description), 403
 
+
 @app.errorhandler(400)
 def bad_request(e):
-    return render_template("400.html", year=year, message="Bad Request: The server could not understand the request due to invalid syntax."), 400
+    return (
+        render_template(
+            "400.html",
+            year=year,
+            message="Bad Request: The server could not understand the request due to invalid syntax.",
+        ),
+        400,
+    )
+
 
 @app.errorhandler(422)
 def unprocessable_entity(e):
-    return render_template("422.html", year=year, message="Unprocessable Entity: The server understands the content type of the request entity, but was unable to process the contained instructions."), 422
+    return (
+        render_template(
+            "422.html",
+            year=year,
+            message="Unprocessable Entity: The server understands the content type of the request entity, but was unable to process the contained instructions.",
+        ),
+        422,
+    )
+
 
 @app.errorhandler(500)
 def internal_server_error(e):
-    return render_template("500.html", year=year, message="Oops! Something went wrong on our end."), 500
+    return (
+        render_template(
+            "500.html", year=year, message="Oops! Something went wrong on our end."
+        ),
+        500,
+    )
 
 
 if __name__ == "__main__":
