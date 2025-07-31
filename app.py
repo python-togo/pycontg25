@@ -47,7 +47,7 @@ event_date = datetime(2025, 8, 23, 7, 0, 0)
 event_date_str = event_date.strftime("%d %B %Y at %H:%M")
 registration_date = datetime(2025, 7, 23, 16, 45, 0)
 registration_closing_date = datetime(2025, 8, 16, 16, 30, 0)
-schedule_release_date = datetime(2025, 8, 4, 16, 0, 0)
+schedule_release_date = datetime(2025, 8, 5, 16, 0, 0)
 schedule_release_date = schedule_release_date.replace(tzinfo=timezone.utc)
 
 registration_closing_date = registration_closing_date.replace(tzinfo=timezone.utc)
@@ -298,8 +298,8 @@ def coming_soon():
 
 @app.route("/schedule", methods=["GET"])
 def schedule():
-    # if datetime.now(timezone.utc) < schedule_release_date:
-    #     return redirect(url_for("coming_soon"))
+    if datetime.now(timezone.utc) < schedule_release_date:
+         return redirect(url_for("coming_soon"))
     schedule_data = get_schedule()
     speaker_images = get_speaker_images()
     event_info = get_event_info()
