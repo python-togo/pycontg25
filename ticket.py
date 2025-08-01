@@ -62,8 +62,9 @@ def generate_ticket_image(data, name, ref, organization, country_city="Togo/Lom√
         ("static/images/psf.png", "PSF"),
         ("static/images/afpy.png", "AFPy"),
         ("static/images/bpd_stacked_us5ika.png", "BPD"),
+        ("static/images/tahaga.png", "TAHAGA"),
         ("static/images/django-logo-positive.png", "Django"),
-        ("static/images/github-logo.png", "GitHub"),
+        ("static/images/github-logo.png", "GitHub")
     ]
 
     custom_sizes = {
@@ -152,4 +153,7 @@ if __name__ == "__main__":
     name = "tester 1"
     ref = "TCK-2025-00042"
     organization = ""
-    participant_email = "wass@pytogo.org"
+    participant_email = "ibrahim@pytogo.org"
+
+    send_ticket_email(name, participant_email, data, organization)
+    print("Ticket email sent successfully!")
