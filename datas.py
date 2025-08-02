@@ -78,67 +78,9 @@ swags = [
         ],
     },
     {
-        "name": "White Python Togo Hoodie",
-        "description": "Stay warm with our Python Togo hoodie. Perfect for coding nights and meetups.",
-        "price": 9500,
-        "priceDollar": 17,
-        "originalPrice": 10000,
-        "images": [
-            "static/images/swags/hoodie8.png",
-            "static/images/swags/hoodie2.png",
-            "static/images/swags/hoodie.png",
-            "static/images/swags/hoodie1.png",
-            "static/images/swags/hoodie7.png",
-            "static/images/swags/hoodie4.png",
-            "static/images/swags/hoodie5.png",
-            "static/images/swags/hoodie6.png",
-        ],
-    },
-      {
-        "name": "Black Python Togo Hoodie",
-        "description": "Stay warm with our Python Togo hoodie. Perfect for coding nights and meetups.",
-        "price": 9500,
-        "priceDollar": 17,
-        "originalPrice": 10000,
-        "images": [
-            "static/images/swags/hoodie4.png",
-            "static/images/swags/hoodie5.png",
-            "static/images/swags/hoodie6.png",
-        ],
-    },
-    {
-        "name": "Python Togo Cap",
-        "description": "Complete your tech look with our exclusive Python Togo cap. Adjustable and comfortable.",
-        "price": 3000,
-        "priceDollar": 6,
-        "originalPrice": 3500,
-        "images": [
-            "static/images/swags/cap7.png",
-            "static/images/swags/cap.png",
-            "static/images/swags/cap1.png",
-            "static/images/swags/cap2.png",
-            "static/images/swags/cap3.png",
-            "static/images/swags/cap4.png",
-            "static/images/swags/cap5.png",
-            "static/images/swags/cap6.png",
-        ],
-    },
-        {
-        "name": "Red PyCon Togo 2025 Cap",
-        "description": "Complete your tech look with our exclusive Red PyCon Togo 2025  cap. Adjustable and comfortable.",
-        "price": 3000,
-        "priceDollar": 6,
-        "originalPrice": 3500,
-        "images": [
-            "static/images/swags/redcap.png",
-            "static/images/swags/cap5.png",
-            "static/images/swags/cap6.png",
-        ],
-    },
-    {
         "name": "Python Togo Stickers",
         "description": "Decorate your laptop, phone, and more with our Python Togo stickers. Durable and waterproof.",
-        "price": 500,
+        "price": 1000,
         "priceDollar": 1,
         "originalPrice": 1000,
         "images": [
@@ -150,7 +92,7 @@ swags = [
      {
         "name": "PyCon Togo 2025 Stickers",
         "description": "Decorate your laptop, phone, and more with our PyCon Togo 2025 stickers. Durable and waterproof.",
-        "price": 500,
+        "price": 1000,
         "priceDollar": 1,
         "originalPrice": 1000,
         "images": [
@@ -162,7 +104,7 @@ swags = [
          {
         "name": "PyCon Togo 2025 Stickers",
         "description": "Decorate your laptop, phone, and more with our PyCon Togo 2025 stickers. Durable and waterproof.",
-        "price": 500,
+        "price": 1000,
         "priceDollar": 1,
         "originalPrice": 1000,
         "images": [
@@ -186,6 +128,64 @@ swags = [
             "static/images/swags/allover6.png",
         ],
     },
+    {
+        "name": "White Python Togo Hoodie",
+        "description": "Stay warm with our Python Togo hoodie. Perfect for coding nights and meetups.",
+        "price": "SOLD OUT",
+        "priceDollar": 17,
+        "originalPrice": 10000,
+        "images": [
+            "static/images/swags/hoodie8.png",
+            "static/images/swags/hoodie2.png",
+            "static/images/swags/hoodie.png",
+            "static/images/swags/hoodie1.png",
+            "static/images/swags/hoodie7.png",
+            "static/images/swags/hoodie4.png",
+            "static/images/swags/hoodie5.png",
+            "static/images/swags/hoodie6.png",
+        ],
+    },
+      {
+        "name": "Black Python Togo Hoodie",
+        "description": "Stay warm with our Python Togo hoodie. Perfect for coding nights and meetups.",
+        "price": "SOLD OUT",
+        "priceDollar": 17,
+        "originalPrice": 10000,
+        "images": [
+            "static/images/swags/hoodie4.png",
+            "static/images/swags/hoodie5.png",
+            "static/images/swags/hoodie6.png",
+        ],
+    },
+    {
+        "name": "Python Togo Cap",
+        "description": "Complete your tech look with our exclusive Python Togo cap. Adjustable and comfortable.",
+        "price": "SOLD OUT",
+        "priceDollar": 6,
+        "originalPrice": 3500,
+        "images": [
+            "static/images/swags/cap7.png",
+            "static/images/swags/cap.png",
+            "static/images/swags/cap1.png",
+            "static/images/swags/cap2.png",
+            "static/images/swags/cap3.png",
+            "static/images/swags/cap4.png",
+            "static/images/swags/cap5.png",
+            "static/images/swags/cap6.png",
+        ],
+    },
+        {
+        "name": "Red PyCon Togo 2025 Cap",
+        "description": "Complete your tech look with our exclusive Red PyCon Togo 2025  cap. Adjustable and comfortable.",
+        "price": "SOLD OUT",
+        "priceDollar": 6,
+        "originalPrice": 3500,
+        "images": [
+            "static/images/swags/redcap.png",
+            "static/images/swags/cap5.png",
+            "static/images/swags/cap6.png",
+        ],
+    }
 ]
 
 

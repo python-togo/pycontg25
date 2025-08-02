@@ -18,7 +18,13 @@ Shop - PyCon Togo 2025
                 </div>
                 <div class="product-info">
                     <h3 class="product-name">{{ swag.name }}</h3>
-                    <div class="product-price">{{ swag.priceDollar}} $ (~{{ swag.price }} XOF)</div>
+                    {% if swag.price == "SOLD OUT" %}
+                    <div class="product-price sold-out">SOLD OUT</div>
+                    
+                    {% else %}
+                    <div class="product-price">{{ swag.priceDollar }} $ (~{{ swag.price }} XOF)</div>
+                    {% endif %}
+                   
                     <p class="product-description">{{ swag.description }}</p>
                     <a href="https://forms.gle/pCzMbctUezP2P5F57" target="_blank" class="btn btn-primary">Add to Cart</a>
                 </div>
