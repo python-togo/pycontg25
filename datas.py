@@ -110,7 +110,7 @@ swags = [
         "name": "Python Togo Cap",
         "description": "Complete your tech look with our exclusive Python Togo cap. Adjustable and comfortable.",
         "price": 3000,
-        "priceDollar": 3,
+        "priceDollar": 6,
         "originalPrice": 3500,
         "images": [
             "static/images/swags/cap7.png",
@@ -127,7 +127,7 @@ swags = [
         "name": "Red PyCon Togo 2025 Cap",
         "description": "Complete your tech look with our exclusive Red PyCon Togo 2025  cap. Adjustable and comfortable.",
         "price": 3000,
-        "priceDollar": 3,
+        "priceDollar": 6,
         "originalPrice": 3500,
         "images": [
             "static/images/swags/redcap.png",
