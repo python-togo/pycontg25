@@ -85,6 +85,11 @@ a {
     background-color: #007bff;
 }
 
+.btn-soldout {
+    background-color: var(--medium-gray);
+    color: var(--dark-gray);
+    cursor: not-allowed;
+}
 .text-center {
     text-align: center;
 }
