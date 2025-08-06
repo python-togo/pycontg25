@@ -46,7 +46,7 @@ year = datetime.now(timezone.utc).year
 event_date = datetime(2025, 8, 23, 7, 0, 0)
 event_date_str = event_date.strftime("%d %B %Y at %H:%M")
 registration_date = datetime(2025, 7, 23, 16, 45, 0)
-registration_closing_date = datetime(2025, 8, 16, 16, 30, 0)
+registration_closing_date = datetime(2025, 8, 10, 16, 0, 0)
 schedule_release_date = datetime(2025, 8, 10, 16, 0, 0)
 schedule_release_date = schedule_release_date.replace(tzinfo=timezone.utc)
 
@@ -56,6 +56,7 @@ registration_date = registration_date.replace(tzinfo=timezone.utc)
 opening_in = registration_date - datetime.now(timezone.utc)
 
 opening_in_days = opening_in.days
+
 sponsor_tiers = get_sponsorteirs()
 proposal_opining_date = datetime(2025, 6, 3, 16).strftime("%d %B %Y at %H:%M UTC")
 proposal_closing_date = datetime(2025, 6, 30, 16).strftime("%d %B %Y at %H:%M UTC")
@@ -198,7 +199,7 @@ def register():
                 "registration_closed.html",
                 year=year,
                 call_to_action="registration",
-                intro_message="Thank you for your interest in attending PyCon Togo 2025. Registration is now closed.",
+                intro_message="Thank you for your interest in attending PyCon Togo 2025. Registrations are now closed.",
             )
 
         return render_template(
@@ -221,7 +222,7 @@ def register():
                 "registration_closed.html",
                 year=year,
                 call_to_action="registration",
-                intro_message="Thank you for your interest in attending PyCon Togo 2025. Registration is now closed.",
+                intro_message="Thank you for your interest in attending PyCon Togo 2025. Registrations are now closed.",
             )
         _id = str(uuid4())
         form_data = request.form
