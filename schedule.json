@@ -1,109 +1,229 @@
 {
-  "event": "PyCon Togo 2025",
-  "timezone": "GMT",
-  "date": "2025-08-20",
-  "location": "Lomé, Togo",
-  "schedule": [
-    {
-      "start": "08:00",
-      "end": "08:30",
-      "title": "Accueil & Petit Déjeuner",
-      "type": "break"
-    },
-    {
-      "start": "08:30",
-      "end": "08:45",
-      "title": "Mot de bienvenue",
-      "speaker": "Coordinateur principal",
-      "type": "opening"
-    },
-    {
-      "start": "08:45",
-      "end": "09:15",
-      "title": "Keynote : L'impact de Python en Afrique de l'Ouest",
-      "speaker": "Invité spécial",
-      "type": "keynote"
-    },
-    {
-      "start": "09:15",
-      "end": "10:45",
-      "title": "Talks - Session 1",
-      "type": "talks",
-      "talks": [
-        { "title": "Python pour la data science", "speaker": "A. Kodjo", "start": "09:15", "end": "09:35", "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg"},
-        { "title": "Automatiser les tâches quotidiennes", "speaker": "B. Mensah", "start": "09:35", "end": "09:55", "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg" },
-        { "title": "Introduction à Django", "speaker": "C. Abalo", "start": "09:55", "end": "10:15" , "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg"},
-        { "title": "Construire des APIs REST avec FastAPI", "speaker": "D. Tchalla", "start": "10:15", "end": "10:35", "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg" }
-      ]
-    },
-    {
-      "start": "10:45",
-      "end": "11:00",
-      "title": "Pause Café",
-      "type": "break"
-    },
-    {
-      "start": "11:00",
-      "end": "12:30",
-      "title": "Talks - Session 2",
-      "type": "talks",
-      "talks": [
-        { "title": "L'intelligence artificielle avec Python", "speaker": "E. Sika", "start": "11:00", "end": "11:20", "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg" },
-        { "title": "Les bases des tests unitaires", "speaker": "F. Atayi", "start": "11:20", "end": "11:40", "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg" },
-        { "title": "Comprendre les décorateurs", "speaker": "G. Napo", "start": "11:40", "end": "12:00", "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg" },
-        { "title": "Python et les objets connectés", "speaker": "H. Komlan", "start": "12:00", "end": "12:20", "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg" }
-      ]
-    },
-    {
-      "start": "12:30",
-      "end": "13:30",
-      "title": "Pause Déjeuner",
-      "type": "break"
-    },
-    {
-      "start": "13:30",
-      "end": "14:00",
-      "title": "Session Sponsors & Partenaires",
-      "type": "sponsor_session",
-      "participants": ["Sponsor A", "Sponsor B", "Partenaire C"]
-    },
-    {
-      "start": "14:00",
-      "end": "15:30",
-      "title": "Talks - Session 3",
-      "type": "talks",
-      "talks": [
-        { "title": "Python pour la cybersécurité", "speaker": "I. Kouami", "start": "14:00", "end": "14:20" , "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg"},
-        { "title": "Créer un bot Telegram/Discord", "speaker": "J. Adzo", "start": "14:20", "end": "14:40", "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg" },
-        { "title": "AsyncIO et applications concurrentes", "speaker": "K. Wassi", "start": "14:40", "end": "15:00", "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg" },
-        { "title": "Web scraping avec BeautifulSoup", "speaker": "L. Dossou", "start": "15:00", "end": "15:20" , "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg"}
-      ]
-    },
-    {
-      "start": "15:30",
-      "end": "15:45",
-      "title": "Pause",
-      "type": "break"
-    },
-    {
-      "start": "15:45",
-      "end": "16:30",
-      "title": "Lightning Talks",
-      "type": "lightning_talks",
-      "talks": [
-        { "title": "Ma première bibliothèque Python", "speaker": "M. Aya", "duration": "5min", "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg" },
-        { "title": "Python + IoT : projet étudiant", "speaker": "N. Koffi", "duration": "5min", "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg"},
-        { "title": "Astuces avec VS Code", "speaker": "O. Yao", "duration": "5min", "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg" },
-        { "title": "Faire de l’art avec Python", "speaker": "P. Mawuli", "duration": "5min", "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg" },
-        { "title": "Créer un package Python", "speaker": "Q. Sewonou", "duration": "5min", "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg" }
-      ]
-    },
-    {
-      "start": "16:30",
-      "end": "17:00",
-      "title": "Clôture & Remerciements",
-      "type": "closing",
-      "speaker": "Comité PyCon Togo"
-    }
-  ]
+    "event": "PyCon Togo 2025",
+    "timezone": "GMT",
+    "date": "2025-08-23",
+    "location": "Lomé, Togo",
+    "schedule": [
+        {
+            "start": "07:30",
+            "end": "09:00",
+            "title": "Welcome & Check-in + Breakfast",
+            "type": "break"
+        },
+        {
+            "start": "09:00",
+            "end": "09:15",
+            "title": "Opening Ceremony",
+            "type": "opening"
+        },
+        {
+            "start": "09:15",
+            "end": "09:25",
+            "title": "Sponsors Introduction",
+            "type": "sponsor_session"
+        },
+        {
+            "start": "09:25",
+            "end": "09:27",
+            "title": "Short break / intro / hashtag",
+            "type": "break"
+        },
+        {
+            "start": "09:27",
+            "end": "09:32",
+            "title": "Koami Afantchao",
+            "type": "lightning"
+        },
+        {
+            "start": "09:32",
+            "end": "09:52",
+            "title": "De zéro à impact : grandir avec l’open source et les communautés tech.",
+            "type": "standard",
+            "speaker": "Daniel Ametsowou",
+            "description": "Ce talk retrace un parcours atypique, entre comptabilité, développement logiciel et community management. En partant de zéro, j’ai découvert comment l’open source et les communautés tech peuvent transformer une passion en véritable levier d’évolution.\r\n\r\nJe partagerai des expériences concrètes, des outils accessibles à tous, et des stratégies simples pour contribuer, apprendre plus vite, se faire connaître et même lancer sa propre communauté.\r\nUn talk pour celles et ceux qui veulent avancer, même sans parcours classique, en misant sur l’entraide, la curiosité et l’action.",
+            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1753602061/IMG-20250719-WA0204_iwrzsf.jpg"
+        },
+        {
+            "start": "09:52",
+            "end": "10:12",
+            "title": "Sqlalchemy : Le couteau suisse des bases de données pour Python",
+            "type": "standard",
+            "speaker": "Zokora Elvis Gbagnon",
+            "description": "L'objectif de cet atelier  est de fournir une introduction générale à SQLAlchemy , la boîte à outils des bases de données pour Python.",
+            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1752155079/elvis_bqbl9m.jpg"
+        },
+        {
+            "start": "10:12",
+            "end": "10:52",
+            "title": "Ingénierie de la Fiabilité avec Python : Construire des Systèmes Résilients à Grande Échelle",
+            "type": "deep-dive",
+            "speaker": "Denis AKPAGNONITE",
+            "description": "À l’ère des applications distribuées, la fiabilité est devenue plus qu'une exigence et non pas un BONUS. Mais comment peut-on garantir la stabilité des services tout en innovant rapidement ? Durant ce talk nous allons découvrir les fondations même de l'ingénierie de la Fiabilité communément appelé Site Reliability Engineering (SRE) et montrer comment Python peut devenir un levier puissant pour construire, observer et renforcer des systèmes.\r\n\r\nNous découvrirons comment définir des indicateurs de service (SLI), fixer des objectifs de fiabilité (SLO), et les instrumenter avec des bibliothèques Python et Prometheus. Ensuite, nous aborderons les piliers de l’observabilité (logs, metric, traces) grâce à OpenTelemetry et un outil puissant comme Grafana Tempo. Enfin, nous verrons comment automatiser certaines opérations et intégrer des stratégies de résilience applicative comme les retries, circuit breakers et timeouts, avec un clin d’œil à l’approche du Chaos Engineering.\r\n\r\nCet talk s’adresse aux développeurs Python intermédiaires, avancés et à toute personne voulant maîtriser la fiabilité en production, et transformer les bonnes pratiques en véritables garde-fous opérationnels.\r\n",
+            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1753533759/photo_retouche_denis_i4pwvc.png"
+        },
+        {
+            "start": "10:52",
+            "end": "10:54",
+            "title": "Short break",
+            "type": "break"
+        },
+        {
+            "start": "10:54",
+            "end": "11:14",
+            "title": "Kayode",
+            "type": "standard"
+        },
+        {
+            "start": "11:14",
+            "end": "11:54",
+            "title": "Mastering Django Models: Optimize for Speed and Scale",
+            "type": "deep-dive",
+            "speaker": "Julius Boakye",
+            "description": "Django models are the foundation of any Django application, but inefficient design can lead to slow queries, unmaintainable code, and scalability challenges. This deep dive explores proven strategies for crafting efficient Django models that enhance performance and simplify development. We’ll cover selecting optimal field types, designing effective relationships (ForeignKey, ManyToMany, OneToOne), and leveraging advanced techniques like custom querysets, indexes, and strategic denormalization. Through real-world examples and performance benchmarks, we’ll uncover common pitfalls—like N+1 query issues—and how to avoid them. Attendees will learn practical techniques to optimize database interactions, profile query performance, and design models that scale from startup MVPs to enterprise applications. This talk is perfect for intermediate to advanced Django developers looking to build faster, more robust apps.\r\n\r\n",
+            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1753706569/Julius_bk1q38.jpg"
+        },
+        {
+            "start": "11:54",
+            "end": "11:56",
+            "title": "Short break",
+            "type": "break"
+        },
+        {
+            "start": "11:56",
+            "end": "12:36",
+            "title": "Panel – Bassim-Swé Hugues, Pondikpa Tchabao, Basile Desjuzeur",
+            "type": "panel",
+            "speakers": [
+                {
+                    "name": "Pondikpa TCHABAO",
+                    "title": "Explorer l'impact de Python : de l'idée entrepreneuriale aux applications intelligentes et à la valorisation des données pour le développement.",
+                    "description": "Outre les prompts intégrées aux saas liés a chat gpt ou Claude, apprenez à coder et entraîner vos propres modèles d’IA",
+                    "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg"
+                },
+                {
+                    "name": "Basile Desjuzeur",
+                    "title": "Explorer l'impact de Python : de l'idée entrepreneuriale aux applications intelligentes et à la valorisation des données pour le développement.",
+                    "description": "De nombreuses sources de données ouvertes sont disponibles sur Internet (Meta, Open Street Map, images satellites, Géoportail de la République Togolaise ...). L'écosystème python (geopandas, rasterio, scikit-learn, scipy ...) et des connaissances en Machine Learning permettebt de les mettre en valeur pour orienter des politiques publiques, étudier un phénomène, repérer des oppportunités ...",
+                    "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1753922170/basile_upyvt8.jpg"
+                }
+            ]
+        },
+        {
+            "start": "12:36",
+            "end": "12:41",
+            "title": "Instructions & reminders",
+            "type": "other"
+        },
+        {
+            "start": "12:41",
+            "end": "12:56",
+            "title": "Family photo",
+            "type": "other"
+        },
+        {
+            "start": "12:56",
+            "end": "14:16",
+            "title": "Lunch Break + Networking",
+            "type": "break"
+        },
+        {
+            "start": "14:16",
+            "end": "14:21",
+            "title": "Adeosye Omobuwa",
+            "type": "lightning"
+        },
+        {
+            "start": "14:21",
+            "end": "14:41",
+            "title": "Don’t Pay People to Cut Off Rat Tails: Rethinking Incentives in Open Source",
+            "type": "standard",
+            "speaker": "Ibi Fiberesima",
+            "description": "Incentives work, but only when they are designed well. This talk explores why some community-driven reward systems (even with good intentions) backfire, and how we can design better ways to motivate contributions in the Python ecosystem. Learn practical strategies to grow contributors without falling into the \"rat tail\" trap.\r\n",
+            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1753323872/fibi_upx7jf.jpg"
+        },
+        {
+            "start": "14:41",
+            "end": "15:01",
+            "title": "Redonnez vie à votre application Django grâce à Wagtail",
+            "type": "standard",
+            "speaker": "Teddy ASSIH",
+            "description": "On parle souvent de Django comme étant un framework \"all batteries included\" pour dire qu'il contient nécessaire pour lancer une application web rapidement : système d’authentification, sessions, interface d’admin, middlewares… tout y est par défaut. Et, justement, grâce a son module d'admin, Django offre un gain en temps fou lorsqu'il s'agit de gérer le contenu de son application web. Cependant, ce n'est un secret pour personne que cet interface admin est moche (oui, disons les termes) et peu intuitive pour les non-développeurs lorsque l'on veut l'utiliser comme une interface admin pour les clients.\r\n\r\nC'est là que Wagtail CMS vient à la rescousse de Django, en intégrant une panoplie de fonctionnalités à l'administration d'une application Django allant de la gestion contenue simple à la création de pages dynamiques à partir d'une interface intuitive pour le client et pour le développeur.\r\n\r\nDans ce talk, vous découvrirez quelques fonctionnalités de Wagtail et comment il transforme l'experience de développement des applications Django. Vous apprendrez à intégrer Wagtail à un projet Django existant et à tirer le meilleur de ce fabuleux CMS open source qui facilite le travail des développeurs Django ou celui toute personne ayant déjà fait un projet en Django.",
+            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1754422559/teddy_txfpnx.png"
+        },
+        {
+            "start": "15:01",
+            "end": "15:21",
+            "title": "L’IA Générative dans le Cycle de Vie du Développement Logiciel",
+            "type": "standard",
+            "speaker": "Yao Gervais Amoah",
+            "description": "Dans un contexte où la demande logicielle ne cesse d’exploser, l’IA Générative (GenAI) s’impose comme un levier majeur de productivité pour les équipes de développement. Cette conférence présente comment intégrer l’IA Générative à chaque étape du cycle de vie du développement logiciel (CVDL) :\r\n\r\n1. Idéation : stimuler les brainstormings, générer des user stories et scénarios de tests à partir de simples prompts.\r\n2. Planification : produire maquettes, spécifications et jeux de données synthétiques en un clin d’œil.\r\n3. Développement : accélérer l’écriture, la relecture et la refactorisation de code.\r\n4. Opérations : automatiser les pipelines CI/CD, détecter les anomalies et optimiser l’infrastructure grâce à l’IA.\r\n\r\nNous aborderons également les défis clés : latence, confidentialité des données, sécurité et propriété intellectuelle.\r\nVous repartirez avec un cadre pragmatique et des bonnes pratiques pour déployer l’IA Générative dans vos projets Python, tout en gardant l’humain au centre et en respectant la qualité et la conformité.",
+            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1754318926/profile-picture_fh1fqk.jpg"
+        },
+        {
+            "start": "15:21",
+            "end": "15:31",
+            "title": "Product presentation Tahaga x BPD",
+            "type": "sponsor_session"
+        },
+        {
+            "start": "15:31",
+            "end": "16:21",
+            "title": "Medical imaging in Python",
+            "type": "deep-dive",
+            "speaker": "Serge Koudoro",
+            "description": null,
+            "avatar_url": "https://avatars.githubusercontent.com/u/23106443?v=4"
+        },
+        {
+            "start": "16:21",
+            "end": "16:23",
+            "title": "Short break",
+            "type": "break"
+        },
+        {
+            "start": "16:23",
+            "end": "16:43",
+            "title": "Python : l’outil complet pour transformer les données en décisions",
+            "type": "standard",
+            "speaker": "Caleb ADOGLI",
+            "description": "On parle souvent des données, ou de la Big Data, comme de la nouvelle ruée vers le pétrole, mais sans les bons outils, elles restent brutes et inexploitables. Dans ce talk, nous suivrons le processus qui transforme des lignes de code en insights, grâce à Python, l’outil par excellence pour cette tâche. De la collecte à la visualisation, en passant par le nettoyage et la modélisation, nous verrons comment les bibliothèques de l’écosystème Python permettent de faire ressortir des informations pertinentes à partir de nos données.",
+            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1753484879/Caleb_ADOGLI_qrjt0y.jpg"
+        },
+        {
+            "start": "16:43",
+            "end": "17:03",
+            "title": "Becoming a Better Developer Through Documentation",
+            "type": "standard",
+            "speaker": "Harmony Elendu",
+            "description": "Since time memorial, documenting has always been a cornerstone for clarity, progress, and learning. It serves as a powerful tool to avoid repeated past mistakes while paving the way for continuous improvement. In this talk, we’ll explore how developers can enhance their craft through effective documentation.\r\nThe exciting part? These principles aren't just for developers — it is applicable to anyone!\r\n\r\nDrawing from my experience collaborating with multicultural teams of developers, along with insights from direct testimonies and years of building diverse products as a Product and Project Manager, good documentation is the “secret sauce.” It simplifies workflows, enhances collaboration, and leaves a clear roadmap for others while creating a path for the next contributor, team member, or even our future self.\r\n\r\nKey Takeaways for the Audience\r\nThis talk has been fully packed for a wide range of participants, especially beginners to professionals and even seasoned developers who might find themselves overlooking the importance of documentation in their daily work. We will be covering:\r\n- Why you should document before you write \r\n- Best Practices for Developer Documentation \r\n- Tools that makes documentation Easier \r\n- How it empowers Open Source Contributors \r\n- Self impacts of good documentation and many more. \r\n\r\nIn Conclusion this talk will go beyond the improvement of developer’s but to anyone listening ensuring that the lessons learnt and insights gained will enhance their work and amplify their impact.\r\n",
+            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1754515194/harmony_guohtz.jpg"
+        },
+        {
+            "start": "17:03",
+            "end": "17:23",
+            "title": "Special Speaker BPD or PSF",
+            "type": "standard"
+        },
+        {
+            "start": "17:23",
+            "end": "17:25",
+            "title": "Short break",
+            "type": "break"
+        },
+        {
+            "start": "17:25",
+            "end": "17:45",
+            "title": "Breaking educational barriers for pupils with dyslexia using python in underdeveloped countries",
+            "type": "standard",
+            "speaker": "Jacobs Oluwakemi",
+            "description": "In underdeveloped countries, getting an inclusive education is still quite difficult, especially for kids with learning difficulties like dyslexia. Imprecise word comprehension and generally subpar reading performance are hallmarks of dyslexia, a neurological disease. It impacts a sizable portion of school-age children, with a higher prevalence in boys, putting them at lifetime risk for subpar academic achievement and low self-esteem.\r\nThe United Nations Educational, Scientific, and Cultural Organization (UNESCO) believes that between 10% and 20% of people worldwide suffer with dyslexia, indicating that the disorder is highly prevalent. It might potentially be as high as 30% in low-income areas.\r\nIn traditional educational institutions, children with dyslexia frequently encounter obstacles that restrict their exposure to critical skills like programming, which are vital in the digital age. IT skills are a crucial tool to support dyslexic pupils because they can help them learn and reduce difficulties with identifying or confusing words and meaning. Several studies have demonstrated the importance of exposing students to IT skills, such as programming, especially those with special learning difficulties. Pupils with dyslexia typically have low expectations for their academic opportunities and low self-esteem. \r\n\r\nThis talk examines how Python's ease of use and adaptability might be utilized to produce educational materials and programming tools that are accessible to dyslexic kids in underdeveloped countries. Interactive, multi-sensory learning tools can be created using Python libraries such as Turtle, Pyttsx3 and Pygame for auditory and visuals thus creating engagement for dyslexic kids and lowering pressure on cognitive skills. These resources are perfect for countries with limited resources because they require less infrastructure for technology. \r\nJoin us as we explore python for inclusive education and creating a new generation of pupils who are masters of digital skills regardless of their situation and showing that coding is for everyone, breaking barriers and giving equal opportunities to dyslexic kids.\r\n",
+            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1754579273/Profile_Pic_xylz6c.jpg"
+        },
+        {
+            "start": "17:45",
+            "end": "18:00",
+            "title": "Closing – Q&A + Thanks",
+            "type": "closing"
+        }
+    ]
 }
