@@ -47,7 +47,7 @@ event_date = datetime(2025, 8, 23, 7, 0, 0)
 event_date_str = event_date.strftime("%d %B %Y at %H:%M")
 registration_date = datetime(2025, 7, 23, 16, 45, 0)
 registration_closing_date = datetime(2025, 8, 10, 16, 0, 0)
-schedule_release_date = datetime(2025, 8, 10, 16, 0, 0)
+schedule_release_date = datetime(2025, 8, 10, 16, 30, 0)
 schedule_release_date = schedule_release_date.replace(tzinfo=timezone.utc)
 
 registration_closing_date = registration_closing_date.replace(tzinfo=timezone.utc)
