@@ -107,10 +107,49 @@ def create_individual_talk_session(talk, parent_session, talk_index):
         'participant_count': 1,
         'participant_label': 'speaker',
         'talks': [talk],  # Keep the talk data for modal
-        'parent_session_type': parent_session.get('type', 'talks')
+        'parent_session_type': parent_session.get('type', 'talks'),
+        'avatar_url': talk.get('avatar_url')  # CORRECTION: Ajout de l'avatar_url
     }
     
     return session_data
+
+def handle_panel_session(item, session_id, duration):
+    """Handle panel sessions with multiple speakers"""
+    speakers_list = []
+    avatar_urls = []
+    speaker_details = []
+    
+    if isinstance(item.get('speaker'), list):
+        # Panel with multiple speakers
+        for speaker_info in item['speaker']:
+            if isinstance(speaker_info, dict):
+                speakers_list.append(speaker_info.get('name', ''))
+                avatar_url = speaker_info.get('avatar_url')
+                avatar_urls.append(avatar_url if avatar_url else None)
+                # Stocker les détails complets du speaker
+                speaker_details.append({
+                    'name': speaker_info.get('name', ''),
+                    'avatar_url': avatar_url,
+                    'title': speaker_info.get('title', ''),
+                    'description': speaker_info.get('description', '')
+                })
+            else:
+                speakers_list.append(str(speaker_info))
+                avatar_urls.append(None)
+                speaker_details.append({
+                    'name': str(speaker_info),
+                    'avatar_url': None,
+                    'title': '',
+                    'description': ''
+                })
+    
+    participant_count = len(speakers_list)
+    participant_label = 'panelistes'
+    
+    # Use first avatar for display, or None if no avatars
+    main_avatar = avatar_urls[0] if avatar_urls else None
+    
+    return speakers_list, participant_count, participant_label, main_avatar, avatar_urls, speaker_details
 
 def transform_json_to_schedule_format(json_data):
     """Transform JSON schedule data to the format expected by the template"""
@@ -127,37 +166,54 @@ def transform_json_to_schedule_format(json_data):
                 schedule_items.append(individual_session)
                 
         else:
-            # Handle single sessions (breaks, keynotes, opening, closing, sponsor sessions)
+            # Handle single sessions (breaks, keynotes, opening, closing, sponsor sessions, panels)
             session_id = f"{item['start'].replace(':', '')}-{item.get('type', 'session')}"
             duration = calculate_duration(item['start'], item['end'])
             
-            # Determine session type and styling
-            if item.get('type') == 'break':
-                session_type = 'break'
-                participant_count = 0
-                speakers = []
-                participant_label = ''
-            elif item.get('type') in ['opening', 'closing']:
-                session_type = 'compact'
-                participant_count = 1 if item.get('speaker') else 0
-                speakers = [item.get('speaker', '')] if item.get('speaker') else []
-                participant_label = 'speaker' if item.get('speaker') else ''
-            elif item.get('type') == 'keynote':
+            # Handle panel sessions specially
+            if item.get('type') == 'panel':
+                speakers, participant_count, participant_label, main_avatar, all_avatars, speaker_details = handle_panel_session(item, session_id, duration)
                 session_type = 'session'
-                participant_count = 1
-                speakers = [item.get('speaker', 'Keynote Speaker')]
-                participant_label = 'speaker'
-            elif item.get('type') == 'sponsor_session':
-                session_type = 'session'
-                participants = item.get('participants', [])
-                participant_count = len(participants)
-                speakers = participants
-                participant_label = 'participants'
             else:
-                session_type = 'session'
-                participant_count = 1 if item.get('speaker') else 0
-                speakers = [item.get('speaker')] if item.get('speaker') else []
-                participant_label = 'speaker'
+                # Determine session type and styling for other sessions
+                if item.get('type') == 'break':
+                    session_type = 'break'
+                    participant_count = 0
+                    speakers = []
+                    participant_label = ''
+                    main_avatar = None
+                elif item.get('type') in ['opening', 'closing']:
+                    session_type = 'compact'
+                    participant_count = 1 if item.get('speaker') else 0
+                    speakers = [item.get('speaker', '')] if item.get('speaker') else []
+                    participant_label = 'speaker' if item.get('speaker') else ''
+                    main_avatar = item.get('avatar_url')
+                elif item.get('type') == 'keynote':
+                    session_type = 'session'
+                    participant_count = 1
+                    speakers = [item.get('speaker', 'Keynote Speaker')]
+                    participant_label = 'speaker'
+                    main_avatar = item.get('avatar_url')
+                elif item.get('type') == 'sponsor_session':
+                    session_type = 'session'
+                    participants = item.get('participants', [])
+                    participant_count = len(participants)
+                    speakers = participants
+                    participant_label = 'participants'
+                    main_avatar = item.get('avatar_url')
+                elif item.get('type') in ['lightning', 'standard', 'deep-dive']:
+                    # CORRECTION: Gestion des sessions individuelles (lightning, standard, deep-dive)
+                    session_type = 'session'
+                    participant_count = 1 if item.get('speaker') else 0
+                    speakers = [item.get('speaker')] if item.get('speaker') else []
+                    participant_label = 'speaker'
+                    main_avatar = item.get('avatar_url')  # CORRECTION: Utiliser l'avatar_url directement
+                else:
+                    session_type = 'session'
+                    participant_count = 1 if item.get('speaker') else 0
+                    speakers = [item.get('speaker')] if item.get('speaker') else []
+                    participant_label = 'speaker'
+                    main_avatar = item.get('avatar_url')
 
             # Use JSON description if available, otherwise use fallback
             description_full = item.get('description', get_fallback_description(item, 'full'))
@@ -181,7 +237,10 @@ def transform_json_to_schedule_format(json_data):
                 'speakers': speakers,
                 'participant_count': participant_count,
                 'participant_label': participant_label,
-                'talks': item.get('talks', [])  # Keep original talks data for modal
+                'talks': item.get('talks', []),  # Keep original talks data for modal
+                'avatar_url': main_avatar,  # CORRECTION: Ajout de l'avatar_url principal
+                'panel_avatars': all_avatars if item.get('type') == 'panel' else [],  # Pour les panels
+                'speaker_details': speaker_details if item.get('type') == 'panel' else []  # CORRECTION: Détails complets des speakers
             }
             
             schedule_items.append(session_data)
@@ -208,7 +267,7 @@ def get_speaker_images():
                     speaker_key = f"speaker_{start_time.replace(':', '')}_{i}"
                     speaker_images[speaker_key] = talk['avatar_url']
         
-        # Handle single speaker sessions (keynotes, opening, closing)
+        # Handle single speaker sessions (keynotes, opening, closing, lightning, standard, deep-dive)
         if item.get('speaker') and item.get('avatar_url'):
             speaker_key = f"speaker_{item['start'].replace(':', '')}_main"
             speaker_images[speaker_key] = item['avatar_url']
