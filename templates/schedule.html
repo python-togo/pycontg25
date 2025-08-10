@@ -14,7 +14,7 @@
     <!-- Header -->
     <div class="schedule-header">
       <h1>Programme PyCon Togo 2025</h1>
-      <p>Construisons l'avenir avec Python 🐍</p>
+      <p>What you see is just a print</p>
     </div>
 
     <!-- Schedule Grid -->
@@ -37,22 +37,59 @@
             {% if session.speakers and session.participant_count > 0 %}
               <div class="avatars-container">
                 <div class="avatars">
-                  {% for speaker in session.speakers[:1] %}
-                    <div class="avatar avatar-{{ loop.index }}">
-                      {% if session.talks and session.talks[0].avatar_url %}
-                        <img
-                          class="avatar avatar-{{ loop.index }}"
-                          src="{{ session.talks[0].avatar_url }}"
-                          alt="{{ session.talks[0].speaker }}"
-                        />
-                      {% else %}
-                        <!-- Fallback avatar with speaker initial -->
-                        <div class="avatar avatar-{{ loop.index }}" style="background: #004225; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;">
-                          {{ speaker[:1] }}
-                        </div>
-                      {% endif %}
-                    </div>
-                  {% endfor %}
+                  {# CORRECTION: Gestion différente pour les panels et les sessions normales #}
+                  {% if session.type == 'panel' and session.panel_avatars %}
+                    {# Pour les panels : afficher jusqu'à 3 avatars différents #}
+                    {% for avatar_url in session.panel_avatars[:3] %}
+                      <div class="avatar avatar-{{ loop.index }}">
+                        {% if avatar_url %}
+                          <img
+                            class="avatar avatar-{{ loop.index }}"
+                            src="{{ avatar_url }}"
+                            alt="Paneliste {{ loop.index }}"
+                          />
+                        {% else %}
+                          <div class="avatar avatar-{{ loop.index }}" style="background: #004225; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;">
+                            {{ session.speakers[loop.index0][:1] if session.speakers[loop.index0] else '?' }}
+                          </div>
+                        {% endif %}
+                      </div>
+                    {% endfor %}
+                    {% if session.panel_avatars|length > 3 %}
+                      <div class="avatar avatar-more" style="background: #004225; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.7rem;">
+                        +{{ session.panel_avatars|length - 3 }}
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    {# Pour les sessions normales : afficher un seul avatar #}
+                    {% for speaker in session.speakers[:1] %}
+                      <div class="avatar avatar-{{ loop.index }}">
+                        {% set avatar_url = none %}
+                        
+                        {# CORRECTION: Nouvelle logique pour récupérer l'avatar #}
+                        {# 1. Vérifier si on a un avatar_url direct dans la session #}
+                        {% if session.avatar_url %}
+                          {% set avatar_url = session.avatar_url %}
+                        {# 2. Sinon, vérifier dans les talks #}
+                        {% elif session.talks and session.talks[0].avatar_url %}
+                          {% set avatar_url = session.talks[0].avatar_url %}
+                        {% endif %}
+                        
+                        {% if avatar_url %}
+                          <img
+                            class="avatar avatar-{{ loop.index }}"
+                            src="{{ avatar_url }}"
+                            alt="{{ speaker }}"
+                          />
+                        {% else %}
+                          <!-- Fallback avatar with speaker initial -->
+                          <div class="avatar avatar-{{ loop.index }}" style="background: #004225; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem;">
+                            {{ speaker[:1] if speaker else '?' }}
+                          </div>
+                        {% endif %}
+                      </div>
+                    {% endfor %}
+                  {% endif %}
                 </div>
                 <span class="participant-count">{{ session.participant_count }} {{ session.participant_label }}{{ 's' if session.participant_count > 1 else '' }}</span>
               </div>
@@ -67,7 +104,6 @@
     <div class="schedule-footer">
       <p>
         Rejoignez-nous pour célébrer Python et construire la communauté tech au Togo !
-        🐍🇹🇬
       </p>
     </div>
 
