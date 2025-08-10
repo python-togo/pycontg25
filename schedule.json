@@ -1,7 +1,7 @@
 {
     "event": "PyCon Togo 2025",
     "timezone": "GMT",
-    "date": "2025-08-23",
+    "date": "2025-08-20",
     "location": "Lomé, Togo",
     "schedule": [
         {
@@ -31,8 +31,11 @@
         {
             "start": "09:27",
             "end": "09:32",
-            "title": "Koami Afantchao",
-            "type": "lightning"
+            "title": "5 minutes pour apprendre à mettre en place un setup qui protège ton dos et tes yeux",
+            "type": "lightning",
+            "speaker": "Koami Afantchao AZIABOU",
+            "description": "En tant que professionnels du numérique, des heures passées devant l'écran peuvent gravement impacter votre dos et vos yeux. Ce micro-talk de 5 minutes vous offre les bases pour transformer votre poste de travail en un bureau ergonomique. Découvrez comment ajuster votre chaise pour un soutien lombaire optimal, positionner votre écran pour éviter la fatigue oculaire et les douleurs cervicales, et organiser clavier/souris pour prévenir les tensions. Apprenez de simples gestes rapides pour un setup ergonomique qui réduit les risques liés au travail sur écran et protège durablement votre santé.",
+            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1753809219/oxygen_dsqgfq.jpg"
         },
         {
             "start": "09:32",
@@ -70,8 +73,11 @@
         {
             "start": "10:54",
             "end": "11:14",
-            "title": "Kayode",
-            "type": "standard"
+            "title": "Developing AI Proficiency Throughout Africa: Who We Aspire to Be ",
+            "type": "standard",
+            "speaker": "Kayode Oladapo",
+            "description": "The talk \"Developing AI Proficiency Throughout Africa: Who We Aspire to Be\" is to present the meaningful, informed, and beneficial participation of AI development, proficiency, and utilization within the African communities. The audience for this talk includes developers, data analysts, and everyone interested in the story of African communities in AI and dataset collection in Africa. \r\nAttendees can expect to gain an understanding of how the \"global AI war\" is not about technology, the reshaping of global power, fostering technological decoupling, and demanding African attention. They will understand the stakes of Africa and the aspiration to avoid digital colonialism and ensure African proficiency and participation is truly meaningful. By the end of the talk, attendees will have a grasp of how stakeholders in Africa are shaping AI decisions, fostering a deep understanding of its implications, and the commitment to AI proficiency that genuinely advances African societal well-being, equity promotion, and championing inclusivity across all sectors. \r\nThe talk will cover a range of topics, including\r\n1. Who truly owns Africa's AI future?\r\n2. Prevention of digital colonialism when AI is trained on non-African data.\r\n3. Building competitive AI talent for proficiency.\r\nThis talk will equip all attendees at various stages of experience with how Africans at the moment are aspiring, deliberate, decisive, and determined in shaping our AI proficiency and destiny in building an AI future that truly benefits all African communities.\r\n",
+            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1753969000/Kayode_mnpqkd.jpg"
         },
         {
             "start": "11:14",
@@ -92,21 +98,7 @@
             "start": "11:56",
             "end": "12:36",
             "title": "Explorer l'impact de Python : de l'idée entrepreneuriale aux applications intelligentes et à la valorisation des données pour le développement.",
-            "type": "panel",
-            "speakers": [
-                {
-                    "name": "Pondikpa TCHABAO",
-                    "title": "Explorer l'impact de Python : de l'idée entrepreneuriale aux applications intelligentes et à la valorisation des données pour le développement.",
-                    "description": "Outre les prompts intégrées aux saas liés a chat gpt ou Claude, apprenez à coder et entraîner vos propres modèles d’IA",
-                    "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg"
-                },
-                {
-                    "name": "Basile Desjuzeur",
-                    "title": "Explorer l'impact de Python : de l'idée entrepreneuriale aux applications intelligentes et à la valorisation des données pour le développement.",
-                    "description": "De nombreuses sources de données ouvertes sont disponibles sur Internet (Meta, Open Street Map, images satellites, Géoportail de la République Togolaise ...). L'écosystème python (geopandas, rasterio, scikit-learn, scipy ...) et des connaissances en Machine Learning permettebt de les mettre en valeur pour orienter des politiques publiques, étudier un phénomène, repérer des oppportunités ...",
-                    "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1753922170/basile_upyvt8.jpg"
-                }
-            ]
+            "type": "panel"
         },
         {
             "start": "12:36",
@@ -118,7 +110,7 @@
             "start": "12:41",
             "end": "12:56",
             "title": "Family photo",
-            "type": "other"
+            "type": "break"
         },
         {
             "start": "12:56",
@@ -129,8 +121,11 @@
         {
             "start": "14:16",
             "end": "14:21",
-            "title": "Adeosye Omobuwa",
-            "type": "lightning"
+            "title": "Building a Feature-Rich Social Media App with Django: DMs, Mentions, and Hashtags Made Simple",
+            "type": "lightning",
+            "speaker": "ADEOYE OMOBUWA",
+            "description": "📄 Abstract:\r\nIn this talk, I will take you through the inner workings of a custom-built social media platform developed entirely with Django. This application is more than just posts and likes — it includes real-time direct messaging, hashtag recognition, @mention parsing, friend requests, user profiles, and contextual notifications.\r\n\r\nWe'll explore how Django’s model-view-template architecture, signals, and context processors come together to create a dynamic user experience. You’ll learn how I built the private messaging system (directs app) that tracks read/unread statuses, routes chat sessions by username, and offers a notification count in the navbar — all without relying on external services like Firebase or Socket.IO.\r\n\r\nFrom a separate a app, you’ll see how I used regex and utility functions to detect and linkify #hashtags and @usernames in post bodies, enabling automatic routing to hashtag feeds or user profiles. I’ll also cover friend relationships and contextual content rendering using Django signals and context processors.\r\n\r\nWhether you're a beginner looking to go beyond the basics or an intermediate developer curious about building a complete social media ecosystem with Django, this talk is packed with real-world examples, reusable patterns, and practical lessons.\r\n\r\n🎯 Takeaways:\r\nStructuring multi-app Django projects for modular social media functionality\r\n\r\nImplementing real-time-style messaging using Django views and context processors\r\n\r\nParsing and linking hashtags and mentions inside post content\r\n\r\nUsing signals to automate friend request handling and notifications\r\n\r\nEnhancing user experience with dynamic context injection and live counters",
+            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1754579285/oba_oz3yeg.jpg"
         },
         {
             "start": "14:21",
@@ -201,7 +196,7 @@
         {
             "start": "17:03",
             "end": "17:23",
-            "title": "Special Speaker BPD or PSF",
+            "title": "Special Speaker",
             "type": "standard"
         },
         {
