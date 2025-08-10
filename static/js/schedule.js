@@ -133,11 +133,61 @@ class ScheduleModal {
         if (descriptionElement) {
             // Handle line breaks in description
             const description = session.description_full || session.description_short || 'Aucune description disponible.';
-            descriptionElement.innerHTML = description.replace(/\n/g, '<br>');
+            descriptionElement.innerHTML = description.replace(/\r\n/g, '<br>').replace(/\n/g, '<br>');
         }
 
         // Set speakers
         this.populateSpeakers(session);
+    }
+
+    /**
+     * CORRECTION: Nouvelle logique pour récupérer l'avatar d'un speaker
+     */
+    getSpeakerAvatar(session, speakerIndex) {
+        // 1. Pour les panels, utiliser speaker_details si disponible
+        if (session.speaker_details && session.speaker_details[speakerIndex]) {
+            return session.speaker_details[speakerIndex].avatar_url;
+        }
+        
+        // 2. Vérifier dans session.panel_avatars (pour les panels)
+        if (session.panel_avatars && session.panel_avatars[speakerIndex]) {
+            return session.panel_avatars[speakerIndex];
+        }
+        
+        // 3. Vérifier dans session.avatar_url (pour les sessions individuelles, seulement pour le premier speaker)
+        if (speakerIndex === 0 && session.avatar_url) {
+            return session.avatar_url;
+        }
+        
+        // 4. Vérifier dans session.talks[speakerIndex] (pour les sessions groupées)
+        if (session.talks && session.talks[speakerIndex] && session.talks[speakerIndex].avatar_url) {
+            return session.talks[speakerIndex].avatar_url;
+        }
+        
+        // 5. Fallback: pas d'avatar
+        return null;
+    }
+
+    /**
+     * CORRECTION: Gestion spéciale pour les panels - plus nécessaire
+     */
+    handlePanelSpeakers(session) {
+        // Les données sont maintenant correctement passées via speaker_details
+        return session.speaker_details || null;
+    }
+
+    /**
+     * Retrouver les données originales du JSON pour les panels
+     */
+    findOriginalSessionData(session) {
+        // Cette fonction devrait idéalement avoir accès aux données JSON originales
+        // Pour l'instant, on peut essayer de deviner si c'est un panel
+        if (session.type === 'panel' || session.participant_label === 'panelistes') {
+            // Pour les panels, on peut avoir besoin d'accéder aux données JSON originales
+            // C'est une limitation de la structure actuelle
+            return null;
+        }
+        return null;
     }
 
     populateSpeakers(session) {
@@ -151,6 +201,9 @@ class ScheduleModal {
 
         speakersContainer.style.display = 'block';
         
+        // CORRECTION: Gestion spéciale pour les panels
+        const panelSpeakers = this.handlePanelSpeakers(session);
+        
         // Create speakers section HTML
         const participantLabel = this.getParticipantLabel(session.participant_label, session.speakers.length);
         
@@ -158,27 +211,36 @@ class ScheduleModal {
             <h4>${participantLabel}</h4>
             <div class="speaker-list">
                 ${session.speakers.map((speaker, index) => {
-                    let avatarSrc = '../static/images/speakers/default-avatar.jpg';
-                    
-                    // Try to get avatar from talks data
-                    if (session.talks && session.talks[index] && session.talks[index].avatar_url) {
-                        avatarSrc = session.talks[index].avatar_url;
-                    }
+                    // CORRECTION: Utiliser la nouvelle logique pour récupérer l'avatar
+                    const avatarUrl = this.getSpeakerAvatar(session, index);
                     
                     const speakerTitle = this.getSpeakerTitle(session.participant_label);
                     
+                    // Pour les panels, récupérer les détails spécifiques si disponibles
+                    const speakerDetail = session.speaker_details && session.speaker_details[index] ? 
+                                        session.speaker_details[index] : null;
+                    
                     return `
                         <div class="speaker-item">
-                            <img src="${avatarSrc}" alt="${speaker}" class="speaker-avatar" 
-                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-                            <div class="speaker-avatar" style="display: none; background: #004225; color: white; align-items: center; justify-content: center; font-weight: bold; font-size: 1rem;">
+                            ${avatarUrl ? 
+                                `<img src="${avatarUrl}" alt="${speaker}" class="speaker-avatar" 
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />` : 
+                                ''
+                            }
+                            <div class="speaker-avatar" style="${avatarUrl ? 'display: none;' : 'display: flex;'} background: #004225; color: white; align-items: center; justify-content: center; font-weight: bold; font-size: 1rem; width: 60px; height: 60px; border-radius: 50%;">
                                 ${speaker.charAt(0)}
                             </div>
                             <div class="speaker-info">
                                 <div class="speaker-name">${speaker}</div>
                                 <div class="speaker-title">${speakerTitle}</div>
                                 ${session.talks && session.talks[index] && session.talks[index].description ? 
-                                    `<div class="speaker-talk-desc" style="margin-top: 8px; font-size: 0.85rem; color: #666; font-style: italic;">${session.talks[index].description}</div>` : 
+                                    `<div class="speaker-talk-desc" style="margin-top: 8px; font-size: 0.85rem; color: #666; font-style: italic;">
+                                        ${session.talks[index].description.replace(/\r\n/g, '<br>').replace(/\n/g, '<br>')}
+                                    </div>` : 
+                                    speakerDetail && speakerDetail.description ?
+                                    `<div class="speaker-talk-desc" style="margin-top: 8px; font-size: 0.85rem; color: #666; font-style: italic;">
+                                        ${speakerDetail.description.replace(/\r\n/g, '<br>').replace(/\n/g, '<br>')}
+                                    </div>` :
                                     ''
                                 }
                             </div>
@@ -193,24 +255,26 @@ class ScheduleModal {
 
     getParticipantLabel(participantLabel, count) {
         const labels = {
-            'speaker': count > 1 ? 'Intervenant·e·s' : 'Intervenant·e',
-            'speakers': 'Intervenant·e·s', 
-            'participants': 'Participant·e·s',
-            'instructors': 'Formateur·rice·s',
-            'experts': 'Expert·e·s',
-            'panelists': 'Panélistes'
+            'speaker': count > 1 ? 'Speakers' : 'Speaker',
+            'speakers': 'Speakers', 
+            'participants': 'Participants',
+            'instructors': 'Instructors',
+            'experts': 'Experts',
+            'panelists': 'Panelists',
+            'panelistes': 'Panelists'
         };
-        return labels[participantLabel] || 'Intervenant·e·s';
+        return labels[participantLabel] || 'Speaker.s';
     }
 
     getSpeakerTitle(participantLabel) {
         const titles = {
-            'speaker': 'Intervenant·e',
-            'speakers': 'Intervenant·e',
-            'participants': 'Participant·e',
-            'instructors': 'Formateur·rice',
-            'experts': 'Expert·e Python',
-            'panelists': 'Panéliste'
+            'speaker': 'Speaker',
+            'speakers': 'Speakers',
+            'participants': 'Participants',
+            'instructors': 'Instructors',
+            'experts': 'Experts',
+            'panelists': 'Panelists',
+            'panelistes': 'Panelists'
         };
         return titles[participantLabel] || 'Expert·e Python';
     }
