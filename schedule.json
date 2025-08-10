@@ -5,32 +5,32 @@
     "location": "Lomé, Togo",
     "schedule": [
         {
-            "start": "07:30",
-            "end": "09:00",
+            "start": "07:15",
+            "end": "08:40",
             "title": "Welcome & Check-in + Breakfast",
             "type": "break"
         },
         {
-            "start": "09:00",
-            "end": "09:15",
+            "start": "08:40",
+            "end": "08:50",
             "title": "Opening Ceremony",
             "type": "opening"
         },
         {
-            "start": "09:15",
-            "end": "09:25",
+            "start": "08:50",
+            "end": "09:00",
             "title": "Sponsors Introduction",
             "type": "sponsor_session"
         },
         {
-            "start": "09:25",
-            "end": "09:27",
+            "start": "09:00",
+            "end": "09:02",
             "title": "Short break / intro / hashtag",
             "type": "break"
         },
         {
-            "start": "09:27",
-            "end": "09:32",
+            "start": "09:02",
+            "end": "09:07",
             "title": "5 minutes pour apprendre à mettre en place un setup qui protège ton dos et tes yeux",
             "type": "lightning",
             "speaker": "Koami Afantchao AZIABOU",
@@ -38,8 +38,8 @@
             "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1753809219/oxygen_dsqgfq.jpg"
         },
         {
-            "start": "09:32",
-            "end": "09:52",
+            "start": "09:07",
+            "end": "09:27",
             "title": "De zéro à impact : grandir avec l’open source et les communautés tech.",
             "type": "standard",
             "speaker": "Daniel Ametsowou",
@@ -47,8 +47,8 @@
             "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1753602061/IMG-20250719-WA0204_iwrzsf.jpg"
         },
         {
-            "start": "09:52",
-            "end": "10:12",
+            "start": "09:27",
+            "end": "09:47",
             "title": "Sqlalchemy : Le couteau suisse des bases de données pour Python",
             "type": "standard",
             "speaker": "Zokora Elvis Gbagnon",
@@ -56,8 +56,8 @@
             "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1752155079/elvis_bqbl9m.jpg"
         },
         {
-            "start": "10:12",
-            "end": "10:52",
+            "start": "09:47",
+            "end": "10:27",
             "title": "Ingénierie de la Fiabilité avec Python : Construire des Systèmes Résilients à Grande Échelle",
             "type": "deep-dive",
             "speaker": "Denis AKPAGNONITE",
@@ -65,14 +65,14 @@
             "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1753533759/photo_retouche_denis_i4pwvc.png"
         },
         {
-            "start": "10:52",
-            "end": "10:54",
+            "start": "10:27",
+            "end": "10:29",
             "title": "Short break",
             "type": "break"
         },
         {
-            "start": "10:54",
-            "end": "11:14",
+            "start": "10:29",
+            "end": "10:49",
             "title": "Developing AI Proficiency Throughout Africa: Who We Aspire to Be ",
             "type": "standard",
             "speaker": "Kayode Oladapo",
@@ -80,8 +80,8 @@
             "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1753969000/Kayode_mnpqkd.jpg"
         },
         {
-            "start": "11:14",
-            "end": "11:54",
+            "start": "10:49",
+            "end": "11:29",
             "title": "Mastering Django Models: Optimize for Speed and Scale",
             "type": "deep-dive",
             "speaker": "Julius Boakye",
@@ -89,38 +89,65 @@
             "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1753706569/Julius_bk1q38.jpg"
         },
         {
-            "start": "11:54",
-            "end": "11:56",
+            "start": "11:29",
+            "end": "11:31",
             "title": "Short break",
             "type": "break"
         },
         {
-            "start": "11:56",
-            "end": "12:36",
-            "title": "Explorer l'impact de Python : de l'idée entrepreneuriale aux applications intelligentes et à la valorisation des données pour le développement.",
-            "type": "panel"
+            "start": "11:31",
+            "end": "11:51",
+            "title": "Créer des applications multi-plateformes modernes avec Python et FletX",
+            "type": "standard",
+            "speaker": "Wilfrid GOEH",
+            "description": "Dans ce talk, je partagerai mon expérience de développeur Python passionné par l’open source et les outils multi-plateformes. Je présenterai Flet, un framework Python qui permet de créer des applications web, desktop et mobiles à partir d’un seul codebase, sans avoir recours à des technologies web classiques comme HTML, CSS ou JavaScript.\r\n\r\nJe dévoilerai également FletX, un mini-framework open source que j’ai créé avec mon équipe, inspiré de GetX (bien connu des développeurs Flutter) et pensé pour améliorer la gestion d’état et le routage dans les projets Flet.\r\n\r\nCe talk combinera partage d’expérience, présentation technique et exemples concrets pour démontrer comment Python peut être un puissant allié dans le développement d’applications modernes et multi-plateformes.",
+            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg"
         },
         {
-            "start": "12:36",
-            "end": "12:41",
+            "start": "11:51",
+            "end": "12:31",
+            "title": "Explorer l'impact de Python : de l'idée entrepreneuriale aux applications intelligentes et à la valorisation des données pour le développement.",
+            "type": "panel",
+            "description": "Explorer l'impact de Python : de l'idée entrepreneuriale aux applications intelligentes et à la valorisation des données pour le développement.",
+            "speaker": [
+                {
+                    "name": "Bassim-Swé Hugues BAMASSI",
+                    "title": "Explorer l'impact de Python : de l'idée entrepreneuriale aux applications intelligentes et à la valorisation des données pour le développement.",
+                    "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1754421104/hugue_d8akpi.jpg"
+                },
+                {
+                    "name": "Pondikpa TCHABAO",
+                    "title": "Explorer l'impact de Python : de l'idée entrepreneuriale aux applications intelligentes et à la valorisation des données pour le développement.",
+                    "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1754849936/tchabao_hokuhh.png"
+                },
+                {
+                    "name": "Basile Desjuzeur",
+                    "title": "Explorer l'impact de Python : de l'idée entrepreneuriale aux applications intelligentes et à la valorisation des données pour le développement.",
+                    "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1753922170/basile_upyvt8.jpg"
+                }
+            ]
+        },
+        {
+            "start": "12:31",
+            "end": "12:33",
             "title": "Instructions & reminders",
             "type": "other"
         },
         {
-            "start": "12:41",
-            "end": "12:56",
+            "start": "12:33",
+            "end": "12:43",
             "title": "Family photo",
             "type": "break"
         },
         {
-            "start": "12:56",
-            "end": "14:16",
+            "start": "12:43",
+            "end": "14:03",
             "title": "Lunch Break + Networking",
             "type": "break"
         },
         {
-            "start": "14:16",
-            "end": "14:21",
+            "start": "14:03",
+            "end": "14:08",
             "title": "Building a Feature-Rich Social Media App with Django: DMs, Mentions, and Hashtags Made Simple",
             "type": "lightning",
             "speaker": "ADEOYE OMOBUWA",
@@ -128,8 +155,8 @@
             "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1754579285/oba_oz3yeg.jpg"
         },
         {
-            "start": "14:21",
-            "end": "14:41",
+            "start": "14:08",
+            "end": "14:28",
             "title": "Don’t Pay People to Cut Off Rat Tails: Rethinking Incentives in Open Source",
             "type": "standard",
             "speaker": "Ibi Fiberesima",
@@ -137,8 +164,8 @@
             "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1753323872/fibi_upx7jf.jpg"
         },
         {
-            "start": "14:41",
-            "end": "15:01",
+            "start": "14:28",
+            "end": "14:48",
             "title": "Redonnez vie à votre application Django grâce à Wagtail",
             "type": "standard",
             "speaker": "Teddy ASSIH",
@@ -146,8 +173,8 @@
             "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1754422559/teddy_txfpnx.png"
         },
         {
-            "start": "15:01",
-            "end": "15:21",
+            "start": "14:48",
+            "end": "15:08",
             "title": "L’IA Générative dans le Cycle de Vie du Développement Logiciel",
             "type": "standard",
             "speaker": "Yao Gervais Amoah",
@@ -155,14 +182,14 @@
             "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1754318926/profile-picture_fh1fqk.jpg"
         },
         {
-            "start": "15:21",
-            "end": "15:31",
-            "title": "Product presentation Tahaga x BPD",
+            "start": "15:08",
+            "end": "15:18",
+            "title": "Product presentation",
             "type": "sponsor_session"
         },
         {
-            "start": "15:31",
-            "end": "16:21",
+            "start": "15:18",
+            "end": "16:03",
             "title": "Medical imaging in Python",
             "type": "deep-dive",
             "speaker": "Serge Koudoro",
@@ -170,14 +197,14 @@
             "avatar_url": "https://avatars.githubusercontent.com/u/23106443?v=4"
         },
         {
-            "start": "16:21",
-            "end": "16:23",
+            "start": "16:03",
+            "end": "16:05",
             "title": "Short break",
             "type": "break"
         },
         {
-            "start": "16:23",
-            "end": "16:43",
+            "start": "16:05",
+            "end": "16:25",
             "title": "Python : l’outil complet pour transformer les données en décisions",
             "type": "standard",
             "speaker": "Caleb ADOGLI",
@@ -185,8 +212,8 @@
             "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1753484879/Caleb_ADOGLI_qrjt0y.jpg"
         },
         {
-            "start": "16:43",
-            "end": "17:03",
+            "start": "16:25",
+            "end": "16:45",
             "title": "Becoming a Better Developer Through Documentation",
             "type": "standard",
             "speaker": "Harmony Elendu",
@@ -194,20 +221,20 @@
             "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1754515194/harmony_guohtz.jpg"
         },
         {
-            "start": "17:03",
-            "end": "17:23",
+            "start": "16:45",
+            "end": "16:55",
             "title": "Special Speaker",
             "type": "standard"
         },
         {
-            "start": "17:23",
-            "end": "17:25",
+            "start": "16:55",
+            "end": "16:57",
             "title": "Short break",
             "type": "break"
         },
         {
-            "start": "17:25",
-            "end": "17:45",
+            "start": "16:57",
+            "end": "17:17",
             "title": "Breaking educational barriers for pupils with dyslexia using python in underdeveloped countries",
             "type": "standard",
             "speaker": "Jacobs Oluwakemi",
@@ -215,9 +242,9 @@
             "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1754579273/Profile_Pic_xylz6c.jpg"
         },
         {
-            "start": "17:45",
-            "end": "18:00",
-            "title": "Closing – Q&A + Thanks",
+            "start": "17:17",
+            "end": "17:42",
+            "title": "Closing – Q&A + Thanks + 30 Days of Python  Participants & Celebration",
             "type": "closing"
         }
     ]
