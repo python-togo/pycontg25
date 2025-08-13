@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="PyCon Togo Livestream">
+    <meta name="description"
+        content="The first Python Conference in Togo bringing together developers, enthusiasts, and experts from across Togo and beyond. ">
+    <meta name="keywords"
+        content="WassCodeur, wass, Togo Tech, PSF, Python Africa, Pycon Africa, Python Togo Society, PyCon Togo, PyCon,Pytg, PyTg, PyCOnTg, PyCOn TG, PyConTogo 2025, PyCon Togo 2025, PyConTogo25, Togo Tech, Togo Code, Tdev, Hyver, Tech Communities Day, Python, Togo, Python Togo, PyDay Togo 2024, PyDay Togo, PyCon Togo, Pycon Us, pycon, Pycon Africa, Python programming, Python programming language, Python developers, Python community, Python programming community, Python programming language community, Python programming language developers, Python programming language community in Togo, Python programming language developers in Togo, Python programming language community in Africa, Python programming language developers in Africa, Python programming language community in West Africa, Python programming language developers in West Africa, Python programming language community in Lome, Python programming language developers in Lome, Python programming language community in Togo, Python programming language developers in Togo, Python programming language community in Africa, Python programming language developers in Africa, Python programming language community in West Africa, Python programming language developers in West Africa, Python programming language community in Lome, Python programming language developers in Lome, Togo Python, PyTogo, PythonTogo, TogoPython, PSF, ThePsf, The Python Software Foundation">
+    <meta name="author" content="Python Togo Society">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta name="bingbot" content="index, follow">
+    <meta name="yandex" content="index, follow">
+    <meta name="msnbot" content="index, follow">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="PyCon Togo 2025">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="msapplication-TileImage" content="{{ url_for('static', filename='images/favicon.ico') }}">
+    <meta name="msapplication-navbutton-color" content="#000000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="PyCon Togo 2025 Livestream">
+    <meta name="msapplication-navbutton-color" content="#000000">
+    <meta name="theme-color" content="#000000">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href=" {{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyCon Togo 2025 - Livestream</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #e8f5e9;
+            height: 100vh;
+            padding: 10px 0;
+            color: white;
+            overflow-x: hidden;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+    .back-button {
+        display: inline-block;
+        padding: 6px 8px;
+        background-color: rgba(5, 109, 30, 1); 
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        position: fixed; 
+        top: 10px;
+        left: 10px;
+        z-index: 1001;
+        transition: all 0.3s ease;
+        font-size: 0.8rem;
+    }
+
+    .back-button:hover {
+        background-color: rgba(5, 109, 30, 0.9);
+        transform: scale(1.05);
+    }
+
+    .language-selector {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        z-index: 1001;
+        display: flex;
+        gap: 5px;
+    }
+
+        .lang-btn {
+            background: rgba(5, 109, 30, 0.9);
+            border: 2px solid rgba(255, 212, 59, 0.4);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.7rem;
+        }
+
+        .lang-btn:hover {
+            background: rgba(5, 109, 30, 1);
+            transform: scale(1.05);
+        }
+
+        .lang-btn.active {
+            background: #056d1e;
+            border-color: rgba(255, 212, 59, 1);
+            box-shadow: 0 0 15px rgba(5, 109, 30, 0.5);
+        }
+
+        .container {
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 35px 15px 10px 15px;
+            position: relative;
+            min-height: auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+            gap: 1rem;
+        }
+
+        .python-togo-logo {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            animation: pulse 2s infinite;
+        }
+
+        .python-togo-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .logo-fallback {
+            background: #e8f5e9;
+            color: #056d1e;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.3rem;
+            background: linear-gradient(45deg, #2D5016, #056d1e);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s ease-in-out infinite;
+            line-height: 1.1;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: black;
+            font-weight: 400;
+        }
+
+        .date-info {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            background: #056d1e;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            display: inline-block;
+            border: 2px solid rgba(255, 212, 59, 0.3);
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .time-unit {
+            background: #056d1e;
+            border-radius: 12px;
+            padding: 1rem 0.8rem;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(45, 80, 22, 0.4);
+            min-width: 90px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .time-unit::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 212, 59, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .time-unit:hover {
+            transform: translateY(-8px);
+            background: rgba(45, 80, 22, 0.2);
+            border-color: #056d1e;
+            box-shadow: 0 15px 40px rgba(45, 80, 22, 0.4);
+        }
+
+        .time-unit:hover::before {
+            left: 100%;
+        }
+
+        .time-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            display: block;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .time-label {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.3rem;
+            font-weight: 600;
+        }
+
+        .message {
+            font-size: 1rem;
+            color: black;
+            margin-bottom: 1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.4;
+        }
+
+        .live-indicator {
+            display: none;
+            background: #056d1e;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            margin: 0 auto 1rem auto;
+            width: fit-content;
+            animation: glow 2s ease-in-out infinite alternate;
+            border: 2px solid white;
+        }
+
+        @keyframes glow {
+            from { 
+                box-shadow: 0 0 25px rgba(255, 71, 87, 0.6);
+                transform: scale(1);
+            }
+            to { 
+                box-shadow: 0 0 35px rgba(255, 71, 87, 0.9);
+                transform: scale(1.02);
+            }
+        }
+
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: #056d1e;
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg); 
+                opacity: 0.6; 
+            }
+            25% { 
+                transform: translateY(-15px) rotate(90deg); 
+                opacity: 0.8; 
+            }
+            50% { 
+                transform: translateY(-25px) rotate(180deg); 
+                opacity: 1; 
+            }
+            75% { 
+                transform: translateY(-15px) rotate(270deg); 
+                opacity: 0.8; 
+            }
+        }
+
+        .stream-info {
+            background: #056d1e;
+            border: 2px solid rgba(255, 212, 59, 0.4);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(10px);
+            max-width: 100%;
+        }
+
+        .stream-info h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .stream-info p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.3;
+            margin-bottom: 0.8rem;
+            font-size: 0.85rem;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding-bottom: 33.75%; /* 16:9 aspect ratio but smaller */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 8px;
+        }
+
+        .youtube-link {
+            display: inline-block;
+            margin-top: 1rem;
+            background-color: #ff0000;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .youtube-link:hover {
+            background-color: #cc0000;
+        }
+
+        @media (max-width: 768px) {
+            .container { 
+                padding: 30px 10px 10px 10px; 
+            }
+            .title { 
+                font-size: 2rem; 
+            }
+            .subtitle { 
+                font-size: 0.9rem; 
+            }
+            .countdown { 
+                gap: 0.5rem; 
+            }
+            .time-unit { 
+                min-width: 75px; 
+                padding: 0.8rem 0.5rem; 
+            }
+            .time-number { 
+                font-size: 1.5rem; 
+            }
+            .time-label {
+                font-size: 0.6rem;
+            }
+            .date-info {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+            .language-selector {
+                top: 5px;
+                right: 5px;
+            }
+            .lang-btn {
+                padding: 3px 6px;
+                font-size: 0.6rem;
+            }
+            .back-button {
+                top: 5px;
+                left: 5px;
+                padding: 4px 6px;
+                font-size: 0.7rem;
+            }
+            .video-container {
+                padding-bottom: 28%; /* Smaller video for mobile */
+                max-width: 100%;
+                margin: 0.5rem 0;
+            }
+            .stream-info {
+                margin: 0.5rem 0;
+                padding: 0.8rem;
+            }
+            .stream-info h3 {
+                font-size: 0.9rem;
+            }
+            .stream-info p {
+                font-size: 0.75rem;
+            }
+            .message {
+                font-size: 0.9rem;
+                margin-bottom: 0.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 25px 8px 8px 8px;
+            }
+            .title { 
+                font-size: 1.8rem; 
+            }
+            .subtitle { 
+                font-size: 0.8rem; 
+            }
+            .countdown { 
+                gap: 0.4rem;
+                justify-content: space-between;
+            }
+            .time-unit { 
+                min-width: 65px; 
+                padding: 0.6rem 0.3rem;
+                flex: 1;
+            }
+            .time-number { 
+                font-size: 1.2rem; 
+            }
+            .time-label { 
+                font-size: 0.55rem; 
+            }
+            .back-button {
+                top: 3px;
+                left: 3px;
+                padding: 3px 5px;
+                font-size: 0.6rem;
+            }
+            .language-selector {
+                top: 3px;
+                right: 3px;
+            }
+            .lang-btn {
+                padding: 2px 4px;
+                font-size: 0.55rem;
+            }
+            .video-container {
+                padding-bottom: 25%; /* Even smaller for tiny screens */
+            }
+            .stream-info {
+                padding: 0.6rem;
+                margin: 0.3rem 0;
+            }
+            .stream-info h3 {
+                font-size: 0.8rem;
+            }
+            .stream-info p {
+                font-size: 0.7rem;
+            }
+            .date-info {
+                font-size: 0.7rem;
+                padding: 0.3rem 0.6rem;
+            }
+            .message {
+                font-size: 0.8rem;
+                margin-bottom: 0.3rem;
+            }
+            .logo-section {
+                margin-bottom: 0.3rem;
+            }
+            .python-togo-logo {
+                width: 45px;
+                height: 45px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="back-button" data-i18n="back">🏠 PyCon Togo 2025 Website</a>
+
+    
+    <div class="language-selector">
+        <button class="lang-btn active" onclick="switchLanguage('en')" data-lang="en">🇬🇧 EN</button>
+        <button class="lang-btn " onclick="switchLanguage('fr')" data-lang="fr">🇫🇷 FR</button>
+        
+    </div>
+
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <div class="logo-section">
+            <div class="python-togo-logo logo-fallback">
+               <img src="/static/images/Py.png" alt="">
+            </div>
+        </div>
+        
+        <h1 class="title">PyCon Togo 2025</h1>
+        <p class="subtitle" data-i18n="subtitle">The First Python Conference in Togo</p>
+        <p class="date-info">
+            <span data-i18n="date-prefix">📅</span> 23 <span data-i18n="august">August</span> 2025 • 
+            <span data-i18n="time-prefix">⏰</span> 8h00 AM GMT • 
+            <span data-i18n="location-prefix">📍</span> Lomé, Togo
+        </p>
+        
+        <div class="countdown" id="countdown">
+            <div class="time-unit">
+                <span class="time-number" id="days">--</span>
+                <span class="time-label" data-i18n="days">Days</span>
+            </div>
+            <div class="time-unit">
+                <span class="time-number" id="hours">--</span>
+                <span class="time-label" data-i18n="hours">Hours</span>
+            </div>
+            <div class="time-unit">
+                <span class="time-number" id="minutes">--</span>
+                <span class="time-label" data-i18n="minutes">Minutes</span>
+            </div>
+            <div class="time-unit">
+                <span class="time-number" id="seconds">--</span>
+                <span class="time-label" data-i18n="seconds">Secondes</span>
+            </div>
+        </div>
+        
+        <div class="message" id="message" data-i18n="welcome-message">
+            🚀 Join us to celebrate the Python community in West Africa!'!
+        </div>
+        
+        <div class="live-indicator" id="liveIndicator" data-i18n="live-indicator">
+            🔴 LIVE NOW - Join the Stream!
+        </div>
+
+        <div class="stream-info">
+            <h3 data-i18n="stream-title">🎥 Live Streaming Information</h3>
+            <p data-i18n="stream-description">
+                Our live stream will begin at 8:00 AM GMT on our official YouTube channel. Don't miss keynotes, workshops, and networking opportunities with Python developers from across Africa and beyond!
+            </p>
+            <div class="video-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/BY2jkVZEqw4?si=QPfCcYNZfNGP7Lk1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+  
+    </div>
+
+    
+    <script>
+        // Translations
+        const translations = {
+            fr: {
+                'subtitle': 'La Première Conférence Python au Togo',
+                'august': 'août',
+                'days': 'Jours',
+                'hours': 'Heures', 
+                'minutes': 'Minutes',
+                'seconds': 'Secondes',
+                'welcome-message': '🚀 Rejoignez-nous pour célébrer la communauté Python en Afrique de l\'Ouest !',
+                'live-indicator': '🔴 EN DIRECT - Rejoignez le Stream !',
+                'stream-title': '🎥 Informations sur la Diffusion en Direct',
+                'stream-description': 'Notre diffusion en direct commencera à 8h00 GMT sur notre chaîne YouTube officielle. Ne manquez pas les conférences principales, les ateliers et les opportunités de réseautage avec des développeurs Python de toute l\'Afrique et au-delà !',
+                'youtube-link': '▶ S\'abonner & Regarder en Direct sur YouTube',
+                'messages': {
+                    'minutes': '⚡ Plus que quelques minutes ! Préparez-vous pour une expérience incroyable...',
+                    'today': '🔥 C\'est le jour J ! PyCon Togo 2025 commence bientôt !',
+                    'tomorrow': '⭐ Demain c\'est le grand jour ! Êtes-vous prêt ?',
+                    'week': '🎯 Plus que {days} jours avant PyCon Togo 2025 !',
+                    'month': '🗓️ {days} jours à attendre ! Marquez vos calendriers pour cet événement historique !',
+                    'live': '🎉 PyCon Togo 2025 se déroule maintenant ! Rejoignez notre diffusion en direct et faites partie de l\'histoire !',
+                    'default': '🚀 Rejoignez-nous pour célébrer la communauté Python en Afrique de l\'Ouest !'
+                },
+                'back': '🏠 Site Web du PyCon Togo 2025'
+
+            },
+            en: {
+                'subtitle': 'The First Python Conference in Togo',
+                'august': 'August',
+                'days': 'Days',
+                'hours': 'Hours',
+                'minutes': 'Minutes', 
+                'seconds': 'Seconds',
+                'welcome-message': '🚀 Join us to celebrate the Python community in West Africa!',
+                'live-indicator': '🔴 LIVE NOW - Join the Stream!',
+                'stream-title': '🎥 Live Streaming Information',
+                'stream-description': 'Our live stream will begin at 8:00 AM GMT on our official YouTube channel. Don\'t miss keynotes, workshops, and networking opportunities with Python developers from across Africa and beyond!',
+                'youtube-link': '▶ Subscribe & Watch Live on YouTube',
+                'messages': {
+                    'minutes': '⚡ Just minutes away! Get ready for an amazing experience...',
+                    'today': '🔥 Today is the day! PyCon Togo 2025 starts soon!',
+                    'tomorrow': '⭐ Tomorrow is the big day! Are you ready?',
+                    'week': '🎯 Only {days} days left until PyCon Togo 2025!',
+                    'month': '🗓️ {days} days to go! Mark your calendars for this historic event!',
+                    'live': '🎉 PyCon Togo 2025 is happening now! Join our live stream and be part of history!',
+                    'default': '🚀 Join us to celebrate the Python community in West Africa!'
+                },
+                'back': '🏠 PyCon Togo 2025 Website'
+            }
+        };
+
+        let currentLanguage = 'en';
+
+        // Switch language function
+        function switchLanguage(lang) {
+            currentLanguage = lang;
+            document.documentElement.lang = lang;
+            
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            });
+
+            // Update translations
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+
+            // Update current message
+            updateMessage();
+        }
+
+        // Event configuration - August 23, 2025 at 8:00 AM GMT
+        const eventDate = new Date('August 23, 2025 08:00:00 GMT').getTime();
+        
+        // DOM elements
+        const daysEl = document.getElementById('days');
+        const hoursEl = document.getElementById('hours');
+        const minutesEl = document.getElementById('minutes');
+        const secondsEl = document.getElementById('seconds');
+        const messageEl = document.getElementById('message');
+        const liveIndicatorEl = document.getElementById('liveIndicator');
+        const countdownEl = document.getElementById('countdown');
+
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            
+            for (let i = 0; i < 25; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.width = Math.random() * 6 + 3 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (Math.random() * 6 + 6) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Update contextual message
+        function updateMessage() {
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            
+            let messageKey = 'default';
+            
+            if (distance <= 0) {
+                messageKey = 'live';
+            } else if (days === 0 && hours === 0) {
+                messageKey = 'minutes';
+            } else if (days === 0) {
+                messageKey = 'today';
+            } else if (days === 1) {
+                messageKey = 'tomorrow';
+            } else if (days <= 7) {
+                messageKey = 'week';
+            } else if (days <= 30) {
+                messageKey = 'month';
+            }
+            
+            let message = translations[currentLanguage].messages[messageKey];
+            if (message.includes('{days}')) {
+                message = message.replace('{days}', days);
+            }
+            
+            messageEl.innerHTML = message;
+        }
+
+        // Update countdown function
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            if (distance > 0) {
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                daysEl.textContent = days.toString().padStart(2, '0');
+                hoursEl.textContent = hours.toString().padStart(2, '0');
+                minutesEl.textContent = minutes.toString().padStart(2, '0');
+                secondsEl.textContent = seconds.toString().padStart(2, '0');
+
+                updateMessage();
+            } else {
+                // Event has started
+                countdownEl.style.display = 'none';
+                liveIndicatorEl.style.display = 'block';
+                updateMessage();
+            }
+        }
+
+        // Entry animation
+        function animateEntry() {
+            const container = document.querySelector('.container');
+            container.style.opacity = '0';
+            container.style.transform = 'translateY(40px)';
+            
+            setTimeout(() => {
+                container.style.transition = 'all 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+                container.style.opacity = '1';
+                container.style.transform = 'translateY(0)';
+            }, 200);
+        }
+
+        // Add interactive effects
+        function addInteractiveEffects() {
+            // Logo click effect
+            document.querySelector('.python-togo-logo').addEventListener('click', function() {
+                this.style.transform = 'rotate(360deg) scale(1.1)';
+                this.style.transition = 'transform 1s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 1000);
+            });
+
+            // Time unit click effects
+            document.querySelectorAll('.time-unit').forEach(unit => {
+                unit.addEventListener('click', function() {
+                    this.style.transform = 'translateY(-8px) scale(1.05)';
+                    setTimeout(() => {
+                        this.style.transform = 'translateY(-8px) scale(1)';
+                    }, 200);
+                });
+            });
+        }
+
+        // Initialize everything
+        createParticles();
+        animateEntry();
+        addInteractiveEffects();
+        updateCountdown();
+        
+        // Update every second
+        setInterval(updateCountdown, 1000);
+
+        // Add some visual feedback when page is loaded
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.querySelector('.title').style.animation = 'shimmer 4s ease-in-out infinite';
+            }, 1500);
+        });
+    </script>
+
+
+
+</body>
+
+
+</html>

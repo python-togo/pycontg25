@@ -16,6 +16,18 @@ swags = [
             "static/images/swags/unisex-lightweight-t-shirt-black-front-688a5d3c5ed2a.png",
         ],
     },
+        {
+        "name": "White Python Togo T-Shirt",
+        "description": "Proudly represent the Python Togo community with our official t-shirt. Made from high-quality cotton.",
+        "price": 3000,
+        "priceDollar": 6,
+        "originalPrice": 5000,
+        "images": [
+            "static/images/swags/1pythontogo.png",
+     
+            "static/images/swags/tshirt5.png",
+        ],
+    },
     {
         "name": "Python Togo T-Shirt",
         "description": "Proudly represent the Python Togo community with our official t-shirt. Made from high-quality cotton.",
@@ -23,20 +35,20 @@ swags = [
         "priceDollar": 6,
         "originalPrice": 5000,
         "images": [
-            "static/images/swags/unisex-lightweight-t-shirt-black-front-688a69a51a405.png",
+            "static/images/swags/2pythontogo.png",
      
             "static/images/swags/tshirt5.png",
         ],
     },
    
      {
-        "name": "Black PyConn Togo 2025 T-Shirt",
+        "name": "Red Python Togo 2025 T-Shirt",
         "description": "Proudly represent the Python Togo community with our official t-shirt. Made from high-quality cotton.",
         "price": 3000,
         "priceDollar": 6,
         "originalPrice": 5000,
         "images": [
-            "static/images/swags/unisex-lightweight-t-shirt-black-front-688a5de8907f5.png",
+            "static/images/swags/3pythontogo.png",
             "static/images/swags/tshirt1.png",
             "static/images/swags/tshirt2.png",
             "static/images/swags/tshirt3.png",
@@ -47,7 +59,7 @@ swags = [
         ],
     },
       {
-        "name": "White PyConn Togo 2025 T-Shirt",
+        "name": "White PyCon Togo 2025 T-Shirt",
         "description": "Proudly represent the Python Togo community with our official t-shirt. Made from high-quality cotton.",
         "price": 3000,
         "priceDollar": 6,
@@ -64,14 +76,25 @@ swags = [
         ],
     },
     {
-        "name": "Python Togo Travel Mugs & Tumblers",
-        "description": "This tumbler boasts a large capacity and an ergonomic handle for a comfortable hold.",
-        "price": 10000,
-        "priceDollar": 18,
+        "name": "Black Python Togo Hoodie",
+        "description": "Stay warm with our Python Togo hoodie. Perfect for coding nights and meetups.",
+        "price": 12000,
+        "priceDollar": 25,
         "originalPrice": 15000,
         "images": [
-            "static/images/swags/bootle.png",
-            "static/images/swags/bootle1.png",
+            "static/images/swags/hoodie4.png",
+            "static/images/swags/hoodie5.png",
+            "static/images/swags/hoodie6.png",
+        ],
+    },
+    {
+        "name": "Python Togo Travel Mugs & Tumblers",
+        "description": "This tumbler boasts a large capacity and an ergonomic handle for a comfortable hold.",
+        "price": 14000,
+        "priceDollar": 25,
+        "originalPrice": 15000,
+        "images": [
+            "static/images/swags/bottlewater_silver-whitecover.jpg",
             "static/images/swags/bootle2.png",
             "static/images/swags/bootle3.png",
             "static/images/swags/bootle4.png",
@@ -81,7 +104,7 @@ swags = [
         "name": "Python Togo Stickers",
         "description": "Decorate your laptop, phone, and more with our Python Togo stickers. Durable and waterproof.",
         "price": 1000,
-        "priceDollar": 1,
+        "priceDollar": 2,
         "originalPrice": 1000,
         "images": [
             "static/images/swags/stickers1.png",
@@ -93,7 +116,7 @@ swags = [
         "name": "PyCon Togo 2025 Stickers",
         "description": "Decorate your laptop, phone, and more with our PyCon Togo 2025 stickers. Durable and waterproof.",
         "price": 1000,
-        "priceDollar": 1,
+        "priceDollar": 2,
         "originalPrice": 1000,
         "images": [
             "static/images/swags/kiss-cut-stickers-white-4x4-default-688a608b163f1.png",
@@ -105,7 +128,7 @@ swags = [
         "name": "PyCon Togo 2025 Stickers",
         "description": "Decorate your laptop, phone, and more with our PyCon Togo 2025 stickers. Durable and waterproof.",
         "price": 1000,
-        "priceDollar": 1,
+        "priceDollar": 2,
         "originalPrice": 1000,
         "images": [
             "static/images/swags/kiss-cut-stickers-white-4x4-default-688a60dee3beb.png",
@@ -131,9 +154,9 @@ swags = [
     {
         "name": "White Python Togo Hoodie",
         "description": "Stay warm with our Python Togo hoodie. Perfect for coding nights and meetups.",
-        "price": "SOLD OUT",
-        "priceDollar": 17,
-        "originalPrice": 10000,
+        "price": 12000,
+        "priceDollar": 25,
+        "originalPrice": 15000,
         "images": [
             "static/images/swags/hoodie8.png",
             "static/images/swags/hoodie2.png",
@@ -145,22 +168,21 @@ swags = [
             "static/images/swags/hoodie6.png",
         ],
     },
-      {
-        "name": "Black Python Togo Hoodie",
-        "description": "Stay warm with our Python Togo hoodie. Perfect for coding nights and meetups.",
-        "price": "SOLD OUT",
-        "priceDollar": 17,
-        "originalPrice": 10000,
+    {
+        "name": "Black PyCon Togo 2025 Cap",
+        "description": "Complete your tech look with our exclusive Python Togo cap. Adjustable and comfortable.",
+        "price": 3000,
+        "priceDollar": 6,
+        "originalPrice": 3500,
         "images": [
-            "static/images/swags/hoodie4.png",
-            "static/images/swags/hoodie5.png",
-            "static/images/swags/hoodie6.png",
-        ],
+            "static/images/swags/cap.png",
+            
+            ],
     },
     {
         "name": "Python Togo Cap",
         "description": "Complete your tech look with our exclusive Python Togo cap. Adjustable and comfortable.",
-        "price": "SOLD OUT",
+        "price": 3000,
         "priceDollar": 6,
         "originalPrice": 3500,
         "images": [

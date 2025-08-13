@@ -49,6 +49,9 @@ registration_date = datetime(2025, 7, 23, 16, 45, 0)
 registration_closing_date = datetime(2025, 8, 10, 16, 0, 0)
 schedule_release_date = datetime(2025, 8, 10, 16, 30, 0)
 schedule_release_date = schedule_release_date.replace(tzinfo=timezone.utc)
+LIVE_DATETIME = datetime(2025, 8, 23, 8, 0, 0)
+LIVE_DATETIME  = LIVE_DATETIME.replace(tzinfo=timezone.utc)
+YOUTUBE_URL = "https://www.youtube.com/@PythonTogo"
 
 registration_closing_date = registration_closing_date.replace(tzinfo=timezone.utc)
 
@@ -171,6 +174,16 @@ def home():
         proposal_closing_date=proposal_closing_date,
         paidsponsors=paidsponsors,
     )
+
+@app.route("/live")
+def live_page():
+    now = datetime.now(timezone.utc)
+    if now >= LIVE_DATETIME:
+        return render_template("livestreaming.html")
+    else:
+        return render_template("livestreaming.html")
+
+
 
 
 @app.route("/shop")
