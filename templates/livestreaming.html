@@ -341,9 +341,9 @@
         .video-container {
             position: relative;
             width: 100%;
-            max-width: 600px;
+            max-width: 800px;
             margin: 0 auto;
-            padding-bottom: 33.75%; /* 16:9 aspect ratio but smaller */
+            padding-bottom: 45%; /* Plus grande pour desktop aussi */
             height: 0;
             overflow: hidden;
             border-radius: 8px;
@@ -379,132 +379,206 @@
 
         @media (max-width: 768px) {
             .container { 
-                padding: 30px 10px 10px 10px; 
+                padding: 40px 15px 15px 15px; 
+                justify-content: flex-start;
+                gap: 1rem;
+            }
+            .title { 
+                font-size: 2.2rem; 
+            }
+            .subtitle { 
+                font-size: 1rem; 
+            }
+            .countdown { 
+                gap: 0.8rem; 
+                margin-bottom: 1.5rem;
+            }
+            .time-unit { 
+                min-width: 85px; 
+                padding: 1rem 0.6rem; 
+            }
+            .time-number { 
+                font-size: 1.6rem; 
+            }
+            .time-label {
+                font-size: 0.65rem;
+            }
+            .date-info {
+                font-size: 0.85rem;
+                padding: 0.6rem 1rem;
+                margin-bottom: 1.5rem;
+            }
+            .language-selector {
+                top: 8px;
+                right: 8px;
+            }
+            .lang-btn {
+                padding: 5px 8px;
+                font-size: 0.65rem;
+            }
+            .back-button {
+                top: 8px;
+                left: 8px;
+                padding: 6px 8px;
+                font-size: 0.75rem;
+            }
+            .video-container {
+                padding-bottom: 60%; /* Encore plus grande pour tablettes */
+                max-width: 100%;
+                margin: 1rem 0;
+            }
+            .stream-info {
+                margin: 1rem 0;
+                padding: 1rem;
+            }
+            .stream-info h3 {
+                font-size: 1rem;
+            }
+            .stream-info p {
+                font-size: 0.8rem;
+            }
+            .message {
+                font-size: 0.95rem;
+                margin-bottom: 1rem;
+            }
+            .python-togo-logo {
+                width: 55px;
+                height: 55px;
+            }
+            .logo-section {
+                margin-bottom: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 5px 0;
+            }
+            .container {
+                padding: 35px 12px 12px 12px;
+                justify-content: flex-start;
+                gap: 0.8rem;
             }
             .title { 
                 font-size: 2rem; 
             }
             .subtitle { 
                 font-size: 0.9rem; 
+                margin-bottom: 0.8rem;
             }
             .countdown { 
-                gap: 0.5rem; 
+                gap: 0.6rem;
+                justify-content: space-between;
+                margin-bottom: 1.2rem;
             }
             .time-unit { 
                 min-width: 75px; 
-                padding: 0.8rem 0.5rem; 
+                padding: 0.8rem 0.4rem;
+                flex: 1;
             }
             .time-number { 
-                font-size: 1.5rem; 
+                font-size: 1.4rem; 
             }
-            .time-label {
-                font-size: 0.6rem;
+            .time-label { 
+                font-size: 0.6rem; 
             }
-            .date-info {
-                font-size: 0.8rem;
-                padding: 0.4rem 0.8rem;
+            .back-button {
+                top: 5px;
+                left: 5px;
+                padding: 5px 8px;
+                font-size: 0.7rem;
             }
             .language-selector {
                 top: 5px;
                 right: 5px;
             }
             .lang-btn {
-                padding: 3px 6px;
+                padding: 4px 6px;
                 font-size: 0.6rem;
             }
-            .back-button {
-                top: 5px;
-                left: 5px;
-                padding: 4px 6px;
-                font-size: 0.7rem;
-            }
             .video-container {
-                padding-bottom: 28%; /* Smaller video for mobile */
-                max-width: 100%;
-                margin: 0.5rem 0;
+                padding-bottom: 65%; /* Très grande pour mobiles */
+                margin: 0.8rem 0;
             }
             .stream-info {
-                margin: 0.5rem 0;
                 padding: 0.8rem;
+                margin: 0.8rem 0;
             }
             .stream-info h3 {
                 font-size: 0.9rem;
+                margin-bottom: 0.8rem;
             }
             .stream-info p {
                 font-size: 0.75rem;
+                margin-bottom: 1rem;
+            }
+            .date-info {
+                font-size: 0.75rem;
+                padding: 0.5rem 0.8rem;
+                margin-bottom: 1.2rem;
             }
             .message {
+                font-size: 0.85rem;
+                margin-bottom: 0.8rem;
+            }
+            .logo-section {
+                margin-bottom: 0.8rem;
+            }
+            .python-togo-logo {
+                width: 50px;
+                height: 50px;
+            }
+            .live-indicator {
+                padding: 0.6rem 1.2rem;
                 font-size: 0.9rem;
-                margin-bottom: 0.5rem;
+                margin-bottom: 0.8rem;
             }
         }
-
-        @media (max-width: 480px) {
+        /* Nouvelle media query pour les très petits écrans */
+        @media (max-width: 320px) {
             .container {
-                padding: 25px 8px 8px 8px;
+                padding: 30px 8px 8px 8px;
+                gap: 0.6rem;
             }
             .title { 
-                font-size: 1.8rem; 
+                font-size: 1.6rem; 
+                line-height: 1.2;
             }
             .subtitle { 
                 font-size: 0.8rem; 
             }
             .countdown { 
-                gap: 0.4rem;
-                justify-content: space-between;
+                gap: 0.3rem;
+                margin-bottom: 1rem;
             }
             .time-unit { 
-                min-width: 65px; 
-                padding: 0.6rem 0.3rem;
-                flex: 1;
+                min-width: 60px; 
+                padding: 0.6rem 0.2rem;
             }
             .time-number { 
-                font-size: 1.2rem; 
+                font-size: 1.1rem; 
             }
             .time-label { 
-                font-size: 0.55rem; 
+                font-size: 0.5rem; 
             }
-            .back-button {
-                top: 3px;
-                left: 3px;
-                padding: 3px 5px;
-                font-size: 0.6rem;
-            }
-            .language-selector {
-                top: 3px;
-                right: 3px;
-            }
-            .lang-btn {
-                padding: 2px 4px;
-                font-size: 0.55rem;
+            .date-info {
+                font-size: 0.65rem;
+                padding: 0.4rem 0.6rem;
+                text-align: center;
             }
             .video-container {
-                padding-bottom: 25%; /* Even smaller for tiny screens */
-            }
-            .stream-info {
-                padding: 0.6rem;
-                margin: 0.3rem 0;
+                padding-bottom: 65%; /* Même taille que mobiles standard pour très petits écrans */
             }
             .stream-info h3 {
                 font-size: 0.8rem;
             }
             .stream-info p {
                 font-size: 0.7rem;
-            }
-            .date-info {
-                font-size: 0.7rem;
-                padding: 0.3rem 0.6rem;
+                line-height: 1.4;
             }
             .message {
                 font-size: 0.8rem;
-                margin-bottom: 0.3rem;
-            }
-            .logo-section {
-                margin-bottom: 0.3rem;
-            }
-            .python-togo-logo {
-                width: 45px;
-                height: 45px;
+                line-height: 1.3;
             }
         }
     </style>
