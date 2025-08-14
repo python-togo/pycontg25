@@ -175,6 +175,10 @@ def transform_json_to_schedule_format(json_data):
                 speakers, participant_count, participant_label, main_avatar, all_avatars, speaker_details = handle_panel_session(item, session_id, duration)
                 session_type = 'session'
             else:
+                # Initialize default values
+                all_avatars = []
+                speaker_details = []
+                
                 # Determine session type and styling for other sessions
                 if item.get('type') == 'break':
                     session_type = 'break'
@@ -202,18 +206,90 @@ def transform_json_to_schedule_format(json_data):
                     participant_label = 'participants'
                     main_avatar = item.get('avatar_url')
                 elif item.get('type') in ['lightning', 'standard', 'deep-dive']:
-                    # CORRECTION: Gestion des sessions individuelles (lightning, standard, deep-dive)
+                    # CORRECTION: Gestion des sessions avec multiples speakers (pas seulement panels)
                     session_type = 'session'
-                    participant_count = 1 if item.get('speaker') else 0
-                    speakers = [item.get('speaker')] if item.get('speaker') else []
-                    participant_label = 'speaker'
-                    main_avatar = item.get('avatar_url')  # CORRECTION: Utiliser l'avatar_url directement
+                    
+                    # Vérifier si c'est un array de speakers (comme pour les panels mais sans être panel)
+                    if isinstance(item.get('speaker'), list):
+                        speakers_list = []
+                        avatar_urls = []
+                        speaker_details_list = []
+                        
+                        for speaker_info in item['speaker']:
+                            if isinstance(speaker_info, dict):
+                                speakers_list.append(speaker_info.get('name', ''))
+                                avatar_url = speaker_info.get('avatar_url')
+                                avatar_urls.append(avatar_url if avatar_url else None)
+                                # Stocker les détails complets du speaker
+                                speaker_details_list.append({
+                                    'name': speaker_info.get('name', ''),
+                                    'avatar_url': avatar_url,
+                                    'title': speaker_info.get('title', ''),
+                                    'description': speaker_info.get('description', '')
+                                })
+                            else:
+                                speakers_list.append(str(speaker_info))
+                                avatar_urls.append(None)
+                                speaker_details_list.append({
+                                    'name': str(speaker_info),
+                                    'avatar_url': None,
+                                    'title': '',
+                                    'description': ''
+                                })
+                        
+                        speakers = speakers_list
+                        participant_count = len(speakers_list)
+                        participant_label = 'speakers' if len(speakers_list) > 1 else 'speaker'
+                        main_avatar = avatar_urls[0] if avatar_urls else None
+                        all_avatars = avatar_urls
+                        speaker_details = speaker_details_list
+                    else:
+                        # Un seul speaker
+                        participant_count = 1 if item.get('speaker') else 0
+                        speakers = [item.get('speaker')] if item.get('speaker') else []
+                        participant_label = 'speaker'
+                        main_avatar = item.get('avatar_url')
                 else:
                     session_type = 'session'
-                    participant_count = 1 if item.get('speaker') else 0
-                    speakers = [item.get('speaker')] if item.get('speaker') else []
-                    participant_label = 'speaker'
-                    main_avatar = item.get('avatar_url')
+                    
+                    # Gestion générale des multiples speakers pour tous les autres types
+                    if isinstance(item.get('speaker'), list):
+                        speakers_list = []
+                        avatar_urls = []
+                        speaker_details_list = []
+                        
+                        for speaker_info in item['speaker']:
+                            if isinstance(speaker_info, dict):
+                                speakers_list.append(speaker_info.get('name', ''))
+                                avatar_url = speaker_info.get('avatar_url')
+                                avatar_urls.append(avatar_url if avatar_url else None)
+                                speaker_details_list.append({
+                                    'name': speaker_info.get('name', ''),
+                                    'avatar_url': avatar_url,
+                                    'title': speaker_info.get('title', ''),
+                                    'description': speaker_info.get('description', '')
+                                })
+                            else:
+                                speakers_list.append(str(speaker_info))
+                                avatar_urls.append(None)
+                                speaker_details_list.append({
+                                    'name': str(speaker_info),
+                                    'avatar_url': None,
+                                    'title': '',
+                                    'description': ''
+                                })
+                        
+                        speakers = speakers_list
+                        participant_count = len(speakers_list)
+                        participant_label = 'speakers' if len(speakers_list) > 1 else 'speaker'
+                        main_avatar = avatar_urls[0] if avatar_urls else None
+                        all_avatars = avatar_urls
+                        speaker_details = speaker_details_list
+                    else:
+                        participant_count = 1 if item.get('speaker') else 0
+                        speakers = [item.get('speaker')] if item.get('speaker') else []
+                        participant_label = 'speaker'
+                        main_avatar = item.get('avatar_url')
 
             # Use JSON description if available, otherwise use fallback
             description_full = item.get('description', get_fallback_description(item, 'full'))
@@ -239,8 +315,8 @@ def transform_json_to_schedule_format(json_data):
                 'participant_label': participant_label,
                 'talks': item.get('talks', []),  # Keep original talks data for modal
                 'avatar_url': main_avatar,  # CORRECTION: Ajout de l'avatar_url principal
-                'panel_avatars': all_avatars if item.get('type') == 'panel' else [],  # Pour les panels
-                'speaker_details': speaker_details if item.get('type') == 'panel' else []  # CORRECTION: Détails complets des speakers
+                'panel_avatars': all_avatars if all_avatars else [],  # Pour tous les types de sessions avec multiples speakers
+                'speaker_details': speaker_details if speaker_details else []  # CORRECTION: Détails complets des speakers pour tous types
             }
             
             schedule_items.append(session_data)

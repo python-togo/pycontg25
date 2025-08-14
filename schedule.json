@@ -99,9 +99,21 @@
             "end": "11:51",
             "title": "Créer des applications multi-plateformes modernes avec Python et FletX",
             "type": "standard",
-            "speaker": "Wilfrid GOEH",
-            "description": "Dans ce talk, je partagerai mon expérience de développeur Python passionné par l’open source et les outils multi-plateformes. Je présenterai Flet, un framework Python qui permet de créer des applications web, desktop et mobiles à partir d’un seul codebase, sans avoir recours à des technologies web classiques comme HTML, CSS ou JavaScript.\r\n\r\nJe dévoilerai également FletX, un mini-framework open source que j’ai créé avec mon équipe, inspiré de GetX (bien connu des développeurs Flutter) et pensé pour améliorer la gestion d’état et le routage dans les projets Flet.\r\n\r\nCe talk combinera partage d’expérience, présentation technique et exemples concrets pour démontrer comment Python peut être un puissant allié dans le développement d’applications modernes et multi-plateformes.",
-            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg"
+            "speaker": [
+                                {
+                    "name": "Koffi Boris Gilbride WOGLO",
+                    "title": "Créer des applications multi-plateformes modernes avec Python et FletX",
+                    "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1755133691/boris_hqqfup.jpg"
+                },
+                {
+                    "name": "Wilfrid GOEH",
+                    "title": " Créer des applications multi-plateformes modernes avec Python et FletX",
+                    "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg"
+                }
+
+            ],
+            
+            "description": "Dans ce talk, je partagerai mon expérience de développeur Python passionné par l’open source et les outils multi-plateformes. Je présenterai Flet, un framework Python qui permet de créer des applications web, desktop et mobiles à partir d’un seul codebase, sans avoir recours à des technologies web classiques comme HTML, CSS ou JavaScript.\r\n\r\nJe dévoilerai également FletX, un mini-framework open source que j’ai créé avec mon équipe, inspiré de GetX (bien connu des développeurs Flutter) et pensé pour améliorer la gestion d’état et le routage dans les projets Flet.\r\n\r\nCe talk combinera partage d’expérience, présentation technique et exemples concrets pour démontrer comment Python peut être un puissant allié dans le développement d’applications modernes et multi-plateformes."
         },
         {
             "start": "11:51",
