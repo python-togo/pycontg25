@@ -141,15 +141,15 @@ class ScheduleModal {
     }
 
     /**
-     * CORRECTION: Nouvelle logique pour récupérer l'avatar d'un speaker
+     * CORRECTION: Logique améliorée pour récupérer l'avatar d'un speaker
      */
     getSpeakerAvatar(session, speakerIndex) {
-        // 1. Pour les panels, utiliser speaker_details si disponible
+        // 1. Pour les panels et sessions avec multiples speakers, utiliser speaker_details si disponible
         if (session.speaker_details && session.speaker_details[speakerIndex]) {
             return session.speaker_details[speakerIndex].avatar_url;
         }
         
-        // 2. Vérifier dans session.panel_avatars (pour les panels)
+        // 2. Vérifier dans session.panel_avatars (pour les panels et sessions multi-speakers)
         if (session.panel_avatars && session.panel_avatars[speakerIndex]) {
             return session.panel_avatars[speakerIndex];
         }
@@ -169,10 +169,10 @@ class ScheduleModal {
     }
 
     /**
-     * CORRECTION: Gestion spéciale pour les panels - plus nécessaire
+     * CORRECTION: Gestion des sessions avec multiples speakers (panels et autres)
      */
-    handlePanelSpeakers(session) {
-        // Les données sont maintenant correctement passées via speaker_details
+    handleMultipleSpeakers(session) {
+        // Les données sont maintenant correctement passées via speaker_details pour tous les types
         return session.speaker_details || null;
     }
 
@@ -201,8 +201,8 @@ class ScheduleModal {
 
         speakersContainer.style.display = 'block';
         
-        // CORRECTION: Gestion spéciale pour les panels
-        const panelSpeakers = this.handlePanelSpeakers(session);
+        // CORRECTION: Gestion des sessions avec multiples speakers (pas seulement panels)
+        const multipleSpeakers = this.handleMultipleSpeakers(session);
         
         // Create speakers section HTML
         const participantLabel = this.getParticipantLabel(session.participant_label, session.speakers.length);
@@ -263,18 +263,24 @@ class ScheduleModal {
             'panelists': 'Panelists',
             'panelistes': 'Panelists'
         };
-        return labels[participantLabel] || 'Speaker.s';
+        
+        // Fallback: si on a plusieurs speakers, utiliser "Speakers"
+        if (count > 1 && !labels[participantLabel]) {
+            return 'Speakers';
+        }
+        
+        return labels[participantLabel] || (count > 1 ? 'Speakers' : 'Speaker');
     }
 
     getSpeakerTitle(participantLabel) {
         const titles = {
             'speaker': 'Speaker',
-            'speakers': 'Speakers',
-            'participants': 'Participants',
-            'instructors': 'Instructors',
-            'experts': 'Experts',
-            'panelists': 'Panelists',
-            'panelistes': 'Panelists'
+            'speakers': 'Speaker',
+            'participants': 'Participant',
+            'instructors': 'Instructor',
+            'experts': 'Expert',
+            'panelists': 'Panelist',
+            'panelistes': 'Panelist'
         };
         return titles[participantLabel] || 'Expert·e Python';
     }
