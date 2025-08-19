@@ -108,7 +108,8 @@ def create_individual_talk_session(talk, parent_session, talk_index):
         'participant_label': 'speaker',
         'talks': [talk],  # Keep the talk data for modal
         'parent_session_type': parent_session.get('type', 'talks'),
-        'avatar_url': talk.get('avatar_url')  # CORRECTION: Ajout de l'avatar_url
+        'avatar_url': talk.get('avatar_url'),  # CORRECTION: Ajout de l'avatar_url
+        'language': talk.get('language', parent_session.get('language', []))
     }
     
     return session_data
@@ -316,11 +317,12 @@ def transform_json_to_schedule_format(json_data):
                 'talks': item.get('talks', []),  # Keep original talks data for modal
                 'avatar_url': main_avatar,  # CORRECTION: Ajout de l'avatar_url principal
                 'panel_avatars': all_avatars if all_avatars else [],  # Pour tous les types de sessions avec multiples speakers
-                'speaker_details': speaker_details if speaker_details else []  # CORRECTION: Détails complets des speakers pour tous types
+                'speaker_details': speaker_details if speaker_details else [],  # CORRECTION: Détails complets des speakers pour tous types
+                'language': item.get('language', [])
             }
             
             schedule_items.append(session_data)
-    
+
     return schedule_items
 
 def get_schedule():

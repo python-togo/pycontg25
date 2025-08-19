@@ -94,6 +94,14 @@
                 <span class="participant-count">{{ session.participant_count }} {{ session.participant_label }}{{ 's' if session.participant_count > 1 else '' }}</span>
               </div>
             {% endif %}
+            {# NEW: afficher les tags de langue en ligne si présents #}
+            {% if session.language and session.language|length > 0 %}
+              <div class="language-tags">
+                {% for lang in session.language %}
+                  <span class="language-tag">{{ lang }}</span>
+                {% endfor %}
+              </div>
+            {% endif %}
             <div class="session-duration">{{ session.duration }} min</div>
           </div>
         </div>
@@ -123,6 +131,10 @@
             <div class="duration-info">
               <span class="duration-label">Durée:</span>
               <span id="modal-duration"></span>
+            </div>
+            <div class="language-info">
+              <span class="language-label">Langue(s):</span>
+              <span id="modal-language" class="modal-language"></span>
             </div>
           </div>
           
