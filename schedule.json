@@ -8,25 +8,41 @@
             "start": "07:15",
             "end": "08:40",
             "title": "Welcome & Check-in + Breakfast",
-            "type": "break"
+            "type": "break",
+            "language": [
+                "French",
+                "English"
+            ]
         },
         {
             "start": "08:40",
             "end": "08:50",
             "title": "Opening Ceremony",
-            "type": "opening"
+            "type": "opening",
+            "language": [
+                "French",
+                "English"
+            ]
         },
         {
             "start": "08:50",
             "end": "09:00",
             "title": "Sponsors Introduction",
+            "language": [
+                "French",
+                "English"
+            ],
             "type": "sponsor_session"
         },
         {
             "start": "09:00",
             "end": "09:02",
             "title": "Short break / intro / hashtag",
-            "type": "break"
+            "type": "break",
+            "language": [
+                "French",
+                "English"
+            ]
         },
         {
             "start": "09:02",
@@ -35,7 +51,10 @@
             "type": "lightning",
             "speaker": "Koami Afantchao AZIABOU",
             "description": "En tant que professionnels du numérique, des heures passées devant l'écran peuvent gravement impacter votre dos et vos yeux. Ce micro-talk de 5 minutes vous offre les bases pour transformer votre poste de travail en un bureau ergonomique. Découvrez comment ajuster votre chaise pour un soutien lombaire optimal, positionner votre écran pour éviter la fatigue oculaire et les douleurs cervicales, et organiser clavier/souris pour prévenir les tensions. Apprenez de simples gestes rapides pour un setup ergonomique qui réduit les risques liés au travail sur écran et protège durablement votre santé.",
-            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1753809219/oxygen_dsqgfq.jpg"
+            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1753809219/oxygen_dsqgfq.jpg",
+            "language": [
+                "French"
+            ]   
         },
         {
             "start": "09:07",
@@ -44,7 +63,10 @@
             "type": "standard",
             "speaker": "Daniel Ametsowou",
             "description": "Ce talk retrace un parcours atypique, entre comptabilité, développement logiciel et community management. En partant de zéro, j'ai découvert comment l'open source et les communautés tech peuvent transformer une passion en véritable levier d'évolution.\r\n\r\nJe partagerai des expériences concrètes, des outils accessibles à tous, et des stratégies simples pour contribuer, apprendre plus vite, se faire connaître et même lancer sa propre communauté.\r\nUn talk pour celles et ceux qui veulent avancer, même sans parcours classique, en misant sur l'entraide, la curiosité et l'action.",
-            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1753602061/IMG-20250719-WA0204_iwrzsf.jpg"
+            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1753602061/IMG-20250719-WA0204_iwrzsf.jpg",
+            "language": [
+                "French"
+            ]
         },
         {
             "start": "09:27",
@@ -53,7 +75,10 @@
             "type": "standard",
             "speaker": "Zokora Elvis Gbagnon",
             "description": "L'objectif de cet atelier  est de fournir une introduction générale à SQLAlchemy , la boîte à outils des bases de données pour Python.",
-            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1752155079/elvis_bqbl9m.jpg"
+            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1752155079/elvis_bqbl9m.jpg",
+            "language": [
+                "French"
+            ]
         },
         {
             "start": "09:52",
@@ -62,13 +87,20 @@
             "type": "deep-dive",
             "speaker": "Denis AKPAGNONITE",
             "description": "À l'ère des applications distribuées, la fiabilité est devenue plus qu'une exigence et non pas un BONUS. Mais comment peut-on garantir la stabilité des services tout en innovant rapidement ? Durant ce talk nous allons découvrir les fondations même de l'ingénierie de la Fiabilité communément appelé Site Reliability Engineering (SRE) et montrer comment Python peut devenir un levier puissant pour construire, observer et renforcer des systèmes.\r\n\r\nNous découvrirons comment définir des indicateurs de service (SLI), fixer des objectifs de fiabilité (SLO), et les instrumenter avec des bibliothèques Python et Prometheus. Ensuite, nous aborderons les piliers de l'observabilité (logs, metric, traces) grâce à OpenTelemetry et un outil puissant comme Grafana Tempo. Enfin, nous verrons comment automatiser certaines opérations et intégrer des stratégies de résilience applicative comme les retries, circuit breakers et timeouts, avec un clin d'œil à l'approche du Chaos Engineering.\r\n\r\nCet talk s'adresse aux développeurs Python intermédiaires, avancés et à toute personne voulant maîtriser la fiabilité en production, et transformer les bonnes pratiques en véritables garde-fous opérationnels.\r\n",
-            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1753533759/photo_retouche_denis_i4pwvc.png"
+            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1753533759/photo_retouche_denis_i4pwvc.png",
+            "language": [
+                "French"
+            ]
         },
         {
             "start": "10:32",
             "end": "10:34",
             "title": "Short break",
-            "type": "break"
+            "type": "break",
+            "language": [
+                "French",
+                "English"
+            ]
         },
         {
             "start": "10:34",
@@ -77,7 +109,10 @@
             "type": "standard",
             "speaker": "Kayode Oladapo",
             "description": "The talk \"Developing AI Proficiency Throughout Africa: Who We Aspire to Be\" is to present the meaningful, informed, and beneficial participation of AI development, proficiency, and utilization within the African communities. The audience for this talk includes developers, data analysts, and everyone interested in the story of African communities in AI and dataset collection in Africa. \r\nAttendees can expect to gain an understanding of how the \"global AI war\" is not about technology, the reshaping of global power, fostering technological decoupling, and demanding African attention. They will understand the stakes of Africa and the aspiration to avoid digital colonialism and ensure African proficiency and participation is truly meaningful. By the end of the talk, attendees will have a grasp of how stakeholders in Africa are shaping AI decisions, fostering a deep understanding of its implications, and the commitment to AI proficiency that genuinely advances African societal well-being, equity promotion, and championing inclusivity across all sectors. \r\nThe talk will cover a range of topics, including\r\n1. Who truly owns Africa's AI future?\r\n2. Prevention of digital colonialism when AI is trained on non-African data.\r\n3. Building competitive AI talent for proficiency.\r\nThis talk will equip all attendees at various stages of experience with how Africans at the moment are aspiring, deliberate, decisive, and determined in shaping our AI proficiency and destiny in building an AI future that truly benefits all African communities.\r\n",
-            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1753969000/Kayode_mnpqkd.jpg"
+            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1753969000/Kayode_mnpqkd.jpg",
+            "language": [
+                "English"
+            ]
         },
         {
             "start": "10:54",
@@ -86,13 +121,20 @@
             "type": "deep-dive",
             "speaker": "Julius Boakye",
             "description": "Django models are the foundation of any Django application, but inefficient design can lead to slow queries, unmaintainable code, and scalability challenges. This deep dive explores proven strategies for crafting efficient Django models that enhance performance and simplify development. We'll cover selecting optimal field types, designing effective relationships (ForeignKey, ManyToMany, OneToOne), and leveraging advanced techniques like custom querysets, indexes, and strategic denormalization. Through real-world examples and performance benchmarks, we'll uncover common pitfalls—like N+1 query issues—and how to avoid them. Attendees will learn practical techniques to optimize database interactions, profile query performance, and design models that scale from startup MVPs to enterprise applications. This talk is perfect for intermediate to advanced Django developers looking to build faster, more robust apps.\r\n\r\n",
-            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1753706569/Julius_bk1q38.jpg"
+            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1753706569/Julius_bk1q38.jpg",
+            "language": [
+                "English"
+            ]
         },
         {
             "start": "11:34",
             "end": "11:36",
             "title": "Short break",
-            "type": "break"
+            "type": "break",
+            "language": [
+                "French",
+                "English"
+            ]
         },
         {
             "start": "11:36",
@@ -103,7 +145,7 @@
                 {
                     "name": "Wilfrid GOEH",
                     "title": " Créer des applications multi-plateformes modernes avec Python et FletX",
-                    "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1751733191/speaker_mal_sahyja.jpg"
+                    "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1755556615/wilfried-removebg-preview-fotor-2025081822367_zhduuj.jpg"
                 },
                 {
                     "name": "Koffi Boris Gilbride WOGLO",
@@ -111,7 +153,10 @@
                     "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1755133691/boris_hqqfup.jpg"
                 }
             ],
-            "description": "Dans ce talk, je partagerai mon expérience de développeur Python passionné par l'open source et les outils multi-plateformes. Je présenterai Flet, un framework Python qui permet de créer des applications web, desktop et mobiles à partir d'un seul codebase, sans avoir recours à des technologies web classiques comme HTML, CSS ou JavaScript.\r\n\r\nJe dévoilerai également FletX, un mini-framework open source que j'ai créé avec mon équipe, inspiré de GetX (bien connu des développeurs Flutter) et pensé pour améliorer la gestion d'état et le routage dans les projets Flet.\r\n\r\nCe talk combinera partage d'expérience, présentation technique et exemples concrets pour démontrer comment Python peut être un puissant allié dans le développement d'applications modernes et multi-plateformes."
+            "description": "Dans ce talk, je partagerai mon expérience de développeur Python passionné par l'open source et les outils multi-plateformes. Je présenterai Flet, un framework Python qui permet de créer des applications web, desktop et mobiles à partir d'un seul codebase, sans avoir recours à des technologies web classiques comme HTML, CSS ou JavaScript.\r\n\r\nJe dévoilerai également FletX, un mini-framework open source que j'ai créé avec mon équipe, inspiré de GetX (bien connu des développeurs Flutter) et pensé pour améliorer la gestion d'état et le routage dans les projets Flet.\r\n\r\nCe talk combinera partage d'expérience, présentation technique et exemples concrets pour démontrer comment Python peut être un puissant allié dans le développement d'applications modernes et multi-plateformes.",
+            "language": [
+                "French"
+            ]
         },
         {
             "start": "11:56",
@@ -135,25 +180,40 @@
                     "title": "Explorer l'impact de Python : de l'idée entrepreneuriale aux applications intelligentes et à la valorisation des données pour le développement.",
                     "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1753922170/basile_upyvt8.jpg"
                 }
+            ],
+            "language": [
+                "French"
             ]
         },
         {
             "start": "12:36",
             "end": "12:38",
             "title": "Instructions & reminders",
-            "type": "other"
+            "type": "other",
+            "language": [
+                "French",
+                "English"
+            ]
         },
         {
             "start": "12:38",
             "end": "12:48",
             "title": "Family photo",
-            "type": "break"
+            "type": "break",
+            "language": [
+                "French",
+                "English"
+            ]
         },
         {
             "start": "12:48",
             "end": "14:08",
             "title": "Lunch Break + Networking",
-            "type": "break"
+            "type": "break",
+            "language": [
+                "French",
+                "English"
+            ]
         },
         {
             "start": "14:08",
@@ -162,7 +222,10 @@
             "type": "lightning",
             "speaker": "ADEOYE OMOBUWA",
             "description": "📄 Abstract:\r\nIn this talk, I will take you through the inner workings of a custom-built social media platform developed entirely with Django. This application is more than just posts and likes — it includes real-time direct messaging, hashtag recognition, @mention parsing, friend requests, user profiles, and contextual notifications.\r\n\r\nWe'll explore how Django's model-view-template architecture, signals, and context processors come together to create a dynamic user experience. You'll learn how I built the private messaging system (directs app) that tracks read/unread statuses, routes chat sessions by username, and offers a notification count in the navbar — all without relying on external services like Firebase or Socket.IO.\r\n\r\nFrom a separate a app, you'll see how I used regex and utility functions to detect and linkify #hashtags and @usernames in post bodies, enabling automatic routing to hashtag feeds or user profiles. I'll also cover friend relationships and contextual content rendering using Django signals and context processors.\r\n\r\nWhether you're a beginner looking to go beyond the basics or an intermediate developer curious about building a complete social media ecosystem with Django, this talk is packed with real-world examples, reusable patterns, and practical lessons.\r\n\r\n🎯 Takeaways:\r\nStructuring multi-app Django projects for modular social media functionality\r\n\r\nImplementing real-time-style messaging using Django views and context processors\r\n\r\nParsing and linking hashtags and mentions inside post content\r\n\r\nUsing signals to automate friend request handling and notifications\r\n\r\nEnhancing user experience with dynamic context injection and live counters",
-            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1754579285/oba_oz3yeg.jpg"
+            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1754579285/oba_oz3yeg.jpg",
+            "language": [
+                "English"
+            ]
         },
         {
             "start": "14:13",
@@ -171,7 +234,10 @@
             "type": "standard",
             "speaker": "Ibi Fiberesima",
             "description": "Incentives work, but only when they are designed well. This talk explores why some community-driven reward systems (even with good intentions) backfire, and how we can design better ways to motivate contributions in the Python ecosystem. Learn practical strategies to grow contributors without falling into the \"rat tail\" trap.\r\n",
-            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1753323872/fibi_upx7jf.jpg"
+            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1753323872/fibi_upx7jf.jpg",
+            "language": [
+                "English"
+            ]
         },
         {
             "start": "14:33",
@@ -180,7 +246,10 @@
             "type": "standard",
             "speaker": "Teddy ASSIH",
             "description": "On parle souvent de Django comme étant un framework \"all batteries included\" pour dire qu'il contient nécessaire pour lancer une application web rapidement : système d'authentification, sessions, interface d'admin, middlewares… tout y est par défaut. Et, justement, grâce a son module d'admin, Django offre un gain en temps fou lorsqu'il s'agit de gérer le contenu de son application web. Cependant, ce n'est un secret pour personne que cet interface admin est moche (oui, disons les termes) et peu intuitive pour les non-développeurs lorsque l'on veut l'utiliser comme une interface admin pour les clients.\r\n\r\nC'est là que Wagtail CMS vient à la rescousse de Django, en intégrant une panoplie de fonctionnalités à l'administration d'une application Django allant de la gestion contenue simple à la création de pages dynamiques à partir d'une interface intuitive pour le client et pour le développeur.\r\n\r\nDans ce talk, vous découvrirez quelques fonctionnalités de Wagtail et comment il transforme l'experience de développement des applications Django. Vous apprendrez à intégrer Wagtail à un projet Django existant et à tirer le meilleur de ce fabuleux CMS open source qui facilite le travail des développeurs Django ou celui toute personne ayant déjà fait un projet en Django.",
-            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1754422559/teddy_txfpnx.png"
+            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1754422559/teddy_txfpnx.png",
+            "language": [
+                "French"
+            ]
         },
         {
             "start": "14:53",
@@ -189,13 +258,19 @@
             "type": "standard",
             "speaker": "Yao Gervais Amoah",
             "description": "Dans un contexte où la demande logicielle ne cesse d'exploser, l'IA Générative (GenAI) s'impose comme un levier majeur de productivité pour les équipes de développement. Cette conférence présente comment intégrer l'IA Générative à chaque étape du cycle de vie du développement logiciel (CVDL) :\r\n\r\n1. Idéation : stimuler les brainstormings, générer des user stories et scénarios de tests à partir de simples prompts.\r\n2. Planification : produire maquettes, spécifications et jeux de données synthétiques en un clin d'œil.\r\n3. Développement : accélérer l'écriture, la relecture et la refactorisation de code.\r\n4. Opérations : automatiser les pipelines CI/CD, détecter les anomalies et optimiser l'infrastructure grâce à l'IA.\r\n\r\nNous aborderons également les défis clés : latence, confidentialité des données, sécurité et propriété intellectuelle.\r\nVous repartirez avec un cadre pragmatique et des bonnes pratiques pour déployer l'IA Générative dans vos projets Python, tout en gardant l'humain au centre et en respectant la qualité et la conformité.",
-            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1754318926/profile-picture_fh1fqk.jpg"
+            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1754318926/profile-picture_fh1fqk.jpg",
+            "language": [
+                "French"
+            ]
         },
         {
             "start": "15:13",
             "end": "15:23",
             "title": "Product presentation",
-            "type": "sponsor_session"
+            "type": "sponsor_session",
+            "language": [
+                "English"
+            ]
         },
         {
             "start": "15:23",
@@ -204,13 +279,21 @@
             "type": "deep-dive",
             "speaker": "Serge Koudoro",
             "description": null,
-            "avatar_url": "https://avatars.githubusercontent.com/u/23106443?v=4"
+            "avatar_url": "https://avatars.githubusercontent.com/u/23106443?v=4",
+            "language": [
+                "French",
+                "English"
+            ]
         },
         {
             "start": "16:08",
             "end": "16:10",
             "title": "Short break",
-            "type": "break"
+            "type": "break",
+            "language": [
+                "French",
+                "English"
+            ]
         },
         {
             "start": "16:10",
@@ -219,7 +302,10 @@
             "type": "standard",
             "speaker": "Caleb ADOGLI",
             "description": "On parle souvent des données, ou de la Big Data, comme de la nouvelle ruée vers le pétrole, mais sans les bons outils, elles restent brutes et inexploitables. Dans ce talk, nous suivrons le processus qui transforme des lignes de code en insights, grâce à Python, l'outil par excellence pour cette tâche. De la collecte à la visualisation, en passant par le nettoyage et la modélisation, nous verrons comment les bibliothèques de l'écosystème Python permettent de faire ressortir des informations pertinentes à partir de nos données.",
-            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1753484879/Caleb_ADOGLI_qrjt0y.jpg"
+            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1753484879/Caleb_ADOGLI_qrjt0y.jpg",
+            "language": [
+                "French"
+            ]
         },
         {
             "start": "16:30",
@@ -228,19 +314,29 @@
             "type": "standard",
             "speaker": "Harmony Elendu",
             "description": "Since time memorial, documenting has always been a cornerstone for clarity, progress, and learning. It serves as a powerful tool to avoid repeated past mistakes while paving the way for continuous improvement. In this talk, we’ll explore how developers can enhance their craft through effective documentation.\r\nThe exciting part? These principles aren't just for developers — it is applicable to anyone!\r\n\r\nDrawing from my experience collaborating with multicultural teams of developers, along with insights from direct testimonies and years of building diverse products as a Product and Project Manager, good documentation is the “secret sauce.” It simplifies workflows, enhances collaboration, and leaves a clear roadmap for others while creating a path for the next contributor, team member, or even our future self.\r\n\r\nKey Takeaways for the Audience\r\nThis talk has been fully packed for a wide range of participants, especially beginners to professionals and even seasoned developers who might find themselves overlooking the importance of documentation in their daily work. We will be covering:\r\n- Why you should document before you write \r\n- Best Practices for Developer Documentation \r\n- Tools that makes documentation Easier \r\n- How it empowers Open Source Contributors \r\n- Self impacts of good documentation and many more. \r\n\r\nIn Conclusion this talk will go beyond the improvement of developer’s but to anyone listening ensuring that the lessons learnt and insights gained will enhance their work and amplify their impact.\r\n",
-            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1754515194/harmony_guohtz.jpg"
+            "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1754515194/harmony_guohtz.jpg",
+            "language": [
+                "English"
+            ]
         },
         {
             "start": "16:50",
             "end": "17:00",
             "title": "Special Speaker",
-            "type": "standard"
+            "type": "standard",
+            "language": [
+                "French",
+                "English"
+            ]
         },
         {
             "start": "17:00",
             "end": "17:02",
             "title": "Short break",
-            "type": "break"
+            "type": "break",
+            "language": [
+                "English"
+            ]
         },
         {
             "start": "17:02",
@@ -250,12 +346,20 @@
             "speaker": "Jacobs Oluwakemi",
             "description": "In underdeveloped countries, getting an inclusive education is still quite difficult, especially for kids with learning difficulties like dyslexia. Imprecise word comprehension and generally subpar reading performance are hallmarks of dyslexia, a neurological disease. It impacts a sizable portion of school-age children, with a higher prevalence in boys, putting them at lifetime risk for subpar academic achievement and low self-esteem.\r\nThe United Nations Educational, Scientific, and Cultural Organization (UNESCO) believes that between 10% and 20% of people worldwide suffer with dyslexia, indicating that the disorder is highly prevalent. It might potentially be as high as 30% in low-income areas.\r\nIn traditional educational institutions, children with dyslexia frequently encounter obstacles that restrict their exposure to critical skills like programming, which are vital in the digital age. IT skills are a crucial tool to support dyslexic pupils because they can help them learn and reduce difficulties with identifying or confusing words and meaning. Several studies have demonstrated the importance of exposing students to IT skills, such as programming, especially those with special learning difficulties. Pupils with dyslexia typically have low expectations for their academic opportunities and low self-esteem. \r\n\r\nThis talk examines how Python's ease of use and adaptability might be utilized to produce educational materials and programming tools that are accessible to dyslexic kids in underdeveloped countries. Interactive, multi-sensory learning tools can be created using Python libraries such as Turtle, Pyttsx3 and Pygame for auditory and visuals thus creating engagement for dyslexic kids and lowering pressure on cognitive skills. These resources are perfect for countries with limited resources because they require less infrastructure for technology. \r\nJoin us as we explore python for inclusive education and creating a new generation of pupils who are masters of digital skills regardless of their situation and showing that coding is for everyone, breaking barriers and giving equal opportunities to dyslexic kids.\r\n",
             "avatar_url": "https://res.cloudinary.com/dvg7vky5o/image/upload/v1754579273/Profile_Pic_xylz6c.jpg"
+            ,
+            "language": [
+                "English"
+            ]
         },
         {
             "start": "17:22",
             "end": "17:37",
             "title": "Closing – Q&A + Thanks + 30 Days of Python  Participants & Celebration",
-            "type": "closing"
+            "type": "closing",
+            "language": [
+                "English",
+                "French"
+            ]
         }
     ]
 }

@@ -128,6 +128,20 @@ class ScheduleModal {
             durationElement.textContent = `${session.duration} minutes`;
         }
 
+        // Set language tags in modal
+        const modalLang = document.getElementById('modal-language');
+        if (modalLang) {
+            modalLang.innerHTML = '';
+            if (session.language && session.language.length > 0) {
+                session.language.forEach(lang => {
+                    const span = document.createElement('span');
+                    span.className = 'language-tag';
+                    span.textContent = lang;
+                    modalLang.appendChild(span);
+                });
+            }
+        }
+
         // Set description
         const descriptionElement = document.getElementById('modal-description');
         if (descriptionElement) {
