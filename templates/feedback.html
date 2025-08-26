@@ -100,6 +100,20 @@
                 <label class="field-label" for="profession">Profession / Profession</label>
                 <input id="profession" name="profession" type="text" placeholder="e.g. Student, Developer" required>
             </div>
+              <div>
+                <label class="field-label" for="country">Country / Pays</label>
+                <input id="country" name="country" type="text" placeholder="e.g. Togo" required>
+            </div>
+             <div>
+                <label class="field-label" for="python_level">Python level / Niveau en Python</label>
+                <select id="python_level" name="python_level" required>
+                    <option value="">— Select — / — Sélectionner —</option>
+                    <option value="beginner">Beginner / Débutant</option>
+                    <option value="intermediate">Intermediate / Intermédiaire</option>
+                    <option value="advanced">Advanced / Avancé</option>
+                    <option value="other">Other / Autre</option>
+                </select>
+            </div>
 
             <div>
                 <label class="field-label" for="heard">Heard About / Comment avez-vous entendu parler</label>
@@ -183,7 +197,9 @@
             overall: (fd.get('overall')||'').trim() || null,
             favorite: (fd.get('favorite')||'').trim() || null,
             improvements: (fd.get('improvements')||'').trim() || null,
-            comments: (fd.get('comments')||'').trim() || null
+            comments: (fd.get('comments')||'').trim() || null,
+            country: (fd.get('country')||'').trim() || null,
+            python_level: fd.get('python_level') || null,
         };
 
         // Basic required validation

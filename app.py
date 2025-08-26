@@ -738,6 +738,19 @@ def feedback():
     return render_template("feedback.html")
 
 
+@app.route("/staff-feedback", methods=["GET"])
+def staff_feedback():
+    return render_template("staff_feedback.html")
+
+
+@app.route("/talents", methods=["GET"])
+def talents():
+    return render_template(
+        "talents.html",
+        year=year,
+    )
+
+
 @app.errorhandler(404)
 def page_not_found(e):
     return (

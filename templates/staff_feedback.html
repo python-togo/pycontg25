@@ -1,0 +1,297 @@
+{% extends "base.html" %}
+
+{% block title %}
+Staff Feedback - PyCon Togo 2025
+{% endblock %}
+
+{% block content %}
+
+<style>
+    /* Scoped staff feedback form styles - based on feedback.html styles */
+    #staffFeedbackForm.staff-feedback-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        max-width: 900px;
+    }
+
+    #staffFeedbackForm .full { grid-column: 1 / -1; }
+
+    #staffFeedbackForm label.field-label {
+        display: block;
+        font-weight: 700;
+        color: #2D5016; /* site green */
+        margin-bottom: 6px;
+        font-size: 0.95rem;
+    }
+
+    #staffFeedbackForm textarea,
+    #staffFeedbackForm input[type="text"],
+    #staffFeedbackForm select {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 8px;
+        border: 1px solid rgba(0,0,0,0.08);
+        background: #ffffff;
+        color: #111;
+        font-size: 0.95rem;
+    }
+
+    #staffFeedbackForm textarea { min-height: 110px; resize: vertical; }
+
+    #staffFeedbackForm .actions { display:flex; gap:12px; align-items:center; }
+
+    #staffFeedbackForm .btn-submit {
+        background: rgba(255,212,59,0.95);
+        color: #2D5016;
+        font-weight: 800;
+        padding: 10px 16px;
+        border-radius: 10px;
+        border: 2px solid rgba(255,212,59,0.9);
+        cursor: pointer;
+    }
+    #staffFeedbackForm .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    #staffFeedbackForm .btn-cancel { background: transparent; color: #2D5016; padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.06); cursor: pointer; }
+
+    #staffFeedbackForm .status { margin-top: 12px; padding: 12px; border-radius: 10px; display: none; align-items: center; gap: 10px; }
+    #staffFeedbackForm .status.success { background: rgba(5,109,30,0.06); border: 2px solid rgba(255,212,59,0.18); color: #2D5016; display: flex; }
+    #staffFeedbackForm .status.error { background: rgba(255,0,0,0.04); border: 2px solid rgba(255,0,0,0.12); color: #800; display: flex; }
+    #staffFeedbackForm .status .msg { font-weight: 700; }
+
+    /* Specific person entries */
+    .person-entry { display:grid; grid-template-columns: 1fr 1fr; gap: 8px; align-items:start; margin-bottom:8px; }
+    .person-entry .full { grid-column: 1 / -1; }
+    .person-entry .remove-btn { justify-self:end; background:transparent; border:1px solid rgba(0,0,0,0.06); padding:6px 8px; border-radius:8px; cursor:pointer; }
+
+    @media (max-width: 720px) {
+        #staffFeedbackForm.staff-feedback-form { grid-template-columns: 1fr; }
+        .person-entry { grid-template-columns: 1fr; }
+    }
+</style>
+
+<div class="container">
+    <div class="card" style="background:transparent;border:none;padding:0;">
+        <h1 style="color: #056d1e; margin-bottom:8px;">Staff Feedback / Retour anonyme au staff</h1>
+        <p class="lead" style="color:inherit; margin-bottom:12px;">This form is completely anonymous. You may optionally target a specific person. / Ce formulaire est entièrement anonyme. Vous pouvez indiquer une personne spécifique en option.</p>
+
+        <form id="staffFeedbackForm" class="staff-feedback-form" novalidate>
+
+            <!-- Reproaches to Chair (specific tag for chair container) -->
+            <div>
+                <label class="field-label">Reproaches to Chair / Reproches au Coordinateur principal (Wachiou Bouraima — Wasiu Ibrahim)</label>
+                <textarea name="reproach_chair" rows="4" placeholder="Optional / Facultatif"></textarea>
+           
+            </div>
+
+            <!-- Reproaches to Co-Chair -->
+            <div>
+                <label class="field-label">Reproaches to Co-Chair / Reproches au Co-Chair (Geoffrey Logovi)</label>
+                <textarea name="reproach_cochair" rows="4" placeholder="Optional / Facultatif"></textarea>
+           
+            </div>
+
+            <!-- Reproaches to Team: allow to name a specific team member (not generalized tags) -->
+            <div>
+                <label class="field-label">Reproaches to Team / Reproches à toute l’équipe</label>
+                <textarea name="reproach_team" rows="4" placeholder="Optional / Facultatif"></textarea>
+                <label class="field-label" style="font-weight:600; font-size:0.9rem; margin-top:8px;">If this concerns a specific team member, put the exact name (optional) / Si cela concerne une personne précise, écrivez son nom exact (facultatif)</label>
+                <input type="text" name="reproach_team_target" placeholder="Name / Nom (Optional)">
+            </div>
+
+            <!-- Specific Person Remarks: dynamic entries created by users -->
+            <div class="full">
+                <label class="field-label">Specific Person Remarks / Remarques à une personne spécifique</label>
+                <p style="margin-top:0.25rem; margin-bottom:8px; color:var(--muted-text,#333);">Add one or more entries: write the exact name and the remark. Use the kind to indicate if it is a reproach or a positive note. / Ajoutez une ou plusieurs entrées : indiquez le nom exact et la remarque. Choisissez le type pour indiquer s'il s'agit d'un reproche ou d'un point positif.</p>
+                <div id="specificRemarks" aria-live="polite"></div>
+                <button type="button" id="addPersonBtn" class="btn-cancel" style="margin-top:8px;">Add person remark / Ajouter une remarque</button>
+            </div>
+
+            <!-- Positive points (required) -->
+            <div class="full">
+                <label class="field-label">Positive points for Chair / Points positifs du Coordinateur principal (Wachiou Bouraima — Wasiu Ibrahim)</label>
+                <textarea name="positive_chair" rows="4" required placeholder="Required / Requis"></textarea>
+            </div>
+
+            <div class="full">
+                <label class="field-label">Positive points for Co-Chair / Points positifs du Co-Chair (Geoffrey Logovi)</label>
+                <textarea name="positive_cochair" rows="4" required placeholder="Required / Requis"></textarea>
+            </div>
+
+            <div class="full">
+                <label class="field-label">Positive points for Team / Points positifs de l’équipe</label>
+                <textarea name="positive_team" rows="4" required placeholder="Required / Requis"></textarea>
+            </div>
+
+            <div class="full">
+                <label class="field-label">General Remarks / Remarques générales</label>
+                <textarea name="general_remarks" rows="4" placeholder="Optional / Facultatif"></textarea>
+            </div>
+
+            <div class="full actions">
+                <button type="submit" id="submitBtn" class="btn-submit">Send Feedback / Envoyer</button>
+                <button type="button" id="resetBtn" class="btn-cancel">Reset / Réinitialiser</button>
+            </div>
+
+            <div class="full">
+                <div id="formStatus" class="status" role="status" aria-live="polite" style="display:none;">
+                    <div class="msg"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+(function(){
+    const endpoint = 'https://api.pycontg.pytogo.org/api/staff_feedback';
+    const form = document.getElementById('staffFeedbackForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const statusEl = document.getElementById('formStatus');
+    const statusMsg = statusEl.querySelector('.msg');
+
+    const specificContainer = document.getElementById('specificRemarks');
+    const addPersonBtn = document.getElementById('addPersonBtn');
+
+    function showStatus(success, text){
+        statusEl.className = 'status ' + (success ? 'success' : 'error');
+        statusMsg.textContent = text;
+        statusEl.style.display = 'flex';
+    }
+    function hideStatus(){ statusEl.style.display = 'none'; statusMsg.textContent = ''; }
+
+    function createPersonEntry(name = '', kind = '', role = '', remark = ''){
+        const wrapper = document.createElement('div');
+        wrapper.className = 'person-entry';
+
+        const nameInput = document.createElement('input');
+        nameInput.type = 'text';
+        nameInput.placeholder = 'Person name / Nom de la personne';
+        nameInput.value = name;
+        nameInput.name = 'person_name';
+
+        const kindSelect = document.createElement('select');
+        kindSelect.name = 'person_kind';
+        const kinds = [['', '— Type — / — Type —'], ['reproach', 'Reproach / Réproche'], ['positive', 'Positive / Point positif'], ['other', 'Other / Autre']];
+        kinds.forEach(k => { const o = document.createElement('option'); o.value = k[0]; o.textContent = k[1]; if(k[0]===kind) o.selected = true; kindSelect.appendChild(o); });
+
+        const roleSelect = document.createElement('select');
+        roleSelect.name = 'person_role';
+        const roles = [['', '— Role — / — Rôle —'], ['chair', 'Chair / Coordinateur principal'], ['cochair', 'Co-Chair / Co-coordinateur'], ['team', 'Team / Équipe'], ['other', 'Other / Autre']];
+        roles.forEach(r => { const o = document.createElement('option'); o.value = r[0]; o.textContent = r[1]; if(r[0]===role) o.selected = true; roleSelect.appendChild(o); });
+
+        const remarkArea = document.createElement('textarea');
+        remarkArea.rows = 3;
+        remarkArea.placeholder = 'Remark / Remarque';
+        remarkArea.name = 'person_remark';
+        remarkArea.value = remark;
+
+        const removeBtn = document.createElement('button');
+        removeBtn.type = 'button';
+        removeBtn.className = 'remove-btn';
+        removeBtn.textContent = 'Remove';
+        removeBtn.addEventListener('click', ()=>{ wrapper.remove(); });
+
+        // layout: name + kind, role + remove, remark full
+        const col1 = document.createElement('div');
+        col1.appendChild(nameInput);
+        col1.appendChild(kindSelect);
+
+        const col2 = document.createElement('div');
+        col2.appendChild(roleSelect);
+        col2.appendChild(removeBtn);
+
+        wrapper.appendChild(col1);
+        wrapper.appendChild(col2);
+
+        const remarkWrap = document.createElement('div');
+        remarkWrap.className = 'full';
+        remarkWrap.appendChild(remarkArea);
+        wrapper.appendChild(remarkWrap);
+
+        return wrapper;
+    }
+
+    addPersonBtn.addEventListener('click', function(){
+        const entry = createPersonEntry();
+        specificContainer.appendChild(entry);
+    });
+
+    resetBtn.addEventListener('click', ()=>{ form.reset(); specificContainer.innerHTML = ''; hideStatus(); });
+
+    form.addEventListener('submit', async function(e){
+        e.preventDefault();
+        hideStatus();
+
+        const fd = new FormData(form);
+        // helper to get field value only if element exists in DOM
+        const getField = (name) => {
+            const el = form.querySelector('[name="' + name + '"]');
+            if(!el) return null;
+            const v = fd.get(name);
+            if(v === null) return null;
+            return String(v).trim();
+        };
+
+        // collect specific person remarks from DOM
+        const specific = [];
+        const entries = specificContainer.querySelectorAll('.person-entry');
+        entries.forEach(entry => {
+            const name = (entry.querySelector('input[name="person_name"]').value || '').trim();
+            const kind = entry.querySelector('select[name="person_kind"]').value || null;
+            const role = entry.querySelector('select[name="person_role"]').value || null;
+            const remark = (entry.querySelector('textarea[name="person_remark"]').value || '').trim();
+            if(name || remark){
+                specific.push({ name: name || null, kind: kind || null, role: role || null, remark: remark || null });
+            }
+        });
+
+        const payload = {
+            reproach_chair: (fd.get('reproach_chair')||'').trim(),
+            reproach_cochair: (fd.get('reproach_cochair')||'').trim(),
+            reproach_team: (fd.get('reproach_team')||'').trim(),
+            reproach_team_target: getField('reproach_team_target'),
+            specific_person_remarks: specific,
+            positive_chair: (fd.get('positive_chair')||'').trim(),
+            positive_cochair: (fd.get('positive_cochair')||'').trim(),
+            positive_team: (fd.get('positive_team')||'').trim(),
+            general_remarks: (fd.get('general_remarks')||'').trim(),
+        };
+
+        // Basic validation: require positive points fields
+        if(!payload.positive_chair || !payload.positive_cochair || !payload.positive_team){
+            showStatus(false, 'Please fill the required positive points fields. / Veuillez remplir les points positifs requis.');
+            return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending… / Envoi…';
+
+        try{
+            const res = await fetch(endpoint, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if(res.ok){
+                showStatus(true, 'Thank you! Your anonymous feedback has been submitted. / Merci ! Votre retour anonyme a été soumis.');
+                form.reset();
+                specificContainer.innerHTML = '';
+            } else {
+                let msg = 'An error occurred. Please try again later. / Une erreur est survenue. Veuillez réessayer plus tard.';
+                try{ const data = await res.json(); if(data && data.message) msg = data.message + ' — ' + msg; }catch(e){}
+                showStatus(false, msg);
+            }
+        }catch(err){
+            showStatus(false, 'Network error. Please check your connection. / Erreur réseau. Veuillez vérifier votre connexion.');
+        }finally{
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send Feedback / Envoyer';
+        }
+    });
+})();
+</script>
+
+{% endblock %}
