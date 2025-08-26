@@ -1,0 +1,223 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<style>
+    /* Scoped feedback form styles only - do not modify global styles */
+    #feedbackForm.feedback-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    #feedbackForm .full {
+        grid-column: 1 / -1;
+    }
+
+    #feedbackForm label.field-label {
+        display: block;
+        font-weight: 700;
+        color: #2D5016; /* use existing site green */
+        margin-bottom: 6px;
+        font-size: 0.95rem;
+    }
+
+    #feedbackForm input[type="text"],
+    #feedbackForm input[type="number"],
+    #feedbackForm select,
+    #feedbackForm textarea {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 8px;
+        border: 1px solid rgba(0,0,0,0.08);
+        background: #ffffff;
+        color: #111;
+        font-size: 0.95rem;
+    }
+
+    #feedbackForm textarea { min-height: 110px; resize: vertical; }
+
+    #feedbackForm .radio-group { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    #feedbackForm .radio-item { display: inline-flex; gap: 8px; align-items: center; padding: 6px 10px; border-radius: 999px; background: rgba(5,109,30,0.04); border: 1px solid rgba(0,0,0,0.05); color: #056d1e; }
+    #feedbackForm .radio-item input { margin-right: 6px; }
+
+    #feedbackForm .actions { display: flex; gap: 12px; align-items: center; }
+
+    #feedbackForm .btn-submit {
+        background: rgba(255,212,59,0.95);
+        color: #2D5016;
+        font-weight: 800;
+        padding: 10px 16px;
+        border-radius: 10px;
+        border: 2px solid rgba(255,212,59,0.9);
+        cursor: pointer;
+    }
+    #feedbackForm .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    #feedbackForm .btn-cancel { background: transparent; color: #2D5016; padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.06); cursor: pointer; }
+
+    #feedbackForm .status { margin-top: 12px; padding: 12px; border-radius: 10px; display: none; align-items: center; gap: 10px; }
+    #feedbackForm .status.success { background: rgba(5,109,30,0.06); border: 2px solid rgba(255,212,59,0.18); color: #2D5016; display: flex; }
+    #feedbackForm .status.error { background: rgba(255,0,0,0.04); border: 2px solid rgba(255,0,0,0.12); color: #800; display: flex; }
+    #feedbackForm .status .msg { font-weight: 700; }
+
+    @media (max-width: 720px) {
+        #feedbackForm.feedback-form { grid-template-columns: 1fr; }
+    }
+</style>
+
+
+<div class="container">
+    <div class="card" style="background:transparent;border:none;padding:0;">
+        <h1 style="color: #056d1e; margin-bottom:8px;">PyCon 2025 Feedback / Retour d'expérience</h1>
+        <p class="lead" style="color:inherit; margin-bottom:12px;">We value your opinion — tell us what you loved and how we can improve. / Nous apprécions votre opinion — dites-nous ce que vous avez aimé et comment nous pouvons nous améliorer.</p>
+
+        <form id="feedbackForm" class="feedback-form" novalidate>
+            <div>
+                <label class="field-label">Sex / Sexe</label>
+                <div class="radio-group">
+    
+                    <label class="radio-item"><input type="radio" name="sex" value="male" checked> Male / Homme</label>
+                    <label class="radio-item"><input type="radio" name="sex" value="female"> Female / Femme</label>
+                    <label class="radio-item"><input type="radio" name="sex" value="other"> Other / Autre</label>
+                </div>
+            </div>
+
+            <div>
+                <label class="field-label" for="age">Average Age / Âge</label>
+                <select id="age" name="age" required>
+                    <option value="">— Select — / — Sélectionner —</option>
+                    <option value="under-18"> < 18</option>
+                    <option value="18-25">18-25</option>
+                    <option value="26-35">26-35</option>
+                    <option value="36-50">36-50</option>
+                    <option value="50+">50+</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="field-label" for="profession">Profession / Profession</label>
+                <input id="profession" name="profession" type="text" placeholder="e.g. Student, Developer" required>
+            </div>
+
+            <div>
+                <label class="field-label" for="heard">Heard About / Comment avez-vous entendu parler</label>
+                <select id="heard" name="heard" required>
+                    <option value="">— Select — / — Sélectionner —</option>
+                    <option value="social">Social Media / Réseaux sociaux</option>
+                    <option value="friend">Friend / Ami(e)</option>
+                    <option value="newsletter">Newsletter / Bulletin</option>
+                    <option value="other">Other / Autre</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="field-label" for="rating">Rating / Note (1–5)</label>
+                <input id="rating" name="rating" type="number" min="1" max="5" placeholder="Optional / Facultatif">
+            </div>
+
+            <div class="full">
+                <label class="field-label" for="overall">Overall Experience / Expérience globale</label>
+                <textarea id="overall" name="overall" required></textarea>
+            </div>
+
+            <div class="full">
+                <label class="field-label" for="favorite">Favorite Part / Partie préférée</label>
+                <textarea id="favorite" name="favorite" required></textarea>
+            </div>
+
+            <div class="full">
+                <label class="field-label" for="improvements">Improvements / Améliorations (optional)</label>
+                <textarea id="improvements" name="improvements" placeholder="Optional / Facultatif"></textarea>
+            </div>
+
+            <div class="full">
+                <label class="field-label" for="comments">Additional Comments / Commentaires additionnels (optional)</label>
+                <textarea id="comments" name="comments" placeholder="Optional / Facultatif"></textarea>
+            </div>
+
+            <div class="full actions">
+                <button type="submit" class="btn-submit" id="submitBtn">Send Feedback / Envoyer</button>
+                <button type="button" class="btn-cancel" id="resetBtn">Reset / Réinitialiser</button>
+            </div>
+
+            <div class="full">
+                <div id="formStatus" class="status" role="status" aria-live="polite" style="display:none;">
+                    <div class="msg"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+(function(){
+    const apiUrl = 'https://api.pycontg.pytogo.org/api/feedback';
+    const form = document.getElementById('feedbackForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const statusEl = document.getElementById('formStatus');
+    const statusMsg = statusEl.querySelector('.msg');
+
+    function showStatus(success, text){
+        statusEl.className = 'status ' + (success ? 'success' : 'error');
+        statusMsg.textContent = text;
+        statusEl.style.display = 'flex';
+    }
+    function hideStatus(){ statusEl.style.display = 'none'; statusMsg.textContent = ''; }
+
+    resetBtn.addEventListener('click', ()=>{ form.reset(); hideStatus(); });
+
+    form.addEventListener('submit', async function(e){
+        e.preventDefault();
+        hideStatus();
+
+        const fd = new FormData(form);
+        const payload = {
+            sex: fd.get('sex') || null,
+            age: fd.get('age') || null,
+            profession: (fd.get('profession')||'').trim() || null,
+            heard: fd.get('heard') || null,
+            rating: fd.get('rating') ? Number(fd.get('rating')) : null,
+            overall: (fd.get('overall')||'').trim() || null,
+            favorite: (fd.get('favorite')||'').trim() || null,
+            improvements: (fd.get('improvements')||'').trim() || null,
+            comments: (fd.get('comments')||'').trim() || null
+        };
+
+        // Basic required validation
+        if(!payload.age || !payload.profession || !payload.heard || !payload.overall || !payload.favorite){
+            showStatus(false, 'Please fill required fields. / Veuillez remplir les champs requis.');
+            return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending… / Envoi…';
+
+        try{
+            const res = await fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if(res.ok){
+                showStatus(true, 'Thank you! Your feedback has been sent. / Merci ! Votre retour a été envoyé.');
+                form.reset();
+            } else {
+                let msg = 'An error occurred. Please try again later. / Une erreur est survenue. Veuillez réessayer plus tard.';
+                try{ const data = await res.json(); if(data && data.message) msg = data.message + ' — ' + msg; }catch(e){}
+                showStatus(false, msg);
+            }
+        }catch(err){
+            showStatus(false, 'Network error. Please check your connection. / Erreur réseau. Veuillez vérifier votre connexion.');
+        }finally{
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send Feedback / Envoyer';
+        }
+    });
+})();
+</script>
+
+{% endblock %}
