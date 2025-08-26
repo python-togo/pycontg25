@@ -733,6 +733,11 @@ def team():
         sponsor_tiers=sponsor_tiers,
     )
 
+@app.route("/feedback", methods=["GET"])
+def feedback():
+    return render_template("feedback.html")
+
+
 @app.errorhandler(404)
 def page_not_found(e):
     return (

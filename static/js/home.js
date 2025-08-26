@@ -7,6 +7,7 @@ const program = document.getElementById("program");
 const mainNav = document.getElementById("mainNav");
 const mobileMenuBtn = document.getElementById("mobileMenuBtn");
 const countdownDate = new Date(Date.UTC(2025, 7, 23, 0, 0, 0)).getTime();
+countdown.innerHTML = "See you in 2026!";
 
 let now = new Date(new Date().toUTCString()).getTime();
 let distance = countdownDate - now;
@@ -38,7 +39,7 @@ function fn_countdown(){
 
     if (distance < 0) {
         clearInterval(countdownInterval);
-        countdown.innerHTML = "EXPIRED";
+        countdown.innerHTML = "See you in 2026!";
     }
 }
 const countdownInterval = setInterval(fn_countdown, 1000);
