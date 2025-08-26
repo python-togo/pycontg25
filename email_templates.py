@@ -167,3 +167,61 @@ def render_sponsor_email(first_name="Pythonista"):
     body = render_email_template(message=html)
     subject = "🤝 Thank You for Your Interest in Sponsoring PyCon Togo 2025"
     return body, subject
+
+def render_email_attendees():
+    html = f"""\
+    <div style="font-family: Arial, sans-serif; color: #333333;; line-height: 1.6; padding: 20px;">
+
+  <!-- Version française -->
+  <p>Bonjour Participant·e,</p>
+
+  <p>
+    Nous vous remercions chaleureusement pour avoir rejoint la toute première <strong>PyCon Togo</strong> ! 
+    Que ce soit <strong>en personne</strong> ou <strong>en ligne via notre live YouTube</strong>, 
+    votre présence et vos échanges ont rendu cet événement spécial et enrichissant pour toute l’Afrique 
+    (Nigeria, Togo, Bénin, Côte d’Ivoire, Ghana…).
+  </p>
+
+  <p>Pour continuer à nous améliorer et rester en contact, voici quelques ressources utiles :</p>
+  <ul>
+    <li><a href="https://pycontg.pytogo.org/feedback" style="color: #006400; text-decoration: underline;">Donnez votre feedback</a></li>
+    <li><a href="https://www.youtube.com/live/sOAoUH0pZNU?si=Fk1i7dsn4HnQcbWb" style="color: #006400; text-decoration: underline;">Regardez l’événement à la demande</a></li>
+    <li><a href="https://pycontg.pytogo.org/talents" style="color: #006400; text-decoration: underline;">Opportunités avec notre partenaire DigiJob</a></li>
+  </ul>
+
+  <p>
+    Merci encore pour votre enthousiasme et votre soutien. Nous espérons vous retrouver lors de nos prochains événements !
+  </p>
+
+  <p>Cordialement,<br><strong>L’équipe PyCon Togo</strong></p>
+
+  <hr style="border: 0; border-top: 1px solid #006400; margin: 20px 0;">
+
+  <!-- English Version -->
+  <p>Hello Participant,</p>
+
+  <p>
+    We sincerely thank you for joining the very first <strong>PyCon Togo</strong>! 
+    Whether you participated <strong>in person</strong> or <strong>online via our YouTube live</strong>, 
+    your presence and contributions made this event special and engaging across Africa 
+    (Nigeria, Togo, Benin, Ivory Coast, Ghana…).
+  </p>
+
+  <p>To help us improve and stay connected, here are some useful resources:</p>
+  <ul>
+    <li><a href="https://pycontg.pytogo.org/feedback" style="color: #006400; text-decoration: underline;">Give your feedback</a></li>
+    <li><a href="https://www.youtube.com/live/sOAoUH0pZNU?si=Fk1i7dsn4HnQcbWb" style="color: #006400; text-decoration: underline;">Watch the event on demand</a></li>
+    <li><a href="https://pycontg.pytogo.org/talents" style="color: #006400; text-decoration: underline;">Opportunities with our partner DigiJob</a></li>
+  </ul>
+
+  <p>
+    Thank you again for your enthusiasm and support. We hope to see you at our future events!
+  </p>
+
+  <p>Best regards,<br><strong>PyCon Togo Team</strong></p>
+
+</div>
+"""
+    body = render_email_template(message=html)
+    subject = "Merci pour votre participation à PyCon Togo 2025 / Thank you for joining PyCon Togo 2025"
+    return body, subject

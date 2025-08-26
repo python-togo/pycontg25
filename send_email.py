@@ -4,7 +4,7 @@ from email.utils import formataddr
 import smtplib
 from dotenv import load_dotenv
 
-from email_templates import render_sponsor_email
+from email_templates import render_email_attendees, render_sponsor_email
 
 load_dotenv()
 
@@ -36,5 +36,11 @@ def send_email(subject, body, email_to):
 
 def send_sponsor_email(first_name="Pythonista", email_to="sponsor@example.com"):
     message, subject = render_sponsor_email(first_name=first_name)
+
+    send_email(subject, message, email_to)
+
+
+def send_attendee_email(email_to=""):
+    message, subject = render_email_attendees()
 
     send_email(subject, message, email_to)
