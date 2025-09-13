@@ -1,11 +1,12 @@
 import typing
+if not hasattr(typing, "_ClassVar") and hasattr(typing, "ClassVar"):
+    typing._ClassVar = typing.ClassVar
+
 from send_email import send_sponsor_email
 from ticket import send_ticket_email
 from schedule import get_schedule, get_speaker_images, get_event_info
 
 
-if not hasattr(typing, "_ClassVar") and hasattr(typing, "ClassVar"):
-    typing._ClassVar = typing.ClassVar
 
 import os
 from dotenv import load_dotenv
@@ -161,10 +162,6 @@ educational_supporters = [
 def report():
     return  redirect("https://report.pytogo.org/")
 
-@app.route("/favicon.ico")
-def favicon():
-    return app.send_static_file("favicon.ico")
-
 
 @app.route("/")
 def home():
@@ -177,6 +174,15 @@ def home():
         proposal_closing_date=proposal_closing_date,
         paidsponsors=paidsponsors,
     )
+
+@app.route("/2025/report")
+def report():
+    return  redirect("https://report.pytogo.org/")
+
+@app.route("/favicon.ico")
+def favicon():
+    return app.send_static_file("favicon.ico")
+
 
 @app.route("/live")
 def live_page():
