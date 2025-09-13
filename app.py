@@ -157,6 +157,9 @@ educational_supporters = [
     sponsor for sponsor in paidsponsors if sponsor.get("level") == "educational"
 ]
 
+@app.route("/2025/report")
+def report():
+    return  redirect("https://report.pytogo.org/")
 
 @app.route("/favicon.ico")
 def favicon():
