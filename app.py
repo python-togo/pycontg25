@@ -172,8 +172,8 @@ def home():
         paidsponsors=paidsponsors,
     )
 
-@app.route("/2025/report")
-def report():
+@app.route("/2025/report",  methods=["GET"])
+def report_2025():
     return  redirect("https://report.pytogo.org/")
 
 @app.route("/favicon.ico")
