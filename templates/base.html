@@ -26,9 +26,7 @@
     <meta name="application-name" content="PyCon Togo 2025">
     <meta name="msapplication-navbutton-color" content="#000000">
     <meta name="theme-color" content="#000000">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href=" {{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %} </title>
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="stylesheet" href="../static/css/menu.css">
@@ -47,7 +45,7 @@
     <header>
         <div class="container header-container">
             <div class="logo">
-                <a href="{{ url_for('home')}}">
+                <a href="{{ url_for('home_25')}}">
                     <img src="../static/images/pycontogo.png" alt="PyCon Togo Logo">
                 </a>
 
@@ -56,7 +54,7 @@
             <div class="nav-container">
                 <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
                 <ul class="main-nav" id="mainNav">
-                    <li><a class="link" href="{{ url_for('home')}}">Home</a></li>
+                    <li><a class="link" href="{{ url_for('home_25')}}">Home</a></li>
 
                     <li class="has-dropdown">
                         <a class="link" href="{{ url_for('about_us') }}">About ▾</a>
@@ -153,7 +151,7 @@ title:'PayPal - The safer, easier way to pay online!',
                 <div class="footer-column">
                     <h3 class="footer-title">Quick Links</h3>
                     <ul class="footer-links">
-                        <li><a class="link" href="{{ url_for('home')}}">Home</a></li>
+                        <li><a class="link" href="{{ url_for('home_25')}}">Home</a></li>
                         <li><a class="link" href="{{ url_for('about_us')}}">About Us</a></li>
                         <li><a class="link" href="{{ url_for('sponsors')}}">Sponsors</a></li>
                         <li><a class="link" href="{{ url_for('speakers')}}">Speakers</a></li>
@@ -173,7 +171,7 @@ title:'PayPal - The safer, easier way to pay online!',
                         <li><a href="{{ url_for('sponsor')}}">Become a Sponsor</a></li>
                         <li><a href="{{ url_for('code_of_conduct')}}">Code of Conduct</a></li>
                         <li><a class="link" href="{{ url_for('health_safety')}}">Health & Safety Policy</a></li>
-                        <li><a href="{{ url_for('coming_soon')}}">FAQs</a></li>
+                        <li><a href="{{ url_for('about_us')}}">FAQs</a></li>
                     </ul>
                 </div>
 

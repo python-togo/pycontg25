@@ -163,6 +163,19 @@ educational_supporters = [
 @app.route("/")
 def home():
     return render_template(
+        "2026_coming_soon.html",
+        year=year,
+        event_date=event_date_str,
+        sponsor_tiers=sponsor_tiers,
+        proposal_opining_date=proposal_opining_date,
+        proposal_closing_date=proposal_closing_date,
+        paidsponsors=paidsponsors,
+    )
+
+
+@app.route("/2025")
+def home_25():
+    return render_template(
         "home.html",
         year=year,
         event_date=event_date_str,
@@ -192,7 +205,7 @@ def live_page():
 
 
 
-@app.route("/shop")
+@app.route("/2025/shop")
 def shop_swag():
     return render_template(
         "shop.html",
@@ -201,7 +214,7 @@ def shop_swag():
     )
 
 
-@app.route("/register", methods=["GET", "POST"])
+@app.route("/2025/register", methods=["GET", "POST"])
 def register():
     if request.method == "GET":
 
@@ -308,15 +321,10 @@ def register():
         )
 
 
-@app.route("/coming-soon")
-def coming_soon():
-    return render_template(
-        "coming-soon.html",
-        year=year,
-    )
 
 
-@app.route("/schedule", methods=["GET"])
+
+@app.route("/2025/schedule", methods=["GET"])
 def schedule():
     if datetime.now(timezone.utc) < schedule_release_date:
          return redirect(url_for("coming_soon"))
@@ -331,7 +339,7 @@ def schedule():
     )
 
 
-@app.route("/health-safety")
+@app.route("/2025/health-safety")
 def health_safety():
     return render_template(
         "health-safety.html",
@@ -344,7 +352,7 @@ def health_safety():
 #     return redirect(url_for("coming_soon"))
 
 
-@app.route("/volunteer", methods=["GET", "POST"])
+@app.route("/2025/volunteer", methods=["GET", "POST"])
 def volunteer():
     close_volunteer_date = datetime(2025, 5, 31, 16, 0, 0)
     close_volunteer_date = close_volunteer_date.replace(tzinfo=timezone.utc)
@@ -450,7 +458,7 @@ def volunteer():
         )
 
 
-@app.route("/waitlist", methods=["GET", "POST"])
+@app.route("/2025/waitlist", methods=["GET", "POST"])
 def waitlist():
     if request.method == "GET":
         if opening_in > timedelta(days=45):
@@ -522,7 +530,7 @@ def waitlist():
         )
 
 
-@app.route("/speakers", methods=["GET"])
+@app.route("/2025/speakers", methods=["GET"])
 def speakers():
     speaker_release_date = datetime(2025, 7, 10, 16, 0, 0)
     release_speaker_theme_date = datetime(2025, 7, 20, 16, 0, 0)
@@ -551,7 +559,7 @@ def speakers():
     )
 
 
-@app.route("/proposal", methods=["GET", "POST"])
+@app.route("/2025/proposal", methods=["GET", "POST"])
 def proposal():
     cfp_opening_in_days = datetime(2025, 6, 2, 16, 0, 0)
     cfp_closing_in_days = datetime(2025, 7, 1, 16, 0, 0)
@@ -630,7 +638,7 @@ def proposal():
         )
 
 
-@app.route("/sponsor", methods=["GET", "POST"])
+@app.route("/2025/sponsor", methods=["GET", "POST"])
 def sponsor():
     if request.method == "GET":
         headline = get_sponsortirtbytitle("headline")
@@ -689,7 +697,7 @@ def sponsor():
         )
 
 
-@app.route("/sponsors")
+@app.route("/2025/sponsors")
 def sponsors():
     return render_template(
         "sponsors.html",
@@ -705,7 +713,7 @@ def sponsors():
     )
 
 
-@app.route("/contact")
+@app.route("/2025/contact")
 def contact():
     return render_template(
         "contact.html",
@@ -714,7 +722,7 @@ def contact():
     )
 
 
-@app.route("/about")
+@app.route("/2025/about")
 def about_us():
     return render_template(
         "about.html",
@@ -731,7 +739,7 @@ def code_of_conduct():
         sponsor_tiers=sponsor_tiers,
     )
 
-@app.route("/team")
+@app.route("/20225/team")
 def team():
     return render_template(
         "team.html",
@@ -739,12 +747,12 @@ def team():
         sponsor_tiers=sponsor_tiers,
     )
 
-@app.route("/feedback", methods=["GET"])
+@app.route("/2025/feedback", methods=["GET"])
 def feedback():
     return render_template("feedback.html")
 
 
-@app.route("/staff-feedback", methods=["GET"])
+@app.route("/2025/staff-feedback", methods=["GET"])
 def staff_feedback():
     return render_template("staff_feedback.html")
 
